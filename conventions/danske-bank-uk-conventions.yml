@@ -1,0 +1,84 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from the UK Open Banking (OBIE) Read/Write OpenAPI specs in openapi/
+  (headers, error envelope, pagination) plus the OBIE Read/Write Data API
+  standard conventions the Danske Bank (UK) APIs implement.
+summary: >-
+  Danske Bank (UK)'s Read/Write APIs follow the UK Open Banking Implementation
+  Entity (OBIE) Read/Write Data API standard: FAPI-secured OAuth2/OIDC bearer
+  tokens, mandatory x-fapi-* request headers, idempotent payment POSTs via an
+  x-idempotency-key header, detached JWS request signing, cursor/link
+  pagination, and a standardised OBErrorResponse1 error envelope.
+authentication:
+  style: oauth2-bearer-fapi
+  scheme: BearerAuth
+  bearer_format: JWT
+  notes: >-
+    FAPI 1.0 Advanced profile. Access tokens are JWT bearer tokens obtained via
+    OAuth2/OIDC with PSD2 strong customer authentication; transport is secured
+    with mutual TLS. The public Open Data API instead uses X-IBM-Client-Id /
+    X-IBM-Client-Secret headers (IBM API Connect gateway).
+  cross_ref: authentication/danske-bank-uk-authentication.yml
+idempotency:
+  supported: true
+  mechanism: header
+  header: x-idempotency-key
+  applies_to: >-
+    All payment-order and consent creation POST operations across the Payment
+    Initiation (PIS), Variable Recurring Payments (VRP) and Confirmation of
+    Funds (CBPII) APIs. The key is a client-generated unique value (max 40
+    chars) that guarantees at-most-once processing of a payment instruction.
+  scope: per-endpoint
+  spec_evidence: openapi/danske-bank-uk-payment-initiation-openapi.json#/components/parameters/x-idempotency-key
+request_signing:
+  supported: true
+  header: x-jws-signature
+  mechanism: detached JWS (JAdES) signature over the request body, per OBIE spec
+request_tracing:
+  header: x-fapi-interaction-id
+  description: >-
+    Client-supplied UUID echoed back by the bank to correlate a request/response
+    pair end to end for support and audit.
+fapi_headers:
+  - name: x-fapi-auth-date
+    description: Time when the PSU last logged in with the TPP.
+  - name: x-fapi-customer-ip-address
+    description: IP address of the PSU if present in the session.
+  - name: x-fapi-interaction-id
+    description: Unique correlation id for the interaction.
+  - name: x-customer-user-agent
+    description: User-agent of the PSU's device.
+pagination:
+  style: link-based
+  response_fields: [Links, Meta]
+  params: [page]
+  description: >-
+    OBIE collection responses carry a Links object (Self/First/Prev/Next/Last)
+    and a Meta object (TotalPages, FirstAvailableDateTime,
+    LastAvailableDateTime). Clients follow Links.Next to page.
+  spec_evidence: openapi/danske-bank-uk-account-transaction-openapi.json (Links, Meta schemas)
+versioning:
+  style: uri-path
+  read_write_version: v4.0
+  open_data_version: v2.2
+  corporate_version: v1
+  cross_ref: lifecycle/danske-bank-uk-lifecycle.yml
+error_envelope:
+  shape: OBErrorResponse1
+  fields:
+    - Id (audit reference for the error instance)
+    - Errors[] (array of OBError1)
+  error_item_fields:
+    - ErrorCode (UK.OBIE.* / 4-char internal code)
+    - Message (human-readable description)
+    - Path (JSON Path of the offending field)
+    - Url (link to remediation guidance)
+  media_type: application/json
+  cross_ref: errors/danske-bank-uk-problem-types.yml
+rate_limiting:
+  signal: HTTP 429 Too Many Requests
+  notes: >-
+    All Read/Write endpoints document a 429 response. Per-TPP throttling applies;
+    published quantitative limits are governed by the OBIE operational guidelines
+    rather than the OpenAPI.

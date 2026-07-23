@@ -1,0 +1,40 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from openapi/danske-bank-uk-events-openapi.json (OBIE Event
+  Notification API v4.0) and the OBIE event-notification standard.
+spec_type: Webhooks
+summary: >-
+  Danske Bank (UK) exposes the UK Open Banking (OBIE) Event Notification API,
+  which delivers real-time notifications about account and payment resource
+  changes to registered Third Party Providers. The bank supports the
+  aggregated-polling model (TPP polls for queued event notifications) via the
+  /events endpoint; individual event notifications are signed JWTs following the
+  OBIE Security Event Token (SET) profile.
+delivery:
+  models:
+    - aggregated-polling
+  endpoint:
+    path: /events
+    method: POST
+    operation: CreateEvents
+    api: danske-bank-uk-events-api
+    baseURL: https://obp-api.danskebank.com/open-banking/v4.0
+    request_schema: OBEventPolling1
+    response_schema: OBEventPollingResponse1
+  format: >-
+    Each event notification is a signed JWT (Security Event Token) carrying the
+    subject resource, the event type URI, and status-reason codes
+    (OBExternalStatusReason1Code).
+event_types:
+  values:
+    - urn:uk:org:openbanking:events:resource-update
+  notes: >-
+    Event subjects cover account-access-consent and payment-consent/payment
+    resource lifecycle updates (e.g. consent status changes, payment status
+    transitions). The precise event-type URIs are governed by the OBIE Event
+    Notification standard.
+security:
+  - FAPI OAuth2 bearer (accounts/payments scope on the polling call)
+  - Signed event tokens (JWS)
+reference: https://developers.danskebank.com/

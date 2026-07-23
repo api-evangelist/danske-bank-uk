@@ -269,6 +269,38 @@ apis:
   - type: Documentation
     url: https://developers.danskebank.com/
 common:
+- type: DomainSecurity
+  url: security/danske-bank-uk-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/danske-bank-uk-agentic-access.yml
+- type: Authentication
+  url: authentication/danske-bank-uk-authentication.yml
+- type: OAuthScopes
+  url: scopes/danske-bank-uk-scopes.yml
+- type: Conventions
+  url: conventions/danske-bank-uk-conventions.yml
+- type: Idempotency
+  url: conventions/danske-bank-uk-conventions.yml
+- type: ErrorCatalog
+  url: errors/danske-bank-uk-problem-types.yml
+- type: Conformance
+  url: conformance/danske-bank-uk-conformance.yml
+- type: Lifecycle
+  url: lifecycle/danske-bank-uk-lifecycle.yml
+- type: Sandbox
+  url: sandbox/danske-bank-uk-sandbox.yml
+- type: Webhooks
+  url: asyncapi/danske-bank-uk-events-webhooks.yml
+- type: MCPServer
+  url: mcp/danske-bank-uk-mcp.yml
+- type: LLMsTxt
+  url: llms/danske-bank-uk-llms.txt
+- type: DataModel
+  url: data-model/danske-bank-uk-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/danske-bank-uk-account-transaction-overlay.yaml
 - type: Website
   url: https://www.danskebank.co.uk/
 - type: DeveloperPortal

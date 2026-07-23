@@ -1,0 +1,45 @@
+generated: '2026-07-23'
+method: derived
+source: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json, openapi/danske-bank-uk-account-transaction-openapi.json,
+  openapi/danske-bank-uk-confirmation-of-funds-openapi.json, openapi/danske-bank-uk-events-openapi.json,
+  openapi/danske-bank-uk-fx-trade-execution-openapi.json, openapi/danske-bank-uk-fx-trade-report-openapi.json,
+  openapi/danske-bank-uk-opendata-openapi.json, openapi/danske-bank-uk-payment-collection-premium-openapi.json,
+  openapi/danske-bank-uk-payment-initiation-openapi.json, openapi/danske-bank-uk-premium-payment-initiation-openapi.json,
+  openapi/danske-bank-uk-variable-recurring-payments-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer
+    {token}"'
+  sources:
+  - openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json
+  - openapi/danske-bank-uk-account-transaction-openapi.json
+  - openapi/danske-bank-uk-confirmation-of-funds-openapi.json
+  - openapi/danske-bank-uk-events-openapi.json
+  - openapi/danske-bank-uk-fx-trade-execution-openapi.json
+  - openapi/danske-bank-uk-fx-trade-report-openapi.json
+  - openapi/danske-bank-uk-payment-collection-premium-openapi.json
+  - openapi/danske-bank-uk-payment-initiation-openapi.json
+  - openapi/danske-bank-uk-premium-payment-initiation-openapi.json
+  - openapi/danske-bank-uk-variable-recurring-payments-openapi.json
+- name: clientIdHeader
+  type: apiKey
+  in: header
+  parameter: X-IBM-Client-Id
+  sources:
+  - openapi/danske-bank-uk-opendata-openapi.json
+- name: clientSecretHeader
+  type: apiKey
+  in: header
+  parameter: X-IBM-Client-Secret
+  description: BC2702Z
+  sources:
+  - openapi/danske-bank-uk-opendata-openapi.json

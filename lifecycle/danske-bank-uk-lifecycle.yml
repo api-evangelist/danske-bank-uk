@@ -1,0 +1,31 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from the OpenAPI server/version paths in openapi/ and the UK Open
+  Banking (OBIE) standard release lifecycle the Danske Bank (UK) APIs track.
+versioning:
+  scheme: uri-path
+  apis:
+    read_write_obie: v4.0
+    open_data_obie: v2.2
+    corporate_premium: v1
+  standard: >-
+    Read/Write APIs implement the OBIE Read/Write Data API Specification v4.0
+    (AIS, PIS, CBPII, VRP, Events). Major version is carried in the URI path;
+    the bank tracks OBIE standard releases.
+  docs: https://developers.danskebank.com/
+deprecation:
+  policy: >-
+    Version transitions follow the UK Open Banking Implementation Entity
+    standard release and retirement schedule; superseded major versions are
+    retired after an OBIE-defined migration window.
+  sunset_header: unknown
+sla:
+  notes: >-
+    Availability and performance for the Read/Write APIs are governed by the
+    OBIE operational guidelines and PSD2 regulatory requirements (including
+    monthly availability and performance reporting to the FCA). No standalone
+    developer SLA URL is published for the corporate premium APIs.
+  regulatory_reporting: https://danskebank.co.uk/important-information/open-banking/api-data
+status_page: null
+deprecated_operations: []

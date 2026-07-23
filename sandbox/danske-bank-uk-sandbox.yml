@@ -1,0 +1,48 @@
+generated: '2026-07-23'
+method: searched
+source: >-
+  Sandbox/mock server URLs published in the servers[] blocks of the premium
+  corporate OpenAPI specs in openapi/, plus the OBIE model-bank sandbox pattern.
+summary: >-
+  The premium corporate APIs (Account Transaction & Balance, Payment Collection,
+  Premium Payment Initiation, FX Trade Report, FX Trade Execution) each publish
+  a public no-auth mock sandbox and an authenticated corporate sandbox, in
+  addition to the production host. The public Open Data API is itself an
+  unauthenticated live endpoint usable for testing.
+environments:
+  - name: mock-sandbox
+    description: >-
+      Public mock server returning canned responses; no credentials required.
+      Useful for wiring up clients before onboarding.
+    auth: none
+    hosts:
+      - https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service
+      - https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service
+      - https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders
+      - https://mock-api.danskebank.com/mock/sandbox/1.0.0/fx-open-and-historical-trades-api/v1/open-trades-service
+      - https://mock-api.danskebank.com/mock/sandbox/1.0.1/fx-trade-execution-api/v1/trade-service
+  - name: corporate-sandbox
+    description: >-
+      Authenticated sandbox mirroring production for the corporate premium APIs;
+      requires developer-portal onboarding and sandbox credentials.
+    auth: bearer
+    hosts:
+      - https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/account-transaction-service
+      - https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/collection-service
+      - https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/corporate-paymentorders
+      - https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/open-trades-service
+      - https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/trade-service
+  - name: open-data-live
+    description: >-
+      The UK Open Banking Open Data API is public and unauthenticated; it can be
+      called directly for integration testing.
+    auth: none
+    hosts:
+      - https://obp-data.danskebank.com/v2.2
+open_banking_sandbox:
+  note: >-
+    For the FAPI-secured Read/Write APIs (AIS/PIS/CBPII/VRP/Events), sandbox
+    access is provisioned during TPP onboarding via the Open Banking Directory;
+    test PSU credentials and test accounts are issued as part of enrolment. No
+    static test values are published publicly.
+test_values: []

@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Danske Bank (UK) Premium Payment Initiation API
+  version: 1.0.0
+extends: openapi/danske-bank-uk-premium-payment-initiation-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: danske-bank-uk
+      x-apievangelist-standard: uk-open-banking-obie
+      x-apievangelist-enriched: '2026-07-23'

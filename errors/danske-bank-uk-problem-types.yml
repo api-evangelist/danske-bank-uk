@@ -1,0 +1,59 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from the 4xx/5xx responses and the OBErrorResponse1 / OBError1 error
+  schemas across the UK Open Banking Read/Write OpenAPI specs in openapi/.
+format: obie-oberrorresponse1
+envelope:
+  schema: OBErrorResponse1
+  media_type: application/json
+  fields:
+    Id: A unique reference for the error instance, for audit purposes.
+    Errors: An array of OBError1 items.
+  error_item:
+    ErrorCode: >-
+      High-level UK.OBIE.* category code, or a 4-character internal code
+      (see OpenBankingUK/External_Internal_CodeSets).
+    Message: Human-readable description of the error.
+    Path: JSON Path of the field in error (e.g. Data.Initiation.InstructedAmount.Currency).
+    Url: URL to remediation guidance or API reference.
+# HTTP-level problems observed across the Read/Write specs.
+problems:
+  - status: 400
+    title: Bad request
+    detail: Request is malformed or fails OBIE schema/field validation; details in Errors[].
+    error_codes: [UK.OBIE.Field.Invalid, UK.OBIE.Field.Missing, UK.OBIE.Field.Unexpected, UK.OBIE.Field.InvalidDate, UK.OBIE.Unsupported.Currency]
+  - status: 401
+    title: Unauthorized
+    detail: Missing, expired or invalid access token, or failed FAPI/SCA requirements.
+  - status: 403
+    title: Forbidden
+    detail: Token lacks the required consent/scope or the resource is not permitted for this TPP.
+    error_codes: [UK.OBIE.Resource.InvalidConsentStatus, UK.OBIE.Rules.ResourceAlreadyExists]
+  - status: 404
+    title: Not found
+    detail: The requested resource (account, consent, payment id) does not exist.
+    error_codes: [UK.OBIE.Resource.NotFound]
+  - status: 405
+    title: Method not allowed
+    detail: HTTP method not supported for this resource.
+  - status: 406
+    title: Not acceptable
+    detail: Requested representation (Accept header) is not supported.
+  - status: 409
+    title: Conflict
+    detail: Idempotency conflict or resource state conflict (e.g. duplicate x-idempotency-key with a different body).
+  - status: 415
+    title: Unsupported media type
+    detail: Request Content-Type is not application/json (or the expected OBIE media type).
+  - status: 429
+    title: Too many requests
+    detail: Per-TPP rate limit exceeded; retry after backoff.
+  - status: 500
+    title: Internal server error
+    detail: Unexpected server error; Id field carries an audit reference for support.
+    error_codes: [UK.OBIE.UnexpectedError]
+  - status: 503
+    title: Service unavailable
+    detail: The service is temporarily unavailable (maintenance or downstream outage).
+reference: https://github.com/OpenBankingUK/External_Internal_CodeSets

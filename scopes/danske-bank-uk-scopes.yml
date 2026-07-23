@@ -1,0 +1,41 @@
+generated: '2026-07-23'
+method: searched
+source: >-
+  UK Open Banking (OBIE) Read/Write Data API standard OAuth2 scopes. The Danske
+  Bank (UK) Read/Write APIs are FAPI-secured OAuth2/OIDC; the OpenAPI specs
+  declare a JWT BearerAuth scheme, so the granular scope set is documented by the
+  OBIE standard rather than enumerated in-spec.
+docs: https://developers.danskebank.com/
+schemes:
+  - name: OpenBankingOAuth2
+    type: oauth2
+    flow: authorizationCode
+    standard: OBIE FAPI 1.0 Advanced
+    note: >-
+      Access-token acquisition uses OAuth2 authorization-code with OIDC, PSD2
+      strong customer authentication, mutual TLS and a signed request object.
+scopes:
+  - scope: accounts
+    description: >-
+      Access account and transaction information (AIS) - balances,
+      transactions, beneficiaries, standing orders, direct debits, statements,
+      parties and products, within a granted account-access consent.
+    apis: [danske-bank-uk-account-transaction-api]
+  - scope: payments
+    description: >-
+      Initiate and read payments (PIS) - domestic, scheduled, standing order,
+      file, international and variable recurring payments, within a granted
+      payment consent.
+    apis: [danske-bank-uk-payment-initiation-api, danske-bank-uk-variable-recurring-payments-api]
+  - scope: fundsconfirmations
+    description: >-
+      Confirm the availability of funds on an account (CBPII) for card-based
+      payment instrument issuers, within a granted funds-confirmation consent.
+    apis: [danske-bank-uk-confirmation-of-funds-api]
+  - scope: openid
+    description: OpenID Connect authentication of the payment service user (PSU).
+notes: >-
+  Fine-grained data access is additionally bounded by the consent object (the
+  Permissions array and expiry granted at authorization time), not by scope
+  alone. Standard OBIE scopes above; the internal registration/onboarding scope
+  set is issued via the Open Banking Directory during TPP onboarding.

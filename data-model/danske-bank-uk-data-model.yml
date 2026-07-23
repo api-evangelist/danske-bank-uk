@@ -1,0 +1,83 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from the resource paths and $ref/id-reference fields in the UK Open
+  Banking Read/Write OpenAPI specs (AIS, PIS, CBPII, VRP) in openapi/.
+summary: >-
+  The Danske Bank (UK) Read/Write domain follows the OBIE consent-then-resource
+  model: every data-access or payment resource hangs off a consent, and accounts
+  own balances, transactions and related sub-resources.
+entities:
+  - name: AccountAccessConsent
+    id_field: ConsentId
+    api: danske-bank-uk-account-transaction-api
+  - name: Account
+    id_field: AccountId
+    api: danske-bank-uk-account-transaction-api
+  - name: Balance
+    api: danske-bank-uk-account-transaction-api
+  - name: Transaction
+    api: danske-bank-uk-account-transaction-api
+  - name: Beneficiary
+    api: danske-bank-uk-account-transaction-api
+  - name: StandingOrder
+    api: danske-bank-uk-account-transaction-api
+  - name: DirectDebit
+    api: danske-bank-uk-account-transaction-api
+  - name: DomesticPaymentConsent
+    id_field: ConsentId
+    api: danske-bank-uk-payment-initiation-api
+  - name: DomesticPayment
+    id_field: DomesticPaymentId
+    api: danske-bank-uk-payment-initiation-api
+  - name: InternationalPayment
+    id_field: InternationalPaymentId
+    api: danske-bank-uk-payment-initiation-api
+  - name: FilePayment
+    id_field: FilePaymentId
+    api: danske-bank-uk-payment-initiation-api
+  - name: FundsConfirmationConsent
+    id_field: ConsentId
+    api: danske-bank-uk-confirmation-of-funds-api
+  - name: DomesticVRPConsent
+    id_field: ConsentId
+    api: danske-bank-uk-variable-recurring-payments-api
+  - name: DomesticVRPPayment
+    api: danske-bank-uk-variable-recurring-payments-api
+relationships:
+  - from: Account
+    to: AccountAccessConsent
+    type: belongs_to
+    via: ConsentId
+  - from: Balance
+    to: Account
+    type: belongs_to
+    via: AccountId
+  - from: Transaction
+    to: Account
+    type: belongs_to
+    via: AccountId
+  - from: Beneficiary
+    to: Account
+    type: belongs_to
+    via: AccountId
+  - from: StandingOrder
+    to: Account
+    type: belongs_to
+    via: AccountId
+  - from: DirectDebit
+    to: Account
+    type: belongs_to
+    via: AccountId
+  - from: DomesticPayment
+    to: DomesticPaymentConsent
+    type: belongs_to
+    via: ConsentId
+  - from: InternationalPayment
+    to: DomesticPaymentConsent
+    type: belongs_to
+    via: ConsentId
+  - from: DomesticVRPPayment
+    to: DomesticVRPConsent
+    type: belongs_to
+    via: ConsentId

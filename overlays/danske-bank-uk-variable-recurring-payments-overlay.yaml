@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Danske Bank (UK) Variable Recurring Payments - UK OB
+  version: 1.0.0
+extends: openapi/danske-bank-uk-variable-recurring-payments-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: danske-bank-uk
+      x-apievangelist-standard: uk-open-banking-obie
+      x-apievangelist-enriched: '2026-07-23'

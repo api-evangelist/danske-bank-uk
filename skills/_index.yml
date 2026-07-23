@@ -1,0 +1,19 @@
+generated: '2026-07-23'
+method: generated
+source: >-
+  Generated from the UK Open Banking Read/Write OpenAPI operations in openapi/
+  and the conventions/errors artifacts. Every step is grounded in a real
+  operationId verified against the spec.
+skills:
+  - file: danske-bank-uk-retrieve-account-information.md
+    name: Retrieve account information (AIS)
+    api: openapi/danske-bank-uk-account-transaction-openapi.json
+    operations: [CreateAccountAccessConsents, GetAccounts, GetAccountsAccountId, GetAccountsAccountIdBalances, GetAccountsAccountIdTransactions]
+  - file: danske-bank-uk-initiate-domestic-payment.md
+    name: Initiate a domestic payment (PIS)
+    api: openapi/danske-bank-uk-payment-initiation-openapi.json
+    operations: [CreateDomesticPaymentConsents, GetDomesticPaymentConsentsConsentIdFundsConfirmation, CreateDomesticPayments, GetDomesticPaymentsDomesticPaymentId]
+  - file: danske-bank-uk-setup-variable-recurring-payment.md
+    name: Set up a variable recurring payment (VRP)
+    api: openapi/danske-bank-uk-variable-recurring-payments-openapi.json
+    operations: [domesticVrpConsentsPost, domesticVrpConsentsFundsConfirmation, domesticVrpPost, domesticVrpGet]

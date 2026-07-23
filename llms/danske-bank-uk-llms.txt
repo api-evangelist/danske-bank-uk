@@ -1,0 +1,50 @@
+# Danske Bank (UK)
+
+> Danske Bank (UK) is the trading name of Northern Bank Limited, the largest bank in Northern Ireland and one of the UK CMA9. As an FCA-authorised ASPSP under PSD2 it publishes the UK Open Banking (OBIE) API family — a public Open Data API plus FAPI-secured Read/Write APIs (AIS, PIS, CBPII, VRP, Events) — alongside a suite of premium corporate APIs on its developer portal.
+
+## APIs
+
+- [Open Data API](https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference): Public, unauthenticated OBIE Open Data v2.2 — ATMs, branches, personal/business current accounts, unsecured SME loans, commercial credit cards. Base: https://obp-data.danskebank.com/v2.2
+- [Account and Transaction API (AIS)](https://developers.danskebank.com/): OBIE Read/Write AIS v4.0 — accounts, balances, transactions, beneficiaries, standing orders, direct debits, statements. Base: https://obp-api.danskebank.com/open-banking/v4.0/aisp
+- [Payment Initiation API (PIS)](https://developers.danskebank.com/): OBIE Read/Write PIS v4.0 — domestic, scheduled, standing-order, file and international payments. Base: https://obp-api.danskebank.com/open-banking/v4.0/pisp
+- [Confirmation of Funds API (CBPII)](https://developers.danskebank.com/): OBIE Read/Write CBPII v4.0 — confirm availability of funds. Base: https://obp-api.danskebank.com/open-banking/v4.0/cbpii
+- [Variable Recurring Payments API (VRP)](https://developers.danskebank.com/): OBIE Read/Write VRP v4.0 — domestic VRP consents and recurring payments. Base: https://obp-api.danskebank.com/open-banking/v4.0/pisp
+- [Events API](https://developers.danskebank.com/): OBIE Event Notification v4.0 — real-time resource-update notifications to TPPs. Base: https://obp-api.danskebank.com/open-banking/v4.0
+- [Account Transaction & Balance API (premium)](https://developers.danskebank.com/): Corporate real-time transactions and balances. Base: https://api.danskebank.com/corporate/api/v1/account-transaction-service
+- [Payment Collection API (premium)](https://developers.danskebank.com/): Corporate collection payment services. Base: https://api.danskebank.com/corporate/api/v1/collection-service
+- [Premium Payment Initiation API](https://developers.danskebank.com/): Corporate payment orders. Base: https://api.danskebank.com/corporate/api/v1/corporate-paymentorders
+- [FX Trade Report API (premium)](https://developers.danskebank.com/): Open and historical FX trade reports. Base: https://api.danskebank.com/corporate/api/v1/open-trades-service
+- [FX Trade Execution API (premium)](https://developers.danskebank.com/): Execute FX trades against quotes. Base: https://api.danskebank.com/corporate/api/v1/trade-service
+
+## Specs
+
+- [Open Data OpenAPI](openapi/danske-bank-uk-opendata-openapi.json)
+- [Account & Transaction OpenAPI](openapi/danske-bank-uk-account-transaction-openapi.json)
+- [Payment Initiation OpenAPI](openapi/danske-bank-uk-payment-initiation-openapi.json)
+- [Confirmation of Funds OpenAPI](openapi/danske-bank-uk-confirmation-of-funds-openapi.json)
+- [Variable Recurring Payments OpenAPI](openapi/danske-bank-uk-variable-recurring-payments-openapi.json)
+- [Events OpenAPI](openapi/danske-bank-uk-events-openapi.json)
+- [Account Transaction & Balance (premium) OpenAPI](openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json)
+- [Payment Collection (premium) OpenAPI](openapi/danske-bank-uk-payment-collection-premium-openapi.json)
+- [Premium Payment Initiation OpenAPI](openapi/danske-bank-uk-premium-payment-initiation-openapi.json)
+- [FX Trade Report (premium) OpenAPI](openapi/danske-bank-uk-fx-trade-report-openapi.json)
+- [FX Trade Execution (premium) OpenAPI](openapi/danske-bank-uk-fx-trade-execution-openapi.json)
+
+## Artifacts
+
+- [Authentication profile](authentication/danske-bank-uk-authentication.yml)
+- [OAuth scopes](scopes/danske-bank-uk-scopes.yml)
+- [API conventions (idempotency, FAPI headers, pagination)](conventions/danske-bank-uk-conventions.yml)
+- [Error catalog](errors/danske-bank-uk-problem-types.yml)
+- [Conformance (OBIE, PSD2, FAPI)](conformance/danske-bank-uk-conformance.yml)
+- [Lifecycle & versioning](lifecycle/danske-bank-uk-lifecycle.yml)
+- [Sandbox / mock environments](sandbox/danske-bank-uk-sandbox.yml)
+- [Events / webhooks surface](asyncapi/danske-bank-uk-events-webhooks.yml)
+- [Agentic access contracts](agentic-access/danske-bank-uk-agentic-access.yml)
+
+## Docs
+
+- [Developer Portal](https://developers.danskebank.com/)
+- [Open Banking information](https://danskebank.co.uk/important-information/open-banking)
+- [Third Party Providers](https://danskebank.co.uk/important-information/open-banking/third-party-providers)
+- [API performance data](https://danskebank.co.uk/important-information/open-banking/api-data)

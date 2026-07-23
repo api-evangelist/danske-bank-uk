@@ -1,0 +1,34 @@
+generated: '2026-07-23'
+method: probed
+source: live probes of /.well-known/ paths on the apis.yml + OpenAPI hosts
+summary: >-
+  No machine-readable /.well-known/ discovery document was found on the API or
+  corporate hosts. The developer-portal host returns its SPA index.html (HTTP
+  200, text/html) for every /.well-known/ path, i.e. a catch-all shell rather
+  than a real document, so no WellKnown/SecurityTxt pointer is wired. The
+  FAPI-secured Open Banking auth-server metadata is provisioned per-TPP via the
+  Open Banking Directory and is not anonymously reachable.
+hosts:
+  - host: https://obp-api.danskebank.com
+    documents:
+      - {path: /.well-known/security.txt, status: 000, note: connection refused without mutual TLS}
+      - {path: /.well-known/openid-configuration, status: 000}
+      - {path: /.well-known/oauth-authorization-server, status: 000}
+  - host: https://obp-data.danskebank.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+  - host: https://api.danskebank.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+  - host: https://developers.danskebank.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: SPA index.html shell (text/html), not a real security.txt}
+      - {path: /.well-known/openid-configuration, status: 200, note: SPA shell, not real OIDC metadata}
+      - {path: /.well-known/oauth-authorization-server, status: 200, note: SPA shell}
+      - {path: /.well-known/api-catalog, status: 200, note: SPA shell}

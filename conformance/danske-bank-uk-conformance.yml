@@ -1,0 +1,44 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Derived from the OpenAPI security schemes, headers, error/pagination shapes in
+  openapi/ and the UK Open Banking / PSD2 regulatory standards the Danske Bank
+  (UK) APIs implement, corroborated by the provider's Open Banking pages.
+standards:
+  - id: uk-open-banking-obie-v4
+    conforms: true
+    evidence: >-
+      APIs implement the OBIE Read/Write Data API Specification v4.0 (AIS, PIS,
+      CBPII, VRP, Events) and Open Data v2.2; OBError1/OBErrorResponse1 envelope,
+      Links/Meta pagination, and x-fapi-* / x-idempotency-key / x-jws-signature
+      headers are present in the specs.
+  - id: psd2
+    conforms: true
+    evidence: >-
+      FCA-authorised ASPSP; CMA9 mandated Open Banking implementation with SCA
+      and dedicated interface for AISP/PISP/CBPII third-party providers.
+  - id: fapi-1-advanced
+    conforms: true
+    evidence: >-
+      Read/Write APIs are FAPI-secured (OAuth2/OIDC, mutual TLS, JWS request
+      signing via x-jws-signature) per the OBIE FAPI 1.0 Advanced profile.
+  - id: oauth2
+    conforms: true
+    evidence: JWT bearer access tokens issued via OAuth2 authorization-code flow with PKCE/SCA.
+  - id: oidc
+    conforms: true
+    evidence: OpenID Connect used for PSU authentication and consent (id_token, request objects).
+  - id: mutual-tls
+    conforms: true
+    evidence: TPP transport authentication via mutual TLS with eIDAS/OBIE certificates.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the OBIE OBErrorResponse1 envelope (application/json), not
+      RFC 9457 application/problem+json.
+  - id: idempotency
+    conforms: true
+    evidence: Payment/consent POSTs accept an x-idempotency-key header for at-most-once processing.
+  - id: pagination
+    conforms: true
+    evidence: OBIE Links/Meta cursor pagination on collection responses.
