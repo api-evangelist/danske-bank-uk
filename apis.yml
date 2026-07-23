@@ -1,0 +1,298 @@
+aid: danske-bank-uk
+url: https://raw.githubusercontent.com/api-evangelist/danske-bank-uk/refs/heads/main/apis.yml
+name: Danske Bank (UK)
+kind: company
+description: >-
+  Danske Bank (UK) is the trading name of Northern Bank Limited, a retail and
+  commercial bank headquartered in Belfast and the largest bank in Northern
+  Ireland. It is a wholly owned subsidiary of Denmark's Danske Bank Group and is
+  authorised by the UK Prudential Regulation Authority and regulated by the
+  Financial Conduct Authority and PRA. As "Northern Bank Limited t/a Danske
+  Bank" it is one of the CMA9 - the nine largest current-account providers
+  mandated by the UK Competition and Markets Authority to implement the Open
+  Banking standard - and an FCA-authorised ASPSP under PSD2. It publishes the
+  UK Open Banking (OBIE) API family: a public, unauthenticated Open Data API
+  (ATMs, branches, personal and business current accounts, unsecured SME loans,
+  commercial credit cards) and the FAPI-secured Read/Write APIs for Account and
+  Transaction Information (AIS), Payment Initiation (PIS), Confirmation of Funds
+  (CBPII), Variable Recurring Payments (VRP), and Events, alongside a suite of
+  premium corporate APIs (account transaction and balance reporting, payment
+  collection, corporate payment initiation, and FX trade reporting and
+  execution) exposed through the Danske Bank developer portal.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup · Open Data public
+  confidence: medium
+  source:
+  - authentication
+  - open-data
+  generated: '2026-07-23'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial Services
+- Banking
+- Open Banking
+- PSD2
+- OBIE
+- CMA9
+- United Kingdom
+- Northern Ireland
+- Payments
+- Account Information
+- FAPI
+- Fintech
+created: '2026-07-23'
+modified: '2026-07-23'
+specificationVersion: '0.19'
+apis:
+- aid: danske-bank-uk:danske-bank-uk-open-data-api
+  name: Danske Bank (UK) Open Data API
+  description: >-
+    Public, unauthenticated UK Open Banking Open Data API (OBIE Open Data v2.2)
+    publishing reference data for Danske Bank (UK) - ATM and branch locations,
+    personal and business current accounts, unsecured SME loans, and commercial
+    credit cards. Confirmed live (HTTP 200) at the base URL below.
+  humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
+  baseURL: https://obp-data.danskebank.com/v2.2
+  tags:
+  - Open Data
+  - ATMs
+  - Branches
+  - Products
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-opendata-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
+  - type: APIReference
+    url: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking
+- aid: danske-bank-uk:danske-bank-uk-account-transaction-api
+  name: Danske Bank (UK) Account and Transaction API
+  description: >-
+    OBIE Read/Write Account and Transaction Information API (AIS, v4.0) for
+    accessing account details, balances, transactions, beneficiaries, standing
+    orders, direct debits, and statements. FAPI-secured with OAuth2/OIDC,
+    mutual-TLS, and PSD2 strong customer authentication; requires TPP
+    onboarding via the Open Banking Directory.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://obp-api.danskebank.com/open-banking/v4.0/aisp
+  tags:
+  - Account Information
+  - AIS
+  - Open Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-account-transaction-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- aid: danske-bank-uk:danske-bank-uk-payment-initiation-api
+  name: Danske Bank (UK) Payment Initiation API
+  description: >-
+    OBIE Read/Write Payment Initiation API (PIS, v4.0) for initiating domestic,
+    scheduled, standing-order, file, and international payments. FAPI-secured
+    with OAuth2/OIDC, mutual-TLS, and PSD2 strong customer authentication;
+    requires TPP onboarding via the Open Banking Directory.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://obp-api.danskebank.com/open-banking/v4.0/pisp
+  tags:
+  - Payment Initiation
+  - PIS
+  - Payments
+  - Open Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-payment-initiation-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- aid: danske-bank-uk:danske-bank-uk-confirmation-of-funds-api
+  name: Danske Bank (UK) Confirmation of Funds API
+  description: >-
+    OBIE Read/Write Confirmation of Funds API (CBPII, v4.0) for card-based
+    payment instrument issuers to confirm the availability of funds on an
+    account. FAPI-secured with OAuth2/OIDC, mutual-TLS, and PSD2 strong
+    customer authentication; requires TPP onboarding via the Open Banking
+    Directory.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://obp-api.danskebank.com/open-banking/v4.0/cbpii
+  tags:
+  - Confirmation of Funds
+  - CBPII
+  - Open Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-confirmation-of-funds-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- aid: danske-bank-uk:danske-bank-uk-variable-recurring-payments-api
+  name: Danske Bank (UK) Variable Recurring Payments API
+  description: >-
+    OBIE Read/Write Variable Recurring Payments API (VRP, v4.0) for setting up
+    domestic VRP consents and executing recurring payments within agreed
+    parameters. FAPI-secured with OAuth2/OIDC, mutual-TLS, and PSD2 strong
+    customer authentication; requires TPP onboarding via the Open Banking
+    Directory.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://obp-api.danskebank.com/open-banking/v4.0/pisp
+  tags:
+  - Variable Recurring Payments
+  - VRP
+  - Payments
+  - Open Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-variable-recurring-payments-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- aid: danske-bank-uk:danske-bank-uk-events-api
+  name: Danske Bank (UK) Events API
+  description: >-
+    OBIE Read/Write Event Notification API (v4.0) delivering real-time
+    notifications on account and payment activities to registered TPPs.
+    FAPI-secured with OAuth2/OIDC and mutual-TLS; requires TPP onboarding via
+    the Open Banking Directory.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://obp-api.danskebank.com/open-banking/v4.0
+  tags:
+  - Events
+  - Notifications
+  - Open Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-events-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+  - type: Documentation
+    url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- aid: danske-bank-uk:danske-bank-uk-account-transaction-balance-api
+  name: Danske Bank (UK) Account Transaction & Balance API
+  description: >-
+    Premium first-party corporate API providing real-time access to account
+    transactions and balances, published on the Danske Bank developer portal
+    and served from the corporate API host with a public mock sandbox.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://api.danskebank.com/corporate/api/v1/account-transaction-service
+  tags:
+  - Premium
+  - Corporate
+  - Balances
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+- aid: danske-bank-uk:danske-bank-uk-payment-collection-api
+  name: Danske Bank (UK) Payment Collection API
+  description: >-
+    Premium first-party corporate API for initiating and managing collection
+    (direct debit style) payment services, published on the Danske Bank
+    developer portal with a public mock sandbox.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://api.danskebank.com/corporate/api/v1/collection-service
+  tags:
+  - Premium
+  - Corporate
+  - Payments
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-payment-collection-premium-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+- aid: danske-bank-uk:danske-bank-uk-premium-payment-initiation-api
+  name: Danske Bank (UK) Premium Payment Initiation API
+  description: >-
+    Premium first-party corporate payment initiation API for submitting and
+    managing corporate payment orders, published on the Danske Bank developer
+    portal with a public mock sandbox.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://api.danskebank.com/corporate/api/v1/corporate-paymentorders
+  tags:
+  - Premium
+  - Corporate
+  - Payments
+  - Payment Initiation
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-premium-payment-initiation-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+- aid: danske-bank-uk:danske-bank-uk-fx-trade-report-api
+  name: Danske Bank (UK) FX Trade Report API
+  description: >-
+    Premium first-party API providing access to open and historical FX trade
+    reports with date-range filtering, counterpart filtering, and pagination,
+    published on the Danske Bank developer portal with a public mock sandbox.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://api.danskebank.com/corporate/api/v1/open-trades-service
+  tags:
+  - Premium
+  - Corporate
+  - FX
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-fx-trade-report-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+- aid: danske-bank-uk:danske-bank-uk-fx-trade-execution-api
+  name: Danske Bank (UK) FX Trade Execution API
+  description: >-
+    Premium first-party API for executing FX trades against existing quotes,
+    published on the Danske Bank developer portal with a public mock sandbox.
+  humanURL: https://developers.danskebank.com/
+  baseURL: https://api.danskebank.com/corporate/api/v1/trade-service
+  tags:
+  - Premium
+  - Corporate
+  - FX
+  - Trading
+  properties:
+  - type: OpenAPI
+    url: openapi/danske-bank-uk-fx-trade-execution-openapi.json
+  - type: Documentation
+    url: https://developers.danskebank.com/
+common:
+- type: Website
+  url: https://www.danskebank.co.uk/
+- type: DeveloperPortal
+  url: https://developers.danskebank.com/
+- type: Documentation
+  url: https://developers.danskebank.com/documentation
+- type: GettingStarted
+  url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+- type: OpenBanking
+  url: https://danskebank.co.uk/important-information/open-banking
+- type: Compliance
+  url: https://danskebank.co.uk/important-information/open-banking/api-data
+- type: LinkedIn
+  url: https://www.linkedin.com/company/danske-bank
+- type: Blog
+  url: https://danskebank.co.uk/about-us/news-and-insights
+- type: Support
+  url: https://www.danskebank.co.uk/personal/help/useful-numbers
+- type: TermsOfService
+  url: https://www.danskebank.co.uk/personal/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.danskebank.co.uk/personal/privacy-notice
+- type: Cookies
+  url: https://www.danskebank.co.uk/personal/help/cookie-policy
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

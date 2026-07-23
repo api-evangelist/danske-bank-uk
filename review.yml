@@ -1,0 +1,122 @@
+aid: danske-bank-uk
+name: Danske Bank (UK)
+review:
+  question: >-
+    Does Danske Bank (UK) expose a real, documented UK Open Banking API surface -
+    a confirmed public Open Data endpoint and the OBIE Read/Write family - and
+    with what authentication model and spec provenance?
+  answer: true
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Danske Bank (UK) - the trading name of Northern Bank Limited, one of the
+    CMA9 and an FCA-authorised ASPSP - operates a real developer portal at
+    https://developers.danskebank.com/ backed by an integration catalog gateway
+    (https://developers-gw.danskebank.com/v1/integration-catalog/gateway) that
+    serves genuine OpenAPI 3.0 documents for sixteen integrations. Six are
+    labelled "UK Open Banking": Opendata, Account and Transaction, Payment
+    Initiation, Confirmation of Funds, Variable Recurring Payments, and Events.
+
+    The public Open Data API was CONFIRMED LIVE. GET requests to
+    https://obp-data.danskebank.com/v2.2/atms and /branches (and
+    /personal-current-accounts, /business-current-accounts,
+    /unsecured-sme-loans) returned HTTP 200 with real OBIE Open Data JSON
+    (e.g. 95 ATMs, 28 branches, LastUpdated timestamps). This is an
+    unauthenticated, public reference-data surface conforming to the OBIE Open
+    Data standard (the portal labels it v2.2; the served spec metadata carries
+    version 4.3.3).
+
+    The Read/Write APIs conform to the OBIE Read/Write Standard v4.0 and are
+    FAPI-secured: OAuth2/OIDC authorization, mutual-TLS client authentication,
+    and PSD2 strong customer authentication, with TPP onboarding gated through
+    the Open Banking Directory ("Northern Bank Limited t/a Danske Bank"). No
+    credentials were fabricated; these are represented as documented,
+    authenticated APIs. Base hosts: https://obp-api.danskebank.com/open-banking/v4.0/{aisp,pisp,cbpii}.
+
+    Beyond OBIE, the portal documents five premium first-party corporate APIs
+    (Account Transaction & Balance, Payment Collection, Premium Payment
+    Initiation, FX Trade Report, FX Trade Execution) served from
+    https://api.danskebank.com/corporate/api/v1/... with public mock sandboxes
+    at https://mock-api.danskebank.com/. Their OpenAPI documents were also
+    harvested with HTTP 200.
+
+    Spec provenance: all eleven harvested OpenAPI documents are Danske Bank's
+    OWN portal-published contracts (bank-proprietary distributions), not the
+    abstract OBIE standard specs - the Read/Write ones implement the OBIE
+    Read/Write v4.0 model, and the Open Data one implements the OBIE Open Data
+    model, but each is Danske's concrete instance with its real production
+    hosts. The portal also exposes a parallel PSD2 (Berlin-Group-style) family
+    and these were noted but not harvested for this UK profile.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://obp-data.danskebank.com/v2.2
+      documented: true
+      confirmedLive: true
+      note: Public OBIE Open Data. GET /atms and /branches returned HTTP 200 with JSON.
+    - protocol: REST
+      scheme: https
+      baseURL: https://obp-api.danskebank.com/open-banking/v4.0/aisp
+      documented: true
+      confirmedLive: false
+      note: OBIE Read/Write AIS v4.0. FAPI OAuth2/OIDC + mTLS + PSD2 SCA; not probed (auth-gated).
+    - protocol: REST
+      scheme: https
+      baseURL: https://obp-api.danskebank.com/open-banking/v4.0/pisp
+      documented: true
+      confirmedLive: false
+      note: OBIE Read/Write PIS + VRP v4.0. FAPI OAuth2/OIDC + mTLS + PSD2 SCA.
+    - protocol: REST
+      scheme: https
+      baseURL: https://obp-api.danskebank.com/open-banking/v4.0/cbpii
+      documented: true
+      confirmedLive: false
+      note: OBIE Read/Write CBPII (Confirmation of Funds) v4.0. FAPI-secured.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.danskebank.com/corporate/api/v1
+      documented: true
+      confirmedLive: false
+      note: Premium first-party corporate APIs; public mock sandbox at https://mock-api.danskebank.com/.
+  endpointsConfirmedLive:
+    - GET https://obp-data.danskebank.com/v2.2/atms
+    - GET https://obp-data.danskebank.com/v2.2/branches
+    - GET https://obp-data.danskebank.com/v2.2/personal-current-accounts
+    - GET https://obp-data.danskebank.com/v2.2/business-current-accounts
+    - GET https://obp-data.danskebank.com/v2.2/unsecured-sme-loans
+  authModel:
+    openData: none (public, unauthenticated)
+    readWrite: FAPI OAuth2/OIDC + mutual-TLS + PSD2 SCA; TPP onboarding via Open Banking Directory
+    directoryName: Northern Bank Limited t/a Danske Bank
+  specProvenance: >-
+    Bank-proprietary portal distributions harvested verbatim from the Danske
+    Bank developer gateway. Read/Write specs implement the OBIE Read/Write
+    Standard v4.0; Open Data spec implements the OBIE Open Data Standard. These
+    are Danske's concrete instances (real hosts), not the abstract OBIE
+    standard documents.
+sources:
+  - url: https://developers.danskebank.com/
+    type: DeveloperPortal
+    note: Danske Bank developer portal (SPA) listing the API catalog.
+  - url: https://developers-gw.danskebank.com/v1/integration-catalog/gateway/integrations
+    type: APIReference
+    note: Integration catalog gateway; returned 16 integrations incl. six UK Open Banking APIs. Specs at /integrations/{key}/documents/specification.
+  - url: https://obp-data.danskebank.com/v2.2/atms
+    type: OpenData
+    note: Confirmed live HTTP 200 with OBIE Open Data JSON (95 ATMs).
+  - url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
+    type: Documentation
+    note: TPP onboarding guidance; directs to the developer portal and Open Banking Directory.
+  - url: https://danskebank.co.uk/important-information/open-banking/api-data
+    type: Compliance
+    note: Quarterly FCA/CMA9 API performance service metrics.
+actions:
+  openapiHarvested: true
+  openapiCount: 11
+  openDataConfirmed: true
+  reason: >-
+    Real UK Open Banking surface captured: one confirmed-live public Open Data
+    API plus the FAPI-secured OBIE Read/Write family (AIS, PIS, CBPII, VRP,
+    Events) and five premium first-party corporate APIs, all with OpenAPI
+    documents harvested verbatim from the bank's own developer gateway.
