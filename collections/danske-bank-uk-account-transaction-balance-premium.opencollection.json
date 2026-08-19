@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Transaction & Balance API",
+    "version": "1.4.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Information Service (AIS)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service/accounts/:accountId/transactions",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "e03ef874-b6c5-5dbf-ac63-eae96984de22",
+                "type": "path",
+                "description": "Identifier of an account."
+              },
+              {
+                "name": "bookingDateFrom",
+                "value": "2025-10-10",
+                "type": "query",
+                "description": "Starting booking date of a transaction."
+              },
+              {
+                "name": "bookingDateTo",
+                "value": "2025-10-10",
+                "type": "query",
+                "description": "Ending booking date of a transaction."
+              },
+              {
+                "name": "aspspParameters",
+                "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ",
+                "type": "query",
+                "description": "Aspsp Parameters."
+              },
+              {
+                "name": "bankTransactionCode",
+                "value": "PMNT-RCDT-DMCT",
+                "type": "query",
+                "description": "ISO Bank Transaction Code."
+              },
+              {
+                "name": "languageCode",
+                "value": "EN",
+                "type": "query",
+                "description": "Language code to be used for the translation of transaction text."
+              },
+              {
+                "name": "limit",
+                "value": "500",
+                "type": "query",
+                "description": "Limit value."
+              }
+            ]
+          },
+          "docs": "The /accounts/{accountId}/transactions endpoint retrieves transactions for a specific account. Only transactions with valid account identifiers—obtained via the /accounts/list endpoint—can be fetched."
+        },
+        {
+          "info": {
+            "name": "Get balances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service/accounts/:accountId/balances",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "7bf255d2-7352-50fd-a278-0e19f02df829",
+                "type": "path",
+                "description": "Unique identifier of the account for which balance information is requested."
+              },
+              {
+                "name": "dateTime",
+                "value": "2026-02-17T14:30:45.123456Z",
+                "type": "query",
+                "description": "DateTime of the balance to retrieve. Supported formats: yyyy-MM-dd, HH:mm, HH:mm:ss, HH:mm:ss.SSSSSSZ, yyyy-MM-ddTHH:mm:ss.SSSSSSZ"
+              }
+            ]
+          },
+          "docs": "Retrieves balance information for a specific account. The endpoint provides real-time access to account balance data."
+        },
+        {
+          "info": {
+            "name": "Get accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service/accounts/list",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Offset value."
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Limit value."
+              }
+            ]
+          },
+          "docs": "The /accounts/list endpoint returns the list of accounts that the technical user has enquiry permissions for. This is a prerequisite for fetching transactions, as it provides the account identifiers required for subsequent calls."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

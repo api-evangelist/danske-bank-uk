@@ -1,192 +1,197 @@
 generated: '2026-07-23'
 method: derived
 status: candidate
-source: >-
-  Derived one-tool-per-operation from the OpenAPI specs in openapi/. No
-  official hosted MCP server is published by Danske Bank (UK); this is a
-  candidate manifest for agent tooling.
+source: Derived one-tool-per-operation from the OpenAPI specs in openapi/. No official hosted MCP server
+  is published by Danske Bank (UK); this is a candidate manifest for agent tooling.
 server:
   name: danske-bank-uk
   transport: http
   url: null
 tools:
-  - name: getTransactions
-    description: "Get transactions."
-    source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getTransactions
-  - name: getBalances
-    description: "Get balances."
-    source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getBalances
-  - name: getAccounts
-    description: "Get accounts."
-    source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getAccounts
-  - name: CreateAccountAccessConsents
-    description: "Create Account Access Consents"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#CreateAccountAccessConsents
-  - name: GetAccountAccessConsentsConsentId
-    description: "Get Account Access Consents"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountAccessConsentsConsentId
-  - name: DeleteAccountAccessConsentsConsentId
-    description: "Delete Account Access Consents"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#DeleteAccountAccessConsentsConsentId
-  - name: GetAccounts
-    description: "Get Accounts"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccounts
-  - name: GetAccountsAccountId
-    description: "Get Accounts"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountId
-  - name: GetAccountsAccountIdBalances
-    description: "Get Balances"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdBalances
-  - name: GetAccountsAccountIdBeneficiaries
-    description: "Get Beneficiaries"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdBeneficiaries
-  - name: GetAccountsAccountIdDirectDebits
-    description: "Get Direct Debits"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdDirectDebits
-  - name: GetAccountsAccountIdProduct
-    description: "Get Products"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdProduct
-  - name: GetAccountsAccountIdScheduledPayments
-    description: "Get Scheduled Payments"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdScheduledPayments
-  - name: GetAccountsAccountIdStandingOrders
-    description: "Get Standing Orders"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdStandingOrders
-  - name: GetAccountsAccountIdTransactions
-    description: "Get Transactions"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdTransactions
-  - name: GetParty
-    description: "Get Parties"
-    source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetParty
-  - name: CreateFundsConfirmationConsents
-    description: "Create Funds Confirmation Consent"
-    source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#CreateFundsConfirmationConsents
-  - name: GetFundsConfirmationConsentsConsentId
-    description: "Get Funds Confirmation Consent"
-    source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#GetFundsConfirmationConsentsConsentId
-  - name: DeleteFundsConfirmationConsentsConsentId
-    description: "Delete Funds Confirmation Consent"
-    source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#DeleteFundsConfirmationConsentsConsentId
-  - name: CreateFundsConfirmations
-    description: "Create Funds Confirmation"
-    source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#CreateFundsConfirmations
-  - name: CreateEvents
-    description: "Create Events"
-    source_operation: openapi/danske-bank-uk-events-openapi.json#CreateEvents
-  - name: executeTrade
-    description: "Executes a trade"
-    source_operation: openapi/danske-bank-uk-fx-trade-execution-openapi.json#executeTrade
-  - name: getTrade
-    description: "Gets trade details by ID"
-    source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getTrade
-  - name: getOpenTrades
-    description: "Gets all Open Trades for a given district user ID, based on maturity date."
-    source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getOpenTrades
-  - name: getHistoricalTrades
-    description: "Retrieves historical trades for a given district user ID within a date range, based on trade execution date."
-    source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getHistoricalTrades
-  - name: CreateDomesticPaymentConsents
-    description: "Create Domestic Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticPaymentConsents
-  - name: GetDomesticPaymentConsentsConsentId
-    description: "Get Domestic Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentConsentsConsentId
-  - name: GetDomesticPaymentConsentsConsentIdFundsConfirmation
-    description: "Get Domestic Payment Consents Funds Confirmation"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentConsentsConsentIdFundsConfirmation
-  - name: CreateDomesticPayments
-    description: "Create Domestic Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticPayments
-  - name: GetDomesticPaymentsDomesticPaymentId
-    description: "Get Domestic Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentsDomesticPaymentId
-  - name: CreateDomesticScheduledPaymentConsents
-    description: "Create Domestic Scheduled Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticScheduledPaymentConsents
-  - name: GetDomesticScheduledPaymentConsentsConsentId
-    description: "Get Domestic Scheduled Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticScheduledPaymentConsentsConsentId
-  - name: CreateDomesticScheduledPayments
-    description: "Create Domestic Scheduled Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticScheduledPayments
-  - name: GetDomesticScheduledPaymentsDomesticScheduledPaymentId
-    description: "Get Domestic Scheduled Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticScheduledPaymentsDomesticScheduledPaymentId
-  - name: CreateDomesticStandingOrderConsents
-    description: "Create Domestic Standing Order Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticStandingOrderConsents
-  - name: GetDomesticStandingOrderConsentsConsentId
-    description: "Get Domestic Standing Order Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticStandingOrderConsentsConsentId
-  - name: CreateDomesticStandingOrders
-    description: "Create Domestic Standing Orders"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticStandingOrders
-  - name: GetDomesticStandingOrdersDomesticStandingOrderId
-    description: "Get Domestic Standing Orders"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticStandingOrdersDomesticStandingOrderId
-  - name: CreateFilePaymentConsents
-    description: "Create File Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePaymentConsents
-  - name: GetFilePaymentConsentsConsentId
-    description: "Get File Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentConsentsConsentId
-  - name: CreateFilePaymentConsentsConsentIdFile
-    description: "Create File Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePaymentConsentsConsentIdFile
-  - name: CreateFilePayments
-    description: "Create File Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePayments
-  - name: GetFilePaymentsFilePaymentId
-    description: "Get File Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentsFilePaymentId
-  - name: GetFilePaymentsFilePaymentIdReportFile
-    description: "Get File Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentsFilePaymentIdReportFile
-  - name: CreateInternationalPaymentConsents
-    description: "Create International Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalPaymentConsents
-  - name: GetInternationalPaymentConsentsConsentId
-    description: "Get International Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentConsentsConsentId
-  - name: GetInternationalPaymentConsentsConsentIdFundsConfirmation
-    description: "Get International Payment Consents Funds Confirmation"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentConsentsConsentIdFundsConfirmation
-  - name: CreateInternationalPayments
-    description: "Create International Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalPayments
-  - name: GetInternationalPaymentsInternationalPaymentId
-    description: "Get International Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentsInternationalPaymentId
-  - name: CreateInternationalScheduledPaymentConsents
-    description: "Create International Scheduled Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalScheduledPaymentConsents
-  - name: GetInternationalScheduledPaymentConsentsConsentId
-    description: "Get International Scheduled Payment Consents"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentConsentsConsentId
-  - name: GetInternationalScheduledPaymentConsentsConsentIdFundsConfirmation
-    description: "Get International Scheduled Payment Consents Funds Confirmation"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentConsentsConsentIdFundsConfirmation
-  - name: CreateInternationalScheduledPayments
-    description: "Create International Scheduled Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalScheduledPayments
-  - name: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
-    description: "Get International Scheduled Payments"
-    source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentsInternationalScheduledPaymentId
-  - name: domesticVrpConsentsPost
-    description: "Create a domestic VRP consent"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsPost
-  - name: domesticVrpConsentsGet
-    description: "Retrieve a domestic VRP consent"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsGet
-  - name: domesticVrpConsentsDelete
-    description: "Delete a domestic VRP"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsDelete
-  - name: domesticVrpConsentsFundsConfirmation
-    description: "Confirm availability of funds for a VRP"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsFundsConfirmation
-  - name: domesticVrpPost
-    description: "Create a domestic VRP"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpPost
-  - name: domesticVrpGet
-    description: "Retrieve a domestic VRP"
-    source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpGet
+- name: getTransactions
+  description: Get transactions.
+  source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getTransactions
+- name: getBalances
+  description: Get balances.
+  source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getBalances
+- name: getAccounts
+  description: Get accounts.
+  source_operation: openapi/danske-bank-uk-account-transaction-balance-premium-openapi.json#getAccounts
+- name: CreateAccountAccessConsents
+  description: Create Account Access Consents
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#CreateAccountAccessConsents
+- name: GetAccountAccessConsentsConsentId
+  description: Get Account Access Consents
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountAccessConsentsConsentId
+- name: DeleteAccountAccessConsentsConsentId
+  description: Delete Account Access Consents
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#DeleteAccountAccessConsentsConsentId
+- name: GetAccounts
+  description: Get Accounts
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccounts
+- name: GetAccountsAccountId
+  description: Get Accounts
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountId
+- name: GetAccountsAccountIdBalances
+  description: Get Balances
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdBalances
+- name: GetAccountsAccountIdBeneficiaries
+  description: Get Beneficiaries
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdBeneficiaries
+- name: GetAccountsAccountIdDirectDebits
+  description: Get Direct Debits
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdDirectDebits
+- name: GetAccountsAccountIdProduct
+  description: Get Products
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdProduct
+- name: GetAccountsAccountIdScheduledPayments
+  description: Get Scheduled Payments
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdScheduledPayments
+- name: GetAccountsAccountIdStandingOrders
+  description: Get Standing Orders
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdStandingOrders
+- name: GetAccountsAccountIdTransactions
+  description: Get Transactions
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetAccountsAccountIdTransactions
+- name: GetParty
+  description: Get Parties
+  source_operation: openapi/danske-bank-uk-account-transaction-openapi.json#GetParty
+- name: CreateFundsConfirmationConsents
+  description: Create Funds Confirmation Consent
+  source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#CreateFundsConfirmationConsents
+- name: GetFundsConfirmationConsentsConsentId
+  description: Get Funds Confirmation Consent
+  source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#GetFundsConfirmationConsentsConsentId
+- name: DeleteFundsConfirmationConsentsConsentId
+  description: Delete Funds Confirmation Consent
+  source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#DeleteFundsConfirmationConsentsConsentId
+- name: CreateFundsConfirmations
+  description: Create Funds Confirmation
+  source_operation: openapi/danske-bank-uk-confirmation-of-funds-openapi.json#CreateFundsConfirmations
+- name: CreateEvents
+  description: Create Events
+  source_operation: openapi/danske-bank-uk-events-openapi.json#CreateEvents
+- name: executeTrade
+  description: Executes a trade
+  source_operation: openapi/danske-bank-uk-fx-trade-execution-openapi.json#executeTrade
+- name: getTrade
+  description: Gets trade details by ID
+  source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getTrade
+- name: getOpenTrades
+  description: Gets all Open Trades for a given district user ID, based on maturity date.
+  source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getOpenTrades
+- name: getHistoricalTrades
+  description: Retrieves historical trades for a given district user ID within a date range, based on
+    trade execution date.
+  source_operation: openapi/danske-bank-uk-fx-trade-report-openapi.json#getHistoricalTrades
+- name: CreateDomesticPaymentConsents
+  description: Create Domestic Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticPaymentConsents
+- name: GetDomesticPaymentConsentsConsentId
+  description: Get Domestic Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentConsentsConsentId
+- name: GetDomesticPaymentConsentsConsentIdFundsConfirmation
+  description: Get Domestic Payment Consents Funds Confirmation
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentConsentsConsentIdFundsConfirmation
+- name: CreateDomesticPayments
+  description: Create Domestic Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticPayments
+- name: GetDomesticPaymentsDomesticPaymentId
+  description: Get Domestic Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticPaymentsDomesticPaymentId
+- name: CreateDomesticScheduledPaymentConsents
+  description: Create Domestic Scheduled Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticScheduledPaymentConsents
+- name: GetDomesticScheduledPaymentConsentsConsentId
+  description: Get Domestic Scheduled Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticScheduledPaymentConsentsConsentId
+- name: CreateDomesticScheduledPayments
+  description: Create Domestic Scheduled Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticScheduledPayments
+- name: GetDomesticScheduledPaymentsDomesticScheduledPaymentId
+  description: Get Domestic Scheduled Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticScheduledPaymentsDomesticScheduledPaymentId
+- name: CreateDomesticStandingOrderConsents
+  description: Create Domestic Standing Order Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticStandingOrderConsents
+- name: GetDomesticStandingOrderConsentsConsentId
+  description: Get Domestic Standing Order Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticStandingOrderConsentsConsentId
+- name: CreateDomesticStandingOrders
+  description: Create Domestic Standing Orders
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateDomesticStandingOrders
+- name: GetDomesticStandingOrdersDomesticStandingOrderId
+  description: Get Domestic Standing Orders
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetDomesticStandingOrdersDomesticStandingOrderId
+- name: CreateFilePaymentConsents
+  description: Create File Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePaymentConsents
+- name: GetFilePaymentConsentsConsentId
+  description: Get File Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentConsentsConsentId
+- name: CreateFilePaymentConsentsConsentIdFile
+  description: Create File Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePaymentConsentsConsentIdFile
+- name: CreateFilePayments
+  description: Create File Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateFilePayments
+- name: GetFilePaymentsFilePaymentId
+  description: Get File Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentsFilePaymentId
+- name: GetFilePaymentsFilePaymentIdReportFile
+  description: Get File Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetFilePaymentsFilePaymentIdReportFile
+- name: CreateInternationalPaymentConsents
+  description: Create International Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalPaymentConsents
+- name: GetInternationalPaymentConsentsConsentId
+  description: Get International Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentConsentsConsentId
+- name: GetInternationalPaymentConsentsConsentIdFundsConfirmation
+  description: Get International Payment Consents Funds Confirmation
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentConsentsConsentIdFundsConfirmation
+- name: CreateInternationalPayments
+  description: Create International Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalPayments
+- name: GetInternationalPaymentsInternationalPaymentId
+  description: Get International Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalPaymentsInternationalPaymentId
+- name: CreateInternationalScheduledPaymentConsents
+  description: Create International Scheduled Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalScheduledPaymentConsents
+- name: GetInternationalScheduledPaymentConsentsConsentId
+  description: Get International Scheduled Payment Consents
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentConsentsConsentId
+- name: GetInternationalScheduledPaymentConsentsConsentIdFundsConfirmation
+  description: Get International Scheduled Payment Consents Funds Confirmation
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentConsentsConsentIdFundsConfirmation
+- name: CreateInternationalScheduledPayments
+  description: Create International Scheduled Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#CreateInternationalScheduledPayments
+- name: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
+  description: Get International Scheduled Payments
+  source_operation: openapi/danske-bank-uk-payment-initiation-openapi.json#GetInternationalScheduledPaymentsInternationalScheduledPaymentId
+- name: domesticVrpConsentsPost
+  description: Create a domestic VRP consent
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsPost
+- name: domesticVrpConsentsGet
+  description: Retrieve a domestic VRP consent
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsGet
+- name: domesticVrpConsentsDelete
+  description: Delete a domestic VRP
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsDelete
+- name: domesticVrpConsentsFundsConfirmation
+  description: Confirm availability of funds for a VRP
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpConsentsFundsConfirmation
+- name: domesticVrpPost
+  description: Create a domestic VRP
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpPost
+- name: domesticVrpGet
+  description: Retrieve a domestic VRP
+  source_operation: openapi/danske-bank-uk-variable-recurring-payments-openapi.json#domesticVrpGet
+deployment:
+  mode: none
+  verified: derived
+  tools: 60
+  checked: '2026-08-12'
+  source: catalog MCP census

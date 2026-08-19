@@ -1,0 +1,4181 @@
+{
+  "item": [
+    {
+      "id": "c4b09567-9646-4209-be77-46049a30bed7",
+      "name": "OPENDATA",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "0dc04221-b748-4982-b20d-2269d349f75c",
+      "name": "SPI-KNKK",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "02e6e580-18b8-4aa6-9f68-c8d99d6f7256",
+      "name": "OBSCOMP",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "e4f53320-a01d-4f03-9ffa-1eaa7401a4dd",
+      "name": "SME",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62410f3f-e446-4fb5-a37d-60c3b504713a",
+          "name": "Gets a list of all Unsecured SME Lending objects",
+          "request": {
+            "name": "Gets a list of all Unsecured SME Lending objects",
+            "description": {
+              "content": "Gets a list of all Unsecured SME Lending objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unsecured-sme-loans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fc9145c-32cd-4664-adfc-fd27a508ad27",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-11T16:00:20.201+0100\",\n    \"TotalResults\": 1,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"SMELoan\": [\n        {\n          \"Name\": \"Variable Rate Business Loan\",\n          \"Identification\": \"43F\",\n          \"Segment\": [\n            \"FlexibleBusinessLoan\"\n          ],\n          \"SMELoanMarketingState\": [\n            {\n              \"Identification\": \"43F\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"01/01/1900\",\n              \"LastMarketedDate\": \"31/12/9999\",\n              \"LoanInterest\": {\n                \"LoanInterestTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"Identification\": \"43F-25K\",\n                    \"CalculationMethod\": \"Compound\",\n                    \"LoanInterestTierBand\": [\n                      {\n                        \"TierValueMinimum\": \"0\",\n                        \"TierValueMaximum\": \"5000\",\n                        \"TierValueMinTerm\": 1,\n                        \"MinTermPeriod\": \"Year\",\n                        \"TierValueMaxTerm\": 1,\n                        \"MaxTermPeriod\": \"Year\",\n                        \"FixedVariableInterestRateType\": \"Variable\",\n                        \"RepAPR\": \"17.00\",\n                        \"LoanProviderInterestRateType\": \"BOEBaseRate\",\n                        \"LoanProviderInterestRate\": \"11.00\",\n                        \"Notes\": [\n                          \"Total Cost of Credit 5428.91 GBP\"\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              },\n              \"Repayment\": [\n                {\n                  \"RepaymentType\": \"CapitalAndInterest\",\n                  \"RepaymentFrequency\": \"Monthly\",\n                  \"AmountType\": \"CapitalAndInterest\",\n                  \"RepaymentFeeCharges\": {\n                    \"RepaymentFeeChargeDetail\": [\n                      {\n                        \"FeeType\": \"Arrangement\",\n                        \"FeeAmount\": \"125\",\n                        \"ApplicationFrequency\": \"OnOpening\",\n                        \"CalculationFrequency\": \"OnOpening\"\n                      }\n                    ]\n                  }\n                }\n              ],\n              \"Eligibility\": {\n                \"IDEligibility\": {\n                  \"Notes\": [\n                    \"Sole traders/Partnerships - both individuals and business name are id checked\"\n                  ]\n                },\n                \"CreditCheckEligibility\": {\n                  \"ScoringType\": \"Hard\",\n                  \"Notes\": [\n                    \"Experian Credit Check\"\n                  ]\n                }\n              },\n              \"CoreProduct\": {\n                \"ProductDescription\": \"The Variable Rate Business Loan gives you the flexibility to choose the repayment frequency and adjust the payments to suit your cash flow.££\",\n                \"ProductURL\": \"https://danskebank.co.uk/business/products-and-services/loans-and-credit/variable-rate-business-loan\",\n                \"TcsAndCsURL\": \"https://danskebank.co.uk/business\",\n                \"SalesAccessChannels\": [\n                  \"Branch\",\n                  \"RelationshipManager\"\n                ],\n                \"ServicingAccessChannels\": [\n                  \"Branch\",\n                  \"CallCentre\",\n                  \"Post\"\n                ],\n                \"EarlyPaymentFeeApplicable\": false,\n                \"OverPaymentFeeApplicable\": false,\n                \"LoanApplicationFeeChargeType\": \"NoLoanApplicationFee\",\n                \"OverpaymentAllowedIndicator\": true,\n                \"FullEarlyRepaymentAllowedIndicator\": true\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ae6e99a-ca92-4a07-af4c-bf8876dffdbc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d58e0ca-1376-4620-9682-ec986805db81",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e5d4eb6-b5a2-4671-917f-f23934450da5",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a2bb8ab-987a-4348-aa25-503c5894648a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve unsecured SME loans\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbd40943-f98b-4b0c-a8c0-3e7afc6e44ad",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "827acc81-a89d-4e85-a49a-4c768758c363",
+          "name": "Gets header information on the current set of Unsecured SME Lending data",
+          "request": {
+            "name": "Gets header information on the current set of Unsecured SME Lending data",
+            "description": {
+              "content": "Gets header information on the current set of Unsecured SME Lending data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unsecured-sme-loans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ea4dbfb-7d10-491d-9923-43e21e1c4b41",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-11T16:00:20.201+0100\",\n    \"TotalResults\": 1,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"SMELoan\": [\n        {\n          \"Name\": \"Variable Rate Business Loan\",\n          \"Identification\": \"43F\",\n          \"Segment\": [\n            \"FlexibleBusinessLoan\"\n          ],\n          \"SMELoanMarketingState\": [\n            {\n              \"Identification\": \"43F\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"01/01/1900\",\n              \"LastMarketedDate\": \"31/12/9999\",\n              \"LoanInterest\": {\n                \"LoanInterestTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"Identification\": \"43F-25K\",\n                    \"CalculationMethod\": \"Compound\",\n                    \"LoanInterestTierBand\": [\n                      {\n                        \"TierValueMinimum\": \"0\",\n                        \"TierValueMaximum\": \"5000\",\n                        \"TierValueMinTerm\": 1,\n                        \"MinTermPeriod\": \"Year\",\n                        \"TierValueMaxTerm\": 1,\n                        \"MaxTermPeriod\": \"Year\",\n                        \"FixedVariableInterestRateType\": \"Variable\",\n                        \"RepAPR\": \"17.00\",\n                        \"LoanProviderInterestRateType\": \"BOEBaseRate\",\n                        \"LoanProviderInterestRate\": \"11.00\",\n                        \"Notes\": [\n                          \"Total Cost of Credit 5428.91 GBP\"\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              },\n              \"Repayment\": [\n                {\n                  \"RepaymentType\": \"CapitalAndInterest\",\n                  \"RepaymentFrequency\": \"Monthly\",\n                  \"AmountType\": \"CapitalAndInterest\",\n                  \"RepaymentFeeCharges\": {\n                    \"RepaymentFeeChargeDetail\": [\n                      {\n                        \"FeeType\": \"Arrangement\",\n                        \"FeeAmount\": \"125\",\n                        \"ApplicationFrequency\": \"OnOpening\",\n                        \"CalculationFrequency\": \"OnOpening\"\n                      }\n                    ]\n                  }\n                }\n              ],\n              \"Eligibility\": {\n                \"IDEligibility\": {\n                  \"Notes\": [\n                    \"Sole traders/Partnerships - both individuals and business name are id checked\"\n                  ]\n                },\n                \"CreditCheckEligibility\": {\n                  \"ScoringType\": \"Hard\",\n                  \"Notes\": [\n                    \"Experian Credit Check\"\n                  ]\n                }\n              },\n              \"CoreProduct\": {\n                \"ProductDescription\": \"The Variable Rate Business Loan gives you the flexibility to choose the repayment frequency and adjust the payments to suit your cash flow.££\",\n                \"ProductURL\": \"https://danskebank.co.uk/business/products-and-services/loans-and-credit/variable-rate-business-loan\",\n                \"TcsAndCsURL\": \"https://danskebank.co.uk/business\",\n                \"SalesAccessChannels\": [\n                  \"Branch\",\n                  \"RelationshipManager\"\n                ],\n                \"ServicingAccessChannels\": [\n                  \"Branch\",\n                  \"CallCentre\",\n                  \"Post\"\n                ],\n                \"EarlyPaymentFeeApplicable\": false,\n                \"OverPaymentFeeApplicable\": false,\n                \"LoanApplicationFeeChargeType\": \"NoLoanApplicationFee\",\n                \"OverpaymentAllowedIndicator\": true,\n                \"FullEarlyRepaymentAllowedIndicator\": true\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d09e94ec-e869-4c35-8666-a52c4241ce46",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2bda48b-4964-424e-9c71-1a4f4cb7712f",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d48684de-656c-4649-b4ef-5dda112c8dd0",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d0bac11-244c-4049-998c-40d1006aa26f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve unsecured SME loans (HEAD)\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "065e36e2-0d72-4e0a-b20d-2bef70df16f1",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unsecured-sme-loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a96e7d05-8b07-412a-a3c2-c1c697927311",
+      "name": "PCA",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "842f3f39-5849-441b-aef8-77cf74b9c0a0",
+          "name": "Gets a list of all Personal Current Account objects",
+          "request": {
+            "name": "Gets a list of all Personal Current Account objects",
+            "description": {
+              "content": "Gets a list of all Personal Current Account objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personal-current-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "255fa088-e688-488f-a327-18f91944e452",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-10-09T16:00:51.831Z\",\n    \"TotalResults\": 5,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"PCA\": [\n        {\n          \"Name\": \"Danske Reward\",\n          \"Identification\": \"58S\",\n          \"Segment\": [\n            \"Reward\"\n          ],\n          \"OnSaleIndicator\": true,\n          \"PCAMarketingState\": [\n            {\n              \"Identification\": \"58S\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"1900-01-01\",\n              \"LastMarketedDate\": \"9999-12-31\",\n              \"Overdraft\": {\n                \"TcsAndCsURL\": \"http://www.danskebank.co.uk/SiteCollectionDocuments/tcs-personal-banking.pdf\",\n                \"OverdraftTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"OverdraftType\": \"OnDemand\",\n                    \"Identification\": \"58S\",\n                    \"AuthorisedIndicator\": true,\n                    \"OverdraftTierBand\": [\n                      {\n                        \"Identification\": \"58S\",\n                        \"TierValueMin\": \"0\",\n                        \"OverdraftInterestChargingCoverage\": \"Whole\",\n                        \"EAR\": \"29.90\",\n                        \"Notes\": [\n                          \"There is an arranged overdraft set-up fee at 1% of any amount over £10k\"\n                        ]\n                      }\n                    ],\n                    \"OverdraftFeesCharges\": [\n                      {\n                        \"OverdraftFeeChargeDetail\": [\n                          {\n                            \"FeeType\": \"UnauthorisedUnpaidTrans\",\n                            \"FeeAmount\": \"1.50\",\n                            \"ApplicationFrequency\": \"Monthly\",\n                            \"CalculationFrequency\": \"PerTransaction\",\n                            \"OverdraftFeeChargeCap\": {\n                              \"FeeType\": [\n                                \"UnauthorisedUnpaidTrans\"\n                              ],\n                              \"MinMaxType\": \"Maximum\",\n                              \"FeeCapAmount\": \"4.50\",\n                              \"CappingPeriod\": \"Month\"\n                            }\n                          }\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              },\n              \"Eligibility\": {\n                \"OtherEligibility\": [\n                  {\n                    \"Name\": \"Ownership\",\n                    \"Description\": \"Customers are limited to one sole and/or one joint account\",\n                    \"Type\": \"Other\"\n                  }\n                ],\n                \"AgeEligibility\": {\n                  \"MinimumAge\": 18\n                },\n                \"ResidencyEligibility\": {\n                  \"ResidencyIncluded\": [\n                    \"NI\"\n                  ]\n                },\n                \"CreditCheck\": {\n                  \"ScoringType\": \"Hard\"\n                },\n                \"IDVerificationCheck\": {\n                  \"URL\": \"https://danskebank.co.uk/personal/become-a-customer\",\n                  \"Notes\": [\n                    \"Experian KYC and Identity Authenticate by Experian used for identity verification\"\n                  ]\n                }\n              },\n              \"FeaturesAndBenefits\": {\n                \"FeatureBenefitGroup\": [\n                  {\n                    \"Name\": \"Reward\",\n                    \"Type\": \"Cashback\",\n                    \"BenefitGroupNominalValue\": \"5\",\n                    \"ApplicationFrequency\": \"Monthly\",\n                    \"CalculationFrequency\": \"Monthly\",\n                    \"FeatureBenefitEligibility\": [\n                      {\n                        \"Name\": \"Reward\",\n                        \"Type\": \"MinimumDeposit\",\n                        \"Amount\": \"1000\",\n                        \"Period\": \"Month\"\n                      },\n                      {\n                        \"Name\": \"Reward\",\n                        \"Type\": \"Other\",\n                        \"Textual\": \"Customers must receive digital statements for the account\",\n                        \"Period\": \"Month\"\n                      }\n                    ]\n                  }\n                ],\n                \"FeatureBenefitItem\": [\n                  {\n                    \"Type\": \"AccountManagement\",\n                    \"Textual\": \"Lodge and withdraw money at any of our branches across Northern Ireland\"\n                  }\n                ],\n                \"Card\": [\n                  {\n                    \"Type\": \"DebitCard\",\n                    \"Scheme\": \"MasterCard\",\n                    \"ContactlessIndicator\": true\n                  }\n                ],\n                \"MobileWallet\": [\n                  {\n                    \"Type\": \"ApplePay\"\n                  },\n                  {\n                    \"Type\": \"GooglePay\"\n                  }\n                ]\n              },\n              \"OtherFeesCharges\": {\n                \"FeeChargeDetail\": [\n                  {\n                    \"FeeCategory\": \"PaymentScheme\",\n                    \"FeeType\": \"FPSInBranch\",\n                    \"FeeAmount\": \"10\",\n                    \"ApplicationFrequency\": \"PerTransaction\",\n                    \"CalculationFrequency\": \"PerTransaction\"\n                  }\n                ]\n              },\n              \"CoreProduct\": {\n                \"ProductURL\": \"https://danskebank.co.uk/personal/products/current-accounts/danske-reward\",\n                \"ProductDescription\": \"Danske Reward is an everyday current account that gives you a reward every month for banking with Danske Bank\",\n                \"TcsAndCsURL\": \"http://www.danskebank.co.uk/SiteCollectionDocuments/tcs-personal-banking.pdf\",\n                \"SalesAccessChannels\": [\n                  \"Branch\",\n                  \"Online\",\n                  \"CallCentre\"\n                ],\n                \"ServicingAccessChannels\": [\n                  \"Branch\",\n                  \"Online\",\n                  \"MobileBankingApp\"\n                ],\n                \"MonthlyMaximumCharge\": \"4.50\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "939f9bb8-1869-40de-9ccf-7885b44fd871",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ce7fd6f-ae30-456a-bad6-e299800d4016",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "485acf86-bfb8-45a3-9b6e-50480883d126",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a063d0b-e542-4366-af45-3fe978af0832",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve personal current accounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cc73638-3f70-4051-b081-5803948dcc59",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8feb9a38-80d2-4ca4-aa6e-ab18fa84dc57",
+          "name": "Gets header information on the current set of Personal Current Account data",
+          "request": {
+            "name": "Gets header information on the current set of Personal Current Account data",
+            "description": {
+              "content": "Gets header information on the current set of Personal Current Account data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personal-current-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd720bfb-2245-4756-8826-5e3b5fdfe287",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-10-09T16:00:51.831Z\",\n    \"TotalResults\": 5,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"PCA\": [\n        {\n          \"Name\": \"Danske Reward\",\n          \"Identification\": \"58S\",\n          \"Segment\": [\n            \"Reward\"\n          ],\n          \"OnSaleIndicator\": true,\n          \"PCAMarketingState\": [\n            {\n              \"Identification\": \"58S\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"1900-01-01\",\n              \"LastMarketedDate\": \"9999-12-31\",\n              \"Overdraft\": {\n                \"TcsAndCsURL\": \"http://www.danskebank.co.uk/SiteCollectionDocuments/tcs-personal-banking.pdf\",\n                \"OverdraftTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"OverdraftType\": \"OnDemand\",\n                    \"Identification\": \"58S\",\n                    \"AuthorisedIndicator\": true,\n                    \"OverdraftTierBand\": [\n                      {\n                        \"Identification\": \"58S\",\n                        \"TierValueMin\": \"0\",\n                        \"OverdraftInterestChargingCoverage\": \"Whole\",\n                        \"EAR\": \"29.90\",\n                        \"Notes\": [\n                          \"There is an arranged overdraft set-up fee at 1% of any amount over £10k\"\n                        ]\n                      }\n                    ],\n                    \"OverdraftFeesCharges\": [\n                      {\n                        \"OverdraftFeeChargeDetail\": [\n                          {\n                            \"FeeType\": \"UnauthorisedUnpaidTrans\",\n                            \"FeeAmount\": \"1.50\",\n                            \"ApplicationFrequency\": \"Monthly\",\n                            \"CalculationFrequency\": \"PerTransaction\",\n                            \"OverdraftFeeChargeCap\": {\n                              \"FeeType\": [\n                                \"UnauthorisedUnpaidTrans\"\n                              ],\n                              \"MinMaxType\": \"Maximum\",\n                              \"FeeCapAmount\": \"4.50\",\n                              \"CappingPeriod\": \"Month\"\n                            }\n                          }\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              },\n              \"Eligibility\": {\n                \"OtherEligibility\": [\n                  {\n                    \"Name\": \"Ownership\",\n                    \"Description\": \"Customers are limited to one sole and/or one joint account\",\n                    \"Type\": \"Other\"\n                  }\n                ],\n                \"AgeEligibility\": {\n                  \"MinimumAge\": 18\n                },\n                \"ResidencyEligibility\": {\n                  \"ResidencyIncluded\": [\n                    \"NI\"\n                  ]\n                },\n                \"CreditCheck\": {\n                  \"ScoringType\": \"Hard\"\n                },\n                \"IDVerificationCheck\": {\n                  \"URL\": \"https://danskebank.co.uk/personal/become-a-customer\",\n                  \"Notes\": [\n                    \"Experian KYC and Identity Authenticate by Experian used for identity verification\"\n                  ]\n                }\n              },\n              \"FeaturesAndBenefits\": {\n                \"FeatureBenefitGroup\": [\n                  {\n                    \"Name\": \"Reward\",\n                    \"Type\": \"Cashback\",\n                    \"BenefitGroupNominalValue\": \"5\",\n                    \"ApplicationFrequency\": \"Monthly\",\n                    \"CalculationFrequency\": \"Monthly\",\n                    \"FeatureBenefitEligibility\": [\n                      {\n                        \"Name\": \"Reward\",\n                        \"Type\": \"MinimumDeposit\",\n                        \"Amount\": \"1000\",\n                        \"Period\": \"Month\"\n                      },\n                      {\n                        \"Name\": \"Reward\",\n                        \"Type\": \"Other\",\n                        \"Textual\": \"Customers must receive digital statements for the account\",\n                        \"Period\": \"Month\"\n                      }\n                    ]\n                  }\n                ],\n                \"FeatureBenefitItem\": [\n                  {\n                    \"Type\": \"AccountManagement\",\n                    \"Textual\": \"Lodge and withdraw money at any of our branches across Northern Ireland\"\n                  }\n                ],\n                \"Card\": [\n                  {\n                    \"Type\": \"DebitCard\",\n                    \"Scheme\": \"MasterCard\",\n                    \"ContactlessIndicator\": true\n                  }\n                ],\n                \"MobileWallet\": [\n                  {\n                    \"Type\": \"ApplePay\"\n                  },\n                  {\n                    \"Type\": \"GooglePay\"\n                  }\n                ]\n              },\n              \"OtherFeesCharges\": {\n                \"FeeChargeDetail\": [\n                  {\n                    \"FeeCategory\": \"PaymentScheme\",\n                    \"FeeType\": \"FPSInBranch\",\n                    \"FeeAmount\": \"10\",\n                    \"ApplicationFrequency\": \"PerTransaction\",\n                    \"CalculationFrequency\": \"PerTransaction\"\n                  }\n                ]\n              },\n              \"CoreProduct\": {\n                \"ProductURL\": \"https://danskebank.co.uk/personal/products/current-accounts/danske-reward\",\n                \"ProductDescription\": \"Danske Reward is an everyday current account that gives you a reward every month for banking with Danske Bank\",\n                \"TcsAndCsURL\": \"http://www.danskebank.co.uk/SiteCollectionDocuments/tcs-personal-banking.pdf\",\n                \"SalesAccessChannels\": [\n                  \"Branch\",\n                  \"Online\",\n                  \"CallCentre\"\n                ],\n                \"ServicingAccessChannels\": [\n                  \"Branch\",\n                  \"Online\",\n                  \"MobileBankingApp\"\n                ],\n                \"MonthlyMaximumCharge\": \"4.50\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e98e5c3-d03e-4f64-b468-0794f0bd5f32",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d373780c-a0d2-4793-b34a-8b09ebd0c632",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86a70ae6-72a7-4bca-8a0d-4da7eed23ac2",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0be97289-b72a-432f-8aee-68a4b4461864",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve personal current accounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b217fb0e-085f-4bc8-aacc-5b0dfdc6f1e5",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "859049ad-7ac0-4bd1-9321-284fd5f166ba",
+      "name": "CCC",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfb22de0-f3b5-4ff8-aebf-64a0e755173e",
+          "name": "Gets a list of all Commercial Credit Cards objects",
+          "request": {
+            "name": "Gets a list of all Commercial Credit Cards objects",
+            "description": {
+              "content": "Gets a list of all Commercial Credit Cards objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial-credit-cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c34bc40c-c55f-4eae-8766-2b4f0b231fa9",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"timestamp\": \"2025-10-17T12:00:00Z\",\n    \"source\": \"commercial-credit-cards\"\n  },\n  \"items\": [\n    {\n      \"cardName\": \"Business Platinum Card\",\n      \"annualFee\": 99,\n      \"currency\": \"USD\"\n    },\n    {\n      \"cardName\": \"Business Gold Card\",\n      \"annualFee\": 49,\n      \"currency\": \"USD\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ed78301-42c4-4243-b4fc-be6159af8c23",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b97528a-7407-4300-ab4f-e52e92db4a30",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed0b7031-8bd4-4103-85ad-5c71f90dbbaf",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9160d7f-0a46-404a-9160-f2d5b9a62803",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve commercial credit cards\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a65a0ff-5f21-4be8-aad0-76b47cf13eec",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f244bea0-ccdc-4aac-8173-a28624c1d350",
+          "name": "Gets header information on the current set of Commercial Credit Cards data",
+          "request": {
+            "name": "Gets header information on the current set of Commercial Credit Cards data",
+            "description": {
+              "content": "Gets header information on the current set of Commercial Credit Cards data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial-credit-cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e52c4649-281e-4fea-80b4-c59da684085b",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"timestamp\": \"2025-10-17T12:00:00Z\",\n    \"source\": \"commercial-credit-cards\"\n  },\n  \"items\": [\n    {\n      \"cardName\": \"Business Platinum Card\",\n      \"annualFee\": 99,\n      \"currency\": \"USD\"\n    },\n    {\n      \"cardName\": \"Business Gold Card\",\n      \"annualFee\": 49,\n      \"currency\": \"USD\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8849c1d-8ff5-4aba-81fc-447d785139a9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c228e95-a32f-4338-b56a-ccc5def1a21c",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97db8656-f411-4df6-9809-eee828fa497b",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87b9bd3c-1c31-4e87-92f5-b2704352be2d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve commercial credit cards\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3231c361-7d3a-4bde-a41f-71ea4552837b",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial-credit-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "15c239d1-4c79-457b-8ae6-1835731ca2c6",
+      "name": "BCA",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3212b0ac-1f56-4949-a9a3-9ab5393ee225",
+          "name": "Gets a list of all Business Current Account objects",
+          "request": {
+            "name": "Gets a list of all Business Current Account objects",
+            "description": {
+              "content": "Gets a list of all Business Current Account objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "business-current-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "084a2677-37a9-4e60-9b38-c85eb4b64c7f",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-11T16:00:51.831Z\",\n    \"TotalResults\": 5,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"BCA\": [\n        {\n          \"Name\": \"Danske Charity Account\",\n          \"Identification\": \"41C\",\n          \"Segment\": [\n            \"NonCommercial\"\n          ],\n          \"OnSaleIndicator\": true,\n          \"BCAMarketingState\": [\n            {\n              \"Identification\": \"41C\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"01/01/1900\",\n              \"LastMarketedDate\": \"31/12/9999\",\n              \"Overdraft\": {\n                \"OverdraftTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"OverdraftType\": \"OnDemand\",\n                    \"Identification\": \"41D-Arranged\",\n                    \"AuthorisedIndicator\": true,\n                    \"OverdraftTierBand\": [\n                      {\n                        \"Identification\": \"41D-25k\",\n                        \"TierValueMin\": \"1\",\n                        \"TierValueMax\": \"25000\",\n                        \"EAR\": \"11.46\",\n                        \"OverdraftInterestChargingCoverage\": \"Whole\",\n                        \"Notes\": [\n                          \"Unsecured overdrafts between 1GBP and 25,000GBP will have a debit interest rate of 7% plus Bank of England Bank Rate.\"\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              }\n            }\n          ],\n          \"FeaturesAndBenefits\": {\n            \"FeatureBenefitItem\": [\n              {\n                \"Identification\": \"Free On-line Payments Module\",\n                \"Type\": \"Other\",\n                \"Textual\": \"Customer gets free access to online payments module to enable them to make payments from the accounts.\"\n              }\n            ],\n            \"Card\": [\n              {\n                \"Type\": \"DebitCard\",\n                \"Scheme\": [\n                  \"MasterCard\"\n                ],\n                \"ContactlessIndicator\": true,\n                \"MaxDailyCardWithdrawalLimit\": \"350\"\n              }\n            ],\n            \"MobileWallet\": [\n              {\n                \"Type\": \"IssuerMobileApp\"\n              }\n            ]\n          },\n          \"OtherFeesCharges\": [\n            {\n              \"FeeChargeDetail\": [\n                {\n                  \"FeeCategory\": \"Auto\",\n                  \"FeeType\": \"FPSOut\",\n                  \"FeeAmount\": \"0.05\",\n                  \"ApplicationFrequency\": \"Monthly\",\n                  \"CalculationFrequency\": \"PerItem\"\n                }\n              ]\n            }\n          ],\n          \"CoreProduct\": {\n            \"ProductURL\": \"https://danskebank.co.uk/business/products-and-services/business-current-accounts/danske-charity-account\",\n            \"ProductDescription\": \"A current account for registered charities.\",\n            \"TcsAndCsURL\": \"http://www.danskebank.co.uk/sitecollectiondocuments/business/accounts/tcs-business-accounts.pdf\",\n            \"SalesAccessChannels\": [\n              \"Branch\",\n              \"RelationshipManager\"\n            ],\n            \"ServicingAccessChannels\": [\n              \"Branch\",\n              \"CallCentre\",\n              \"Post\"\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c013fa-483f-49d0-8e68-17f9925b60bf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81140445-d99e-4a97-bc45-09678770f70b",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a40a59a4-2a35-46c3-9ff6-bc79f1d8252b",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "760fa8fa-b051-4c1e-9051-6e954a6633a4",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve business current accounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2e04ba7-0653-4549-ab9d-037c02ffe9b8",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bdd4385-1f76-4c51-ba64-2f3c1b7a4e1d",
+          "name": "Gets header information on the current set of Business Current Account data",
+          "request": {
+            "name": "Gets header information on the current set of Business Current Account data",
+            "description": {
+              "content": "Gets header information on the current set of Business Current Account data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "business-current-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f07016e1-68fc-4c34-8c45-df538c4e26d7",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-11T16:00:51.831Z\",\n    \"TotalResults\": 5,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"BCA\": [\n        {\n          \"Name\": \"Danske Charity Account\",\n          \"Identification\": \"41C\",\n          \"Segment\": [\n            \"NonCommercial\"\n          ],\n          \"OnSaleIndicator\": true,\n          \"BCAMarketingState\": [\n            {\n              \"Identification\": \"41C\",\n              \"MarketingState\": \"Regular\",\n              \"FirstMarketedDate\": \"01/01/1900\",\n              \"LastMarketedDate\": \"31/12/9999\",\n              \"Overdraft\": {\n                \"OverdraftTierBandSet\": [\n                  {\n                    \"TierBandMethod\": \"Whole\",\n                    \"OverdraftType\": \"OnDemand\",\n                    \"Identification\": \"41D-Arranged\",\n                    \"AuthorisedIndicator\": true,\n                    \"OverdraftTierBand\": [\n                      {\n                        \"Identification\": \"41D-25k\",\n                        \"TierValueMin\": \"1\",\n                        \"TierValueMax\": \"25000\",\n                        \"EAR\": \"11.46\",\n                        \"OverdraftInterestChargingCoverage\": \"Whole\",\n                        \"Notes\": [\n                          \"Unsecured overdrafts between 1GBP and 25,000GBP will have a debit interest rate of 7% plus Bank of England Bank Rate.\"\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              }\n            }\n          ],\n          \"FeaturesAndBenefits\": {\n            \"FeatureBenefitItem\": [\n              {\n                \"Identification\": \"Free On-line Payments Module\",\n                \"Type\": \"Other\",\n                \"Textual\": \"Customer gets free access to online payments module to enable them to make payments from the accounts.\"\n              }\n            ],\n            \"Card\": [\n              {\n                \"Type\": \"DebitCard\",\n                \"Scheme\": [\n                  \"MasterCard\"\n                ],\n                \"ContactlessIndicator\": true,\n                \"MaxDailyCardWithdrawalLimit\": \"350\"\n              }\n            ],\n            \"MobileWallet\": [\n              {\n                \"Type\": \"IssuerMobileApp\"\n              }\n            ]\n          },\n          \"OtherFeesCharges\": [\n            {\n              \"FeeChargeDetail\": [\n                {\n                  \"FeeCategory\": \"Auto\",\n                  \"FeeType\": \"FPSOut\",\n                  \"FeeAmount\": \"0.05\",\n                  \"ApplicationFrequency\": \"Monthly\",\n                  \"CalculationFrequency\": \"PerItem\"\n                }\n              ]\n            }\n          ],\n          \"CoreProduct\": {\n            \"ProductURL\": \"https://danskebank.co.uk/business/products-and-services/business-current-accounts/danske-charity-account\",\n            \"ProductDescription\": \"A current account for registered charities.\",\n            \"TcsAndCsURL\": \"http://www.danskebank.co.uk/sitecollectiondocuments/business/accounts/tcs-business-accounts.pdf\",\n            \"SalesAccessChannels\": [\n              \"Branch\",\n              \"RelationshipManager\"\n            ],\n            \"ServicingAccessChannels\": [\n              \"Branch\",\n              \"CallCentre\",\n              \"Post\"\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9fab67a-7234-46cc-bf34-0595da66a303",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20ee73a4-ab93-48b4-bcc9-08a258bd20d2",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2053344c-f441-4535-b88d-f460c7030d33",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14b36a06-6a10-4663-80af-74587084dad1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve business current accounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fe86faa-17fb-41be-bb1a-34d9478f2e5f",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "business-current-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "48259c16-d184-41e2-b949-62b52c4bfc66",
+      "name": "ATM",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe249706-c7b4-4e0f-950b-87540c10f505",
+          "name": "Gets a list of all ATM objects",
+          "request": {
+            "name": "Gets a list of all ATM objects",
+            "description": {
+              "content": "Gets a list of all ATM objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "atms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa475e59-71a8-427e-84de-a6a4a31c2479",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-10-10T16:00:00.318+0530\",\n    \"TotalResults\": 70,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"Danske Bank\",\n      \"ATM\": [\n        {\n          \"Identification\": \"12345678\",\n          \"SupportedLanguages\": [\n            \"eng\"\n          ],\n          \"ATMServices\": [\n            \"Balance\",\n            \"CashWithdrawal\"\n          ],\n          \"Accessibility\": [\n            \"WheelchairAccess\"\n          ],\n          \"SupportedCurrencies\": [\n            \"GBP\"\n          ],\n          \"MinimumPossibleAmount\": \"10\",\n          \"Note\": [\n            \"Danske note\"\n          ],\n          \"OtherATMServices\": [\n            {\n              \"Name\": \"Cash Deposits\",\n              \"Description\": \"Danske description\"\n            }\n          ],\n          \"Branch\": {\n            \"Identification\": \"123456\"\n          },\n          \"Location\": {\n            \"LocationCategory\": [\n              \"BranchInternal\"\n            ],\n            \"Site\": {\n              \"Name\": \"Danske Site\"\n            },\n            \"PostalAddress\": {\n              \"BuildingNumber\": \"1\",\n              \"StreetName\": \"Street 1\",\n              \"TownName\": \"Town 1\",\n              \"CountrySubDivision\": [\n                \"NIR\"\n              ],\n              \"Country\": \"GB\",\n              \"PostCode\": \"123456\",\n              \"GeoLocation\": {\n                \"GeographicCoordinates\": {\n                  \"Latitude\": \"54.00000\",\n                  \"Longitude\": \"-5.00000\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20477cd-bbb1-4d06-8a75-0c3c22722b6f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c91a8f0a-047d-4a95-a16a-f4060ddd0461",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53410159-3e7a-401a-86c0-b0bae6291775",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ad5a2da-391a-4fd6-8a73-acd94cc108cb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve ATMs\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a33e49-f267-4c1d-a788-03a659ae2f77",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18dbe689-68d4-470d-84ff-a035de1cf28c",
+          "name": "Gets header information on the current set of ATM data",
+          "request": {
+            "name": "Gets header information on the current set of ATM data",
+            "description": {
+              "content": "Gets header information on the current set of ATM data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "atms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9342bffe-5b44-4b5b-b822-e17eab6f0030",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-10-10T16:00:00.318+0530\",\n    \"TotalResults\": 70,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"Danske Bank\",\n      \"ATM\": [\n        {\n          \"Identification\": \"12345678\",\n          \"SupportedLanguages\": [\n            \"eng\"\n          ],\n          \"ATMServices\": [\n            \"Balance\",\n            \"CashWithdrawal\"\n          ],\n          \"Accessibility\": [\n            \"WheelchairAccess\"\n          ],\n          \"SupportedCurrencies\": [\n            \"GBP\"\n          ],\n          \"MinimumPossibleAmount\": \"10\",\n          \"Note\": [\n            \"Danske note\"\n          ],\n          \"OtherATMServices\": [\n            {\n              \"Name\": \"Cash Deposits\",\n              \"Description\": \"Danske description\"\n            }\n          ],\n          \"Branch\": {\n            \"Identification\": \"123456\"\n          },\n          \"Location\": {\n            \"LocationCategory\": [\n              \"BranchInternal\"\n            ],\n            \"Site\": {\n              \"Name\": \"Danske Site\"\n            },\n            \"PostalAddress\": {\n              \"BuildingNumber\": \"1\",\n              \"StreetName\": \"Street 1\",\n              \"TownName\": \"Town 1\",\n              \"CountrySubDivision\": [\n                \"NIR\"\n              ],\n              \"Country\": \"GB\",\n              \"PostCode\": \"123456\",\n              \"GeoLocation\": {\n                \"GeographicCoordinates\": {\n                  \"Latitude\": \"54.00000\",\n                  \"Longitude\": \"-5.00000\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85aaeeb3-57e6-46c9-9e11-220cd2f6c479",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "667a83d3-9d01-48ef-89a0-dd2af8aaf402",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62982e4f-8dac-448f-8feb-d51d571e2ab6",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b82bfaa4-cc5c-48a9-8248-e109873afc60",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve ATMs\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "306cc6a2-f601-4dee-93e9-90063e4b2e54",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "atms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "afe8fd15-0db7-47b0-af69-f9071864841c",
+      "name": "Branch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "113dd45b-d9c3-466d-af8f-43b5f22cc764",
+          "name": "Gets a list of all Branch objects",
+          "request": {
+            "name": "Gets a list of all Branch objects",
+            "description": {
+              "content": "Gets a list of all Branch objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d464d266-9215-4d95-9bc3-819fbc3bca5b",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-07T16:18:24.508+0530\",\n    \"TotalResults\": 2,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"Branch\": [\n        {\n          \"Identification\": \"950611\",\n          \"SequenceNumber\": \"0\",\n          \"Name\": \"Belfast Business Centre\",\n          \"Type\": \"Physical\",\n          \"CustomerSegment\": [\n            \"Business\"\n          ],\n          \"ServiceAndFacility\": [\n            \"InternalATM\"\n          ],\n          \"Accessibility\": [\n            \"AutomaticDoors\"\n          ],\n          \"Note\": \"Belfast Business Centre\",\n          \"Availability\": {\n            \"StandardAvailability\": {\n              \"Day\": [\n                {\n                  \"Name\": \"Monday\",\n                  \"Notes\": \"No counter service - visit by appointment only\",\n                  \"OpeningHours\": [\n                    {\n                      \"OpeningTime\": \"09:30\",\n                      \"ClosingTime\": \"15:00\"\n                    }\n                  ]\n                }\n              ]\n            }\n          },\n          \"PostalAddress\": {\n            \"BuildingNumber\": \"P.O. Box 183\",\n            \"StreetName\": \"Donegall Square West\",\n            \"TownName\": \"Belfast\",\n            \"CountrySubDivision\": [\n              \"NIR\"\n            ],\n            \"Country\": \"GB\",\n            \"PostCode\": \"BT1 6JS\",\n            \"GeoLocation\": {\n              \"GeographicCoordinates\": {\n                \"Latitude\": \"54.5962\",\n                \"Longitude\": \"-5.9317\"\n              }\n            }\n          },\n          \"SortCode\": [\n            \"950611\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f67befb-3db1-4b39-8b99-e2eded8a3962",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff77af9e-74c0-40c0-98b3-3879cfebdc79",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84508c16-40bf-4458-acbe-58e2ba4bcab4",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da6dc950-7318-414b-9a0e-668b0b9f5d36",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve branches\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "246dddd8-34d5-46cb-ac92-16957dfffb8f",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29b77ee0-05fe-4af9-a460-4364f4934620",
+          "name": "Gets header information on the current set of Branch data",
+          "request": {
+            "name": "Gets header information on the current set of Branch data",
+            "description": {
+              "content": "Gets header information on the current set of Branch data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "If-Modified-Since",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "If-None-Match",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29959776-3e00-4862-a460-2677b52ad3fe",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"LastUpdated\": \"2025-08-07T16:18:24.508+0530\",\n    \"TotalResults\": 2,\n    \"Agreement\": \"Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions\",\n    \"License\": \"https://www.openbanking.org.uk/open-licence\",\n    \"TermsOfUse\": \"https://www.openbanking.org.uk/terms-conditions\"\n  },\n  \"data\": [\n    {\n      \"BrandName\": \"DanskeBank\",\n      \"Branch\": [\n        {\n          \"Identification\": \"950611\",\n          \"SequenceNumber\": \"0\",\n          \"Name\": \"Belfast Business Centre\",\n          \"Type\": \"Physical\",\n          \"CustomerSegment\": [\n            \"Business\"\n          ],\n          \"ServiceAndFacility\": [\n            \"InternalATM\"\n          ],\n          \"Accessibility\": [\n            \"AutomaticDoors\"\n          ],\n          \"Note\": \"Belfast Business Centre\",\n          \"Availability\": {\n            \"StandardAvailability\": {\n              \"Day\": [\n                {\n                  \"Name\": \"Monday\",\n                  \"Notes\": \"No counter service - visit by appointment only\",\n                  \"OpeningHours\": [\n                    {\n                      \"OpeningTime\": \"09:30\",\n                      \"ClosingTime\": \"15:00\"\n                    }\n                  ]\n                }\n              ]\n            }\n          },\n          \"PostalAddress\": {\n            \"BuildingNumber\": \"P.O. Box 183\",\n            \"StreetName\": \"Donegall Square West\",\n            \"TownName\": \"Belfast\",\n            \"CountrySubDivision\": [\n              \"NIR\"\n            ],\n            \"Country\": \"GB\",\n            \"PostCode\": \"BT1 6JS\",\n            \"GeoLocation\": {\n              \"GeographicCoordinates\": {\n                \"Latitude\": \"54.5962\",\n                \"Longitude\": \"-5.9317\"\n              }\n            }\n          },\n          \"SortCode\": [\n            \"950611\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a58ff97-a9b7-4165-8df6-fe75dd24ba5a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8334681d-fa1a-42cc-bde2-e51868a22b3f",
+              "name": "Client timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 408,\n  \"message\": \"Client timeout\",\n  \"detail\": \"Your client has failed to submit a request, and a timeout has occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1d85707-029d-4574-b64f-590de187574f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 429,\n  \"message\": \"Too many requests\",\n  \"detail\": \"You have requested this resource too often, slow down\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8638b365-43a0-4211-9dae-fec8b4b09b66",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Failed to retrieve branches\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "169f360e-7942-429a-98e1-c4148a484626",
+              "name": "Service temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "If-Modified-Since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "If-None-Match",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/prs.openbanking.opendata.v2.2+json"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/prs.openbanking.opendata.v2.2+json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b0e85728-22a1-423d-ac20-26953b92a6c1",
+      "name": "/test",
+      "request": {
+        "name": "/test",
+        "description": {},
+        "url": {
+          "path": [
+            "test"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/prs.openbanking.opendata.v2.2+json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "938da103-9d94-4d14-a759-68b0910abbb9",
+          "name": "200 OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"ok\",\n  \"message\": \"Test\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2c91238a-6b75-4262-9160-e96584b180de",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d679c55b-e372-4d85-add5-09764f120f6b",
+          "name": "Internal Server Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Test endpoint failure\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b4921f5d-8b43-4006-ba32-a05769bbec1e",
+          "name": "Service temporarily unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8da43998-29c9-4af1-90c3-6852954e0b7a",
+      "name": "/ping",
+      "request": {
+        "name": "/ping",
+        "description": {},
+        "url": {
+          "path": [
+            "ping"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/prs.openbanking.opendata.v2.2+json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1059432d-025f-49e3-acf3-9300b7a872fa",
+          "name": "200 OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"ok\",\n  \"code\": 200,\n  \"detail\": \"Ping\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f815f84c-17c4-43af-8741-d3f54f878af7",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad request\",\n  \"detail\": \"You have sent a request which could not be understood\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ac5daff3-d853-4958-b5cf-2a616b3b1e4e",
+          "name": "Internal Server Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 500,\n  \"message\": \"Internal Server Error\",\n  \"detail\": \"Ping endpoint failure\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5cd9960f-dc5d-4b6f-bb20-db430947f3e6",
+          "name": "Service temporarily unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/prs.openbanking.opendata.v2.2+json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/prs.openbanking.opendata.v2.2+json"
+            }
+          ],
+          "body": "{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service temporarily unavailable\",\n  \"detail\": \"The service is temporarily unavailable\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://obp-data.danskebank.com/v2.2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6a656572-708d-4b59-87b1-6dfcc69aec7b",
+    "name": "Opendata",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open Data API V2.2 for Danske Bank",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "4ffd4b14-e664-449b-a03c-38dd5860b871",
+      "name": "FX Trade Execution",
+      "description": {
+        "content": "FX Trade Execution for premium users",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "eb322a66-f913-44f7-b3ba-04d8ff277a98",
+      "name": "Trade execution",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5395ef54-c3ba-4996-890d-756323641a40",
+          "name": "Executes a trade",
+          "request": {
+            "name": "Executes a trade",
+            "description": {
+              "content": "Executes a trade based on provided parameters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade-execution",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"amountSide\": \"<string>\",\n  \"baseSide\": \"<string>\",\n  \"buyCurrency\": \"<string>\",\n  \"counterpart\": \"<string>\",\n  \"sellCurrency\": \"<string>\",\n  \"maturityDate\": \"<string>\",\n  \"tenor\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a89ed211-bca7-40d9-aa65-ff2c1a2ceb3d",
+              "name": "Trade executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-execution",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1000000,\n  \"amountSide\": \"BUY\",\n  \"baseSide\": \"SELL\",\n  \"buyCurrency\": \"DKK\",\n  \"sellCurrency\": \"EUR\",\n  \"counterpart\": \"LLBM1Q\",\n  \"maturityDate\": \"2026-08-31\",\n  \"comment\": \"Urgent client request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tradeId\": \"TRADE123456\",\n  \"executionId\": \"EXEC123456\",\n  \"counterpart\": \"EUR\",\n  \"tradeTime\": \"2025-10-07T10:41:00Z\",\n  \"autoSettle\": true,\n  \"bought\": {\n    \"amount\": 1000000,\n    \"currency\": \"EUR\"\n  },\n  \"sold\": {\n    \"amount\": 1150000,\n    \"currency\": \"DKK\"\n  },\n  \"spotPrice\": 7.46372,\n  \"forwardPrice\": -0.0066376,\n  \"allInPrice\": 7.4570824,\n  \"maturityDate\": \"2026-08-31\",\n  \"product\": \"FX Swap\",\n  \"comment\": \"Urgent client request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8546b2d0-a810-4bab-81d7-e11b033abd31",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-execution",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1000000,\n  \"amountSide\": \"BUY\",\n  \"baseSide\": \"SELL\",\n  \"buyCurrency\": \"DKK\",\n  \"sellCurrency\": \"EUR\",\n  \"counterpart\": \"LLBM1Q\",\n  \"maturityDate\": \"2026-08-31\",\n  \"comment\": \"Urgent client request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"400 BAD_REQUEST\",\n  \"exceptionType\": \"InvalidParameterException\",\n  \"details\": \"The provided currency code is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efd8f0a2-b7a7-4ced-9ae1-26f53662468a",
+              "name": "Unauthorized access",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-execution",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1000000,\n  \"amountSide\": \"BUY\",\n  \"baseSide\": \"SELL\",\n  \"buyCurrency\": \"DKK\",\n  \"sellCurrency\": \"EUR\",\n  \"counterpart\": \"LLBM1Q\",\n  \"maturityDate\": \"2026-08-31\",\n  \"comment\": \"Urgent client request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"401 UNAUTHORIZED\",\n  \"exceptionType\": \"AuthenticationException\",\n  \"details\": \"Authentication token is missing or invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71be0776-3a7c-4c18-8531-0a4802c220a0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-execution",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1000000,\n  \"amountSide\": \"BUY\",\n  \"baseSide\": \"SELL\",\n  \"buyCurrency\": \"DKK\",\n  \"sellCurrency\": \"EUR\",\n  \"counterpart\": \"LLBM1Q\",\n  \"maturityDate\": \"2026-08-31\",\n  \"comment\": \"Urgent client request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"404 NOT_FOUND\",\n  \"exceptionType\": \"ResourceNotFoundException\",\n  \"details\": \"The requested trade execution endpoint does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e9e8a7a-ece4-45fe-b60e-078c47deaed8",
+              "name": "Error while executing trade",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-execution",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1000000,\n  \"amountSide\": \"BUY\",\n  \"baseSide\": \"SELL\",\n  \"buyCurrency\": \"DKK\",\n  \"sellCurrency\": \"EUR\",\n  \"counterpart\": \"LLBM1Q\",\n  \"maturityDate\": \"2026-08-31\",\n  \"comment\": \"Urgent client request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"500 INTERNAL_SERVER_ERROR\",\n  \"exceptionType\": \"PremiumTradeServiceException\",\n  \"details\": \"Error has occurred while querying 'QUOTE' endpoint with error message: 'DI triggered but not allowed on DANSKEFX request'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mock-api.danskebank.com/mock/sandbox/1.0.1/fx-trade-execution-api/v1/trade-service",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1681a33-4f21-420f-8dcf-1f6e0bf663de",
+    "name": "FX Trade Execution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API allows to execute Trades with existing quotes.",
+      "type": "text/plain"
+    }
+  }
+}

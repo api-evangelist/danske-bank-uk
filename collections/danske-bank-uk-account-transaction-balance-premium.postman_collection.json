@@ -1,0 +1,1925 @@
+{
+  "item": [
+    {
+      "id": "5bacccc4-7a7c-43e2-997e-b5241b7571fa",
+      "name": "Account Information Service (AIS)",
+      "description": {
+        "content": "Provides access to account-related data services including:\n  * Transaction history for a specified account with booking status 'booked', including balances when available.\n  * A list of addressable accounts under the granted consent.\n  * Account information for a specific account or all accessible accounts based on consent.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3752c509-559b-4074-929c-3c0de184333e",
+          "name": "Get transactions.",
+          "request": {
+            "name": "Get transactions.",
+            "description": {
+              "content": "The /accounts/{accountId}/transactions endpoint retrieves transactions for a specific account. Only transactions with valid account identifiers—obtained via the /accounts/list endpoint—can be fetched.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bookingDateFrom",
+                  "value": "<string>",
+                  "description": "(Required) Starting booking date of a transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "bookingDateTo",
+                  "value": "<string>",
+                  "description": "Ending booking date of a transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "aspspParameters",
+                  "value": "<string>",
+                  "description": "Aspsp Parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "bankTransactionCode",
+                  "value": "<string>",
+                  "description": "ISO Bank Transaction Code."
+                },
+                {
+                  "disabled": false,
+                  "key": "languageCode",
+                  "value": "<string>",
+                  "description": "Language code to be used for the translation of transaction text."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000",
+                  "description": "Limit value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) Identifier of an account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0ec4447-4563-40fd-bd0c-4f8ff5e55bfd",
+              "name": "The request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"1CEC333BC8FFB3F43F9704C5876D27683058EDD2126368B44AF2F60BEA5A2A66\",\n      \"entryReference\": \"2025-03-10T19:52:13.952918Z\",\n      \"batchIndicator\": true,\n      \"batchNumberOfTransactions\": 11,\n      \"references\": {\n        \"accountServicerReference\": \"124CBC1FD2C25FEF\",\n        \"instructionId\": \"string\",\n        \"endToEndId\": \"E2E-987654321\"\n      },\n      \"bookingDate\": \"2025-04-15\",\n      \"valueDate\": \"2025-04-15\",\n      \"transactionAmount\": {\n        \"currency\": \"DKK\",\n        \"amount\": \"string\"\n      },\n      \"amountDetails\": {\n        \"instructedAmount\": {\n          \"currency\": \"DKK\",\n          \"amount\": \"string\"\n        }\n      },\n      \"creditor\": {\n        \"name\": \"Creditor Inc.\"\n      },\n      \"creditorAccount\": {\n        \"iban\": \"DK7830000001000012\",\n        \"bban\": \"string\",\n        \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n        \"proxy\": {\n          \"proxyAccountIdentification\": {\n            \"typeCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"creditorAgent\": {\n        \"financialInstitutionId\": {\n          \"bicfi\": \"DABADKKK\",\n          \"clearingSystemMemberId\": \"string\"\n        }\n      },\n      \"ultimateCreditor\": {\n        \"name\": \"Ultimate Creditor Ltd.\"\n      },\n      \"debtor\": {\n        \"name\": \"Debtor Inc.\"\n      },\n      \"debtorAccount\": {\n        \"iban\": \"DK7830000001000012\",\n        \"bban\": \"string\",\n        \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n        \"proxy\": {\n          \"proxyAccountIdentification\": {\n            \"typeCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"debtorAgent\": {\n        \"financialInstitutionId\": {\n          \"bicfi\": \"DABADKKK\",\n          \"clearingSystemMemberId\": \"string\"\n        }\n      },\n      \"ultimateDebtor\": {\n        \"name\": \"Ultimate Debtor Inc.\"\n      },\n      \"remittanceInformationUnstructured\": [\n        \"/VAT/1,32/IDC/87568757578/INV/98589/TXT/986986986\",\n        \"/VAT/1,32/IDC/87568757578/INV/98589/TXT/986986986\"\n      ],\n      \"remittanceInformationStructured\": [\n        {\n          \"referredDocumentInformation\": [\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"referredDocumentAmount\": {\n            \"remittedAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creditNoteAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"creditorReferenceInformation\": {\n            \"reference\": \"RF98582382430498609861517\",\n            \"referenceTypeCode\": \"SCOR\",\n            \"referenceTypeProprietary\": \"BBAN\"\n          }\n        },\n        {\n          \"referredDocumentInformation\": [\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"referredDocumentAmount\": {\n            \"remittedAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creditNoteAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"creditorReferenceInformation\": {\n            \"reference\": \"RF98582382430498609861517\",\n            \"referenceTypeCode\": \"SCOR\",\n            \"referenceTypeProprietary\": \"BBAN\"\n          }\n        }\n      ],\n      \"additionalTransactionInformation\": \"4QTAGI76\",\n      \"bankTransactionCode\": \"BHMO-XYZA-HKTX\",\n      \"bankTransactionCodeProprietary\": \"VIAC\",\n      \"balanceAfterTransaction\": {\n        \"balanceAmount\": {\n          \"amount\": \"string\",\n          \"currency\": \"DKK\"\n        },\n        \"balanceType\": \"interimBooked\"\n      },\n      \"links\": {\n        \"aspspParameters\": {\n          \"href\": \"01JXJDQBC0NHBEG5NJM8PS6BAY\"\n        }\n      }\n    },\n    {\n      \"transactionId\": \"1CEC333BC8FFB3F43F9704C5876D27683058EDD2126368B44AF2F60BEA5A2A66\",\n      \"entryReference\": \"2025-03-10T19:52:13.952918Z\",\n      \"batchIndicator\": true,\n      \"batchNumberOfTransactions\": 11,\n      \"references\": {\n        \"accountServicerReference\": \"124CBC1FD2C25FEF\",\n        \"instructionId\": \"string\",\n        \"endToEndId\": \"E2E-987654321\"\n      },\n      \"bookingDate\": \"2025-04-15\",\n      \"valueDate\": \"2025-04-15\",\n      \"transactionAmount\": {\n        \"currency\": \"DKK\",\n        \"amount\": \"string\"\n      },\n      \"amountDetails\": {\n        \"instructedAmount\": {\n          \"currency\": \"DKK\",\n          \"amount\": \"string\"\n        }\n      },\n      \"creditor\": {\n        \"name\": \"Creditor Inc.\"\n      },\n      \"creditorAccount\": {\n        \"iban\": \"DK7830000001000012\",\n        \"bban\": \"string\",\n        \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n        \"proxy\": {\n          \"proxyAccountIdentification\": {\n            \"typeCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"creditorAgent\": {\n        \"financialInstitutionId\": {\n          \"bicfi\": \"DABADKKK\",\n          \"clearingSystemMemberId\": \"string\"\n        }\n      },\n      \"ultimateCreditor\": {\n        \"name\": \"Ultimate Creditor Ltd.\"\n      },\n      \"debtor\": {\n        \"name\": \"Debtor Inc.\"\n      },\n      \"debtorAccount\": {\n        \"iban\": \"DK7830000001000012\",\n        \"bban\": \"string\",\n        \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n        \"proxy\": {\n          \"proxyAccountIdentification\": {\n            \"typeCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"debtorAgent\": {\n        \"financialInstitutionId\": {\n          \"bicfi\": \"DABADKKK\",\n          \"clearingSystemMemberId\": \"string\"\n        }\n      },\n      \"ultimateDebtor\": {\n        \"name\": \"Ultimate Debtor Inc.\"\n      },\n      \"remittanceInformationUnstructured\": [\n        \"/VAT/1,32/IDC/87568757578/INV/98589/TXT/986986986\",\n        \"/VAT/1,32/IDC/87568757578/INV/98589/TXT/986986986\"\n      ],\n      \"remittanceInformationStructured\": [\n        {\n          \"referredDocumentInformation\": [\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"referredDocumentAmount\": {\n            \"remittedAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creditNoteAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"creditorReferenceInformation\": {\n            \"reference\": \"RF98582382430498609861517\",\n            \"referenceTypeCode\": \"SCOR\",\n            \"referenceTypeProprietary\": \"BBAN\"\n          }\n        },\n        {\n          \"referredDocumentInformation\": [\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"typeCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"relatedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"referredDocumentAmount\": {\n            \"remittedAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creditNoteAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"creditorReferenceInformation\": {\n            \"reference\": \"RF98582382430498609861517\",\n            \"referenceTypeCode\": \"SCOR\",\n            \"referenceTypeProprietary\": \"BBAN\"\n          }\n        }\n      ],\n      \"additionalTransactionInformation\": \"4QTAGI76\",\n      \"bankTransactionCode\": \"BHMO-XYZA-HKTX\",\n      \"bankTransactionCodeProprietary\": \"VIAC\",\n      \"balanceAfterTransaction\": {\n        \"balanceAmount\": {\n          \"amount\": \"string\",\n          \"currency\": \"DKK\"\n        },\n        \"balanceType\": \"interimBooked\"\n      },\n      \"links\": {\n        \"aspspParameters\": {\n          \"href\": \"01JXJDQBC0NHBEG5NJM8PS6BAY\"\n        }\n      }\n    }\n  ],\n  \"next\": {\n    \"href\": \"/v1/accounts?offset=1314351&limit=10\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a08e9e18-fe4e-401e-bf9d-38fb37fa842f",
+              "name": "The request could not be understood or was missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.validation.exceptions.ValidationException\",\n  \"status\": \"BAD_REQUEST\",\n  \"details\": \"Missing required parameter: bookingDateFrom is required for transaction retrieval.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8717ae76-818f-4406-a20d-3aabc6957b40",
+              "name": "Authentication credentials were missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthenticationException\",\n  \"status\": \"UNAUTHORIZED\",\n  \"details\": \"Access unauthorized: Access token is not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce0d9038-70d9-4001-a046-7a15c3469df9",
+              "name": "The request was understood, but it has been refused or access is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthorizationException\",\n  \"status\": \"FORBIDDEN\",\n  \"details\": \"Access forbidden: Insufficient permissions to access account transactions.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7ae23c3-2595-4034-9d99-7e77b072c277",
+              "name": "The requested resource could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.ResourceNotFoundException\",\n  \"status\": \"NOT_FOUND\",\n  \"details\": \"Account not found: The specified accountId does not exist or is not accessible.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2ed8d0b-abde-4e9b-85ad-fe5c5b55f235",
+              "name": "An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"INTERNAL_SERVER_ERROR\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7349e06-ab6f-441d-836f-07b7313a1e87",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"BAD_GATEWAY\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3c9c808-3d96-4d7c-80ec-0f4c304d506d",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"SERVICE_UNAVAILABLE\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79e13944-6faa-4ba2-ae06-41b22ea4f9a6",
+              "name": "Gateway Timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingDateFrom",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "bookingDateTo",
+                      "value": "2025-10-10"
+                    },
+                    {
+                      "key": "aspspParameters",
+                      "value": "01JSY4QYEPEH2V2KT8NGA4ATDZ"
+                    },
+                    {
+                      "key": "bankTransactionCode",
+                      "value": "PMNT-RCDT-DMCT"
+                    },
+                    {
+                      "key": "languageCode",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Identifier of an account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"GATEWAY_TIMEOUT\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2a1b682-a15a-4d44-83aa-c0c3e2e303f4",
+          "name": "Get balances.",
+          "request": {
+            "name": "Get balances.",
+            "description": {
+              "content": "Retrieves balance information for a specific account. The endpoint provides real-time access to account balance data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateTime",
+                  "value": "<string>",
+                  "description": "DateTime of the balance to retrieve. Supported formats: yyyy-MM-dd, HH:mm, HH:mm:ss, HH:mm:ss.SSSSSSZ, yyyy-MM-ddTHH:mm:ss.SSSSSSZ"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier of the account for which balance information is requested."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e5e6dae-4c37-4cda-ba6d-7f4a339bbc5e",
+              "name": "The request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": {\n    \"iban\": \"DK3030000011223388\",\n    \"bban\": \"string\",\n    \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n    \"country\": \"DK\",\n    \"currency\": \"NOK\"\n  },\n  \"balances\": [\n    {\n      \"balanceAmount\": {\n        \"amount\": \"string\",\n        \"currency\": \"DKK\"\n      },\n      \"balanceType\": \"interimBooked\",\n      \"referenceDate\": \"2026-02-17T14:30:45.123456Z\"\n    },\n    {\n      \"balanceAmount\": {\n        \"amount\": \"string\",\n        \"currency\": \"DKK\"\n      },\n      \"balanceType\": \"interimBooked\",\n      \"referenceDate\": \"2026-02-17T14:30:45.123456Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad3a0725-08ba-437e-9d42-a9c8bfb289f2",
+              "name": "The request could not be understood or was missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.validation.exceptions.ValidationException\",\n  \"status\": \"BAD_REQUEST\",\n  \"details\": \"Invalid parameter: limit value must be between 1 and 100.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "888baef8-047e-434f-a643-7b9a4b0259a8",
+              "name": "Authentication credentials were missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthenticationException\",\n  \"status\": \"UNAUTHORIZED\",\n  \"details\": \"Access unauthorized: Access token is not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f5857d6-73ea-4662-977d-b5e0fe64ab5e",
+              "name": "The request was understood, but it has been refused or access is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthorizationException\",\n  \"status\": \"FORBIDDEN\",\n  \"details\": \"Access forbidden: Insufficient permissions to access account list.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45b388bd-4aab-44fd-8871-5b0134ba6965",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.ResourceNotFoundException\",\n  \"status\": \"NOT_FOUND\",\n  \"details\": \"The specified resource does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "802ffd62-e961-459c-ba21-ef7f3fa548f6",
+              "name": "An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"INTERNAL_SERVER_ERROR\",\n  \"details\": \"Internal server error: An unexpected error occurred while retrieving accounts.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77c9892-842e-47dd-9054-37e5c1fed629",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"BAD_GATEWAY\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1e35205-ac28-4b8e-ab8d-803a96283ef9",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"SERVICE_UNAVAILABLE\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "534f3e3d-c9f5-4c34-a881-4105d5305dc4",
+              "name": "Gateway Timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateTime",
+                      "value": "2026-02-17T14:30:45.123456Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier of the account for which balance information is requested."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"GATEWAY_TIMEOUT\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5035511-0520-4ddc-baaa-4e07d23d5f36",
+          "name": "Get accounts.",
+          "request": {
+            "name": "Get accounts.",
+            "description": {
+              "content": "The /accounts/list endpoint returns the list of accounts that the technical user has enquiry permissions for. This is a prerequisite for fetching transactions, as it provides the account identifiers required for subsequent calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset value."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Limit value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06fe7795-eba6-46c7-b4e2-b9b78f3064c4",
+              "name": "The request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accounts\": [\n    {\n      \"iban\": \"DK3030000011223388\",\n      \"bban\": \"string\",\n      \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n      \"country\": \"DK\",\n      \"currency\": \"NOK\"\n    },\n    {\n      \"iban\": \"DK3030000011223388\",\n      \"bban\": \"string\",\n      \"other\": \"b03bb874-b6c5-5bbf-bb63-bbb96984bb23\",\n      \"country\": \"DK\",\n      \"currency\": \"NOK\"\n    }\n  ],\n  \"next\": {\n    \"href\": \"/v1/accounts?offset=1314351&limit=10\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6634fed5-d2ea-40c5-b0bf-94904b6ceb6b",
+              "name": "The request could not be understood or was missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.validation.exceptions.ValidationException\",\n  \"status\": \"BAD_REQUEST\",\n  \"details\": \"Invalid parameter: limit value must be between 1 and 100.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dc4a3bb-c740-427d-a0e8-3d54a8dd631b",
+              "name": "Authentication credentials were missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthenticationException\",\n  \"status\": \"UNAUTHORIZED\",\n  \"details\": \"Access unauthorized: Access token is not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ca4498d-1aea-478d-9dce-be1499db6731",
+              "name": "The request was understood, but it has been refused or access is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.security.exceptions.AuthorizationException\",\n  \"status\": \"FORBIDDEN\",\n  \"details\": \"Access forbidden: Insufficient permissions to access account list.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e71f104a-2a23-43ac-bdca-b406d6bf092b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.ResourceNotFoundException\",\n  \"status\": \"NOT_FOUND\",\n  \"details\": \"The specified resource does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0536032b-0ea2-4591-bee9-6b5090b9b283",
+              "name": "An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"INTERNAL_SERVER_ERROR\",\n  \"details\": \"Internal server error: An unexpected error occurred while retrieving accounts.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eee2a20-796b-440f-9ef6-a0e60d45f9f4",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"BAD_GATEWAY\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d929255-3b9a-4c6b-97b9-be8a0b2a7fbf",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"SERVICE_UNAVAILABLE\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b47464fa-8598-4670-a37e-e5630868c115",
+              "name": "Gateway Timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exceptionType\": \"accounts.api.exceptions.InternalServerException\",\n  \"status\": \"GATEWAY_TIMEOUT\",\n  \"details\": \"Internal server error: An unexpected error occurred while processing the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf8b14ce-f25c-4bc1-b4f3-de3135687600",
+    "name": "Account Transaction & Balance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A real-time API that provides instant access to account transactions and balances.",
+      "type": "text/plain"
+    }
+  }
+}

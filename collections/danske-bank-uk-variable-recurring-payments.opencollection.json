@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Variable Recurring Payments - UK OB",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domestic VRP Consents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a domestic VRP consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrp-consents",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-idempotency-key",
+                "value": ""
+              },
+              {
+                "name": "x-jws-signature",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a domestic VRP consent"
+        },
+        {
+          "info": {
+            "name": "Retrieve a domestic VRP consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrp-consents/:ConsentId",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ConsentId",
+                "value": "",
+                "type": "path",
+                "description": "ConsentId"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a domestic VRP consent"
+        },
+        {
+          "info": {
+            "name": "Delete a domestic VRP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrp-consents/:ConsentId",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ConsentId",
+                "value": "",
+                "type": "path",
+                "description": "ConsentId"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a domestic VRP"
+        },
+        {
+          "info": {
+            "name": "Confirm availability of funds for a VRP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrp-consents/:ConsentId/funds-confirmation",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-jws-signature",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ConsentId",
+                "value": "",
+                "type": "path",
+                "description": "ConsentId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Confirm availability of funds for a VRP"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Domestic VRPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a domestic VRP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrps",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-jws-signature",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              },
+              {
+                "name": "x-idempotency-key",
+                "value": ""
+              },
+              {
+                "name": "payload-version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a domestic VRP"
+        },
+        {
+          "info": {
+            "name": "Retrieve a domestic VRP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-api.danskebank.com/open-banking/v4.0/pisp/domestic-vrps/:DomesticVRPId",
+            "headers": [
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-customer-user-agent",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "DomesticVRPId",
+                "value": "",
+                "type": "path",
+                "description": "DomesticVRPId"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a domestic VRP"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

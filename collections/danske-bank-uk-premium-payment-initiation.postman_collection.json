@@ -1,0 +1,726 @@
+{
+  "item": [
+    {
+      "id": "eeeabf41-e415-4c4c-a304-be2f94af87e0",
+      "name": "Premium Corporate Payments",
+      "description": {
+        "content": "Premium Corporate Payments for premium users",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "3cfb5482-db8b-4a5c-a41f-8d0b25495f77",
+      "name": "/:paymentproduct",
+      "request": {
+        "name": "/:paymentproduct",
+        "description": {},
+        "url": {
+          "path": [
+            ":paymentproduct"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "paymentproduct",
+              "description": "(Required) Specifies the payment product type to be created."
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) Correlation ID for request tracking.",
+            "key": "CorrelationId",
+            "value": "<uuid>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) A unique key to ensure the request is processed only once. Used to generate PaymentId.",
+            "key": "idempotency-key",
+            "value": "<uuid>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "text/plain"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"localInstrument\": \"<string>\",\n  \"requestedExecutionDate\": \"<string>\",\n  \"requestedTransmissionDate\": \"<string>\",\n  \"debtorAccount\": {\n    \"bban\": \"<string>\",\n    \"iban\": \"<string>\",\n    \"entryText\": \"<string>\",\n    \"bgnr\": \"<string>\"\n  },\n  \"debtorAgent\": \"<string>\",\n  \"creditorAccount\": {\n    \"bban\": \"<string>\",\n    \"iban\": \"<string>\",\n    \"other\": {\n      \"schemeNameProprietary\": \"<string>\",\n      \"identification\": \"<string>\"\n    },\n    \"entryText\": \"<string>\",\n    \"bgnr\": \"<string>\",\n    \"pgnr\": \"<string>\"\n  },\n  \"creditorName\": \"<string>\",\n  \"creditorAddress\": {\n    \"streetName\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"townName\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"addresslines\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"instructedAmount\": {\n    \"amount\": \"<double>\",\n    \"currency\": \"<string>\"\n  },\n  \"currencyOfTransfer\": \"<string>\",\n  \"exchangeRateInformation\": {\n    \"type\": \"<string>\",\n    \"contractIdentification\": \"<string>\"\n  },\n  \"endToEndId\": \"<string>\",\n  \"categoryPurpose\": \"<string>\",\n  \"purposeCode\": \"<string>\",\n  \"remittanceInformationUnstructured\": \"<string>\",\n  \"remittanceInformationUnstructuredArray\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remittanceInformationStructured\": {\n    \"reference\": \"<string>\",\n    \"referredDocumentInformation\": {\n      \"type\": \"<string>\",\n      \"issuer\": \"<string>\",\n      \"number\": \"<string>\",\n      \"relatedDate\": \"<string>\"\n    }\n  },\n  \"ultimateCreditor\": \"<string>\",\n  \"ultimateDebtor\": \"<string>\",\n  \"ultimateDebtorAddress\": {\n    \"streetName\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"townName\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"addresslines\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"serviceLevel\": \"<string>\",\n  \"creditorAgent\": \"<string>\",\n  \"creditorAgentOther\": {\n    \"clearingSystemId\": \"<string>\",\n    \"memberId\": \"<string>\"\n  },\n  \"creditorAgentAddress\": {\n    \"streetName\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"townName\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"addresslines\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"chargeBearer\": \"<string>\",\n  \"instructionForDebtorAgent\": \"<string>\",\n  \"regulatoryReporting\": {\n    \"detailsCode\": \"<string>\",\n    \"detailsInformation\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"detailsCountry\": \"<string>\"\n  },\n  \"debtorAgentAddress\": {\n    \"streetName\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"townName\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"addresslines\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"chequeInstruction\": {\n    \"deliveryMethod\": \"<string>\",\n    \"formsCode\": \"<string>\",\n    \"senderInformation\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"requestForTransferInstruction\": {\n    \"paymentType\": \"<string>\",\n    \"separateFeeAccount\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6e0a617f-290c-44ec-a315-312d8142780b",
+          "name": "Created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentproduct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentproduct",
+                  "description": "(Required) Specifies the payment product type to be created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A unique key to ensure the request is processed only once. Used to generate PaymentId.",
+                "key": "idempotency-key",
+                "value": "09100714-2926-415e-8059-e6c439ef7fcc"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"localInstrument\": \"ONCL\",\n  \"requestedExecutionDate\": \"2024-09-22\",\n  \"debtorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"September Salary\"\n  },\n  \"creditorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"Employee Account\"\n  },\n  \"creditorName\": \"John Employee\",\n  \"creditorAddress\": {\n    \"streetName\": \"High Street\",\n    \"buildingNumber\": \"10\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"High Street 10\",\n      \"Copenhagen\",\n      \"DK-1000\"\n    ]\n  },\n  \"instructedAmount\": {\n    \"amount\": 15000.75,\n    \"currency\": \"DKK\"\n  },\n  \"currencyOfTransfer\": \"DKK\",\n  \"exchangeRateInformation\": {\n    \"type\": \"SPOT\",\n    \"contractIdentification\": \"VH4240926A0037\"\n  },\n  \"endToEndId\": \"E2E-SALARY-20240922-0001\",\n  \"categoryPurpose\": \"SALA\",\n  \"purposeCode\": \"PENS\",\n  \"remittanceInformationUnstructured\": \"September Salary\",\n  \"remittanceInformationStructured\": {\n    \"reference\": \"RF12345678\",\n    \"referenceType\": \"SCOR\"\n  },\n  \"ultimateCreditor\": \"John Employee\",\n  \"ultimateDebtor\": \"Company A/S\",\n  \"ultimateDebtorAddress\": {\n    \"streetName\": \"Business Park\",\n    \"buildingNumber\": \"5\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Business Park 5\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"serviceLevel\": \"URGP\",\n  \"creditorAgent\": \"BICFI\",\n  \"creditorAgentAddress\": {\n    \"streetName\": \"Agent Street\",\n    \"buildingNumber\": \"2\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Agent Street 2\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"chargeBearer\": \"DEBT\",\n  \"instructionForDebtorAgent\": \"Process on execution date\",\n  \"regulatoryReporting\": {\n    \"detailsCode\": \"912\",\n    \"detailsInformation\": \"Salary payment\",\n    \"detailsCountry\": \"DK\"\n  },\n  \"debtorAgentAddress\": {\n    \"streetName\": \"Debtor Bank Rd\",\n    \"buildingNumber\": \"1\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Debtor Bank Rd 1\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"stateCode\": \"pendingApproval\",\n  \"transactionStatus\": \"ACTC\",\n  \"paymentId\": \"urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b\",\n  \"error\": {\n    \"errorKCode\": \"K0812\",\n    \"errorIsoCode\": \"AC02\",\n    \"errorText\": \"Payment created and awaiting approva.\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "56ad5304-353d-4cfc-938c-899619243d7e",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentproduct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentproduct",
+                  "description": "(Required) Specifies the payment product type to be created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A unique key to ensure the request is processed only once. Used to generate PaymentId.",
+                "key": "idempotency-key",
+                "value": "09100714-2926-415e-8059-e6c439ef7fcc"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"localInstrument\": \"ONCL\",\n  \"requestedExecutionDate\": \"2024-09-22\",\n  \"debtorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"September Salary\"\n  },\n  \"creditorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"Employee Account\"\n  },\n  \"creditorName\": \"John Employee\",\n  \"creditorAddress\": {\n    \"streetName\": \"High Street\",\n    \"buildingNumber\": \"10\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"High Street 10\",\n      \"Copenhagen\",\n      \"DK-1000\"\n    ]\n  },\n  \"instructedAmount\": {\n    \"amount\": 15000.75,\n    \"currency\": \"DKK\"\n  },\n  \"currencyOfTransfer\": \"DKK\",\n  \"exchangeRateInformation\": {\n    \"type\": \"SPOT\",\n    \"contractIdentification\": \"VH4240926A0037\"\n  },\n  \"endToEndId\": \"E2E-SALARY-20240922-0001\",\n  \"categoryPurpose\": \"SALA\",\n  \"purposeCode\": \"PENS\",\n  \"remittanceInformationUnstructured\": \"September Salary\",\n  \"remittanceInformationStructured\": {\n    \"reference\": \"RF12345678\",\n    \"referenceType\": \"SCOR\"\n  },\n  \"ultimateCreditor\": \"John Employee\",\n  \"ultimateDebtor\": \"Company A/S\",\n  \"ultimateDebtorAddress\": {\n    \"streetName\": \"Business Park\",\n    \"buildingNumber\": \"5\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Business Park 5\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"serviceLevel\": \"URGP\",\n  \"creditorAgent\": \"BICFI\",\n  \"creditorAgentAddress\": {\n    \"streetName\": \"Agent Street\",\n    \"buildingNumber\": \"2\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Agent Street 2\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"chargeBearer\": \"DEBT\",\n  \"instructionForDebtorAgent\": \"Process on execution date\",\n  \"regulatoryReporting\": {\n    \"detailsCode\": \"912\",\n    \"detailsInformation\": \"Salary payment\",\n    \"detailsCountry\": \"DK\"\n  },\n  \"debtorAgentAddress\": {\n    \"streetName\": \"Debtor Bank Rd\",\n    \"buildingNumber\": \"1\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Debtor Bank Rd 1\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 400,\n  \"message\": \"Invalid payment amount specified.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "21759a7f-54ea-4456-a3c9-f8f29863e93c",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentproduct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentproduct",
+                  "description": "(Required) Specifies the payment product type to be created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A unique key to ensure the request is processed only once. Used to generate PaymentId.",
+                "key": "idempotency-key",
+                "value": "09100714-2926-415e-8059-e6c439ef7fcc"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"localInstrument\": \"ONCL\",\n  \"requestedExecutionDate\": \"2024-09-22\",\n  \"debtorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"September Salary\"\n  },\n  \"creditorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"Employee Account\"\n  },\n  \"creditorName\": \"John Employee\",\n  \"creditorAddress\": {\n    \"streetName\": \"High Street\",\n    \"buildingNumber\": \"10\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"High Street 10\",\n      \"Copenhagen\",\n      \"DK-1000\"\n    ]\n  },\n  \"instructedAmount\": {\n    \"amount\": 15000.75,\n    \"currency\": \"DKK\"\n  },\n  \"currencyOfTransfer\": \"DKK\",\n  \"exchangeRateInformation\": {\n    \"type\": \"SPOT\",\n    \"contractIdentification\": \"VH4240926A0037\"\n  },\n  \"endToEndId\": \"E2E-SALARY-20240922-0001\",\n  \"categoryPurpose\": \"SALA\",\n  \"purposeCode\": \"PENS\",\n  \"remittanceInformationUnstructured\": \"September Salary\",\n  \"remittanceInformationStructured\": {\n    \"reference\": \"RF12345678\",\n    \"referenceType\": \"SCOR\"\n  },\n  \"ultimateCreditor\": \"John Employee\",\n  \"ultimateDebtor\": \"Company A/S\",\n  \"ultimateDebtorAddress\": {\n    \"streetName\": \"Business Park\",\n    \"buildingNumber\": \"5\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Business Park 5\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"serviceLevel\": \"URGP\",\n  \"creditorAgent\": \"BICFI\",\n  \"creditorAgentAddress\": {\n    \"streetName\": \"Agent Street\",\n    \"buildingNumber\": \"2\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Agent Street 2\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"chargeBearer\": \"DEBT\",\n  \"instructionForDebtorAgent\": \"Process on execution date\",\n  \"regulatoryReporting\": {\n    \"detailsCode\": \"912\",\n    \"detailsInformation\": \"Salary payment\",\n    \"detailsCountry\": \"DK\"\n  },\n  \"debtorAgentAddress\": {\n    \"streetName\": \"Debtor Bank Rd\",\n    \"buildingNumber\": \"1\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Debtor Bank Rd 1\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 401,\n  \"message\": \"Authentication token is missing or invalid.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "517eb090-2070-4f7a-baf2-1f816673db06",
+          "name": "Internal Server Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentproduct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentproduct",
+                  "description": "(Required) Specifies the payment product type to be created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A unique key to ensure the request is processed only once. Used to generate PaymentId.",
+                "key": "idempotency-key",
+                "value": "09100714-2926-415e-8059-e6c439ef7fcc"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"localInstrument\": \"ONCL\",\n  \"requestedExecutionDate\": \"2024-09-22\",\n  \"debtorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"September Salary\"\n  },\n  \"creditorAccount\": {\n    \"bban\": 30010930711860,\n    \"iban\": \"DK02100100109307118603\",\n    \"entryText\": \"Employee Account\"\n  },\n  \"creditorName\": \"John Employee\",\n  \"creditorAddress\": {\n    \"streetName\": \"High Street\",\n    \"buildingNumber\": \"10\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"High Street 10\",\n      \"Copenhagen\",\n      \"DK-1000\"\n    ]\n  },\n  \"instructedAmount\": {\n    \"amount\": 15000.75,\n    \"currency\": \"DKK\"\n  },\n  \"currencyOfTransfer\": \"DKK\",\n  \"exchangeRateInformation\": {\n    \"type\": \"SPOT\",\n    \"contractIdentification\": \"VH4240926A0037\"\n  },\n  \"endToEndId\": \"E2E-SALARY-20240922-0001\",\n  \"categoryPurpose\": \"SALA\",\n  \"purposeCode\": \"PENS\",\n  \"remittanceInformationUnstructured\": \"September Salary\",\n  \"remittanceInformationStructured\": {\n    \"reference\": \"RF12345678\",\n    \"referenceType\": \"SCOR\"\n  },\n  \"ultimateCreditor\": \"John Employee\",\n  \"ultimateDebtor\": \"Company A/S\",\n  \"ultimateDebtorAddress\": {\n    \"streetName\": \"Business Park\",\n    \"buildingNumber\": \"5\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Business Park 5\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"serviceLevel\": \"URGP\",\n  \"creditorAgent\": \"BICFI\",\n  \"creditorAgentAddress\": {\n    \"streetName\": \"Agent Street\",\n    \"buildingNumber\": \"2\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Agent Street 2\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  },\n  \"chargeBearer\": \"DEBT\",\n  \"instructionForDebtorAgent\": \"Process on execution date\",\n  \"regulatoryReporting\": {\n    \"detailsCode\": \"912\",\n    \"detailsInformation\": \"Salary payment\",\n    \"detailsCountry\": \"DK\"\n  },\n  \"debtorAgentAddress\": {\n    \"streetName\": \"Debtor Bank Rd\",\n    \"buildingNumber\": \"1\",\n    \"townName\": \"Copenhagen\",\n    \"postCode\": \"1000\",\n    \"country\": \"DK\",\n    \"addresslines\": [\n      \"Debtor Bank Rd 1\",\n      \"Copenhagen\",\n      \"DK\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 500,\n  \"message\": \"An unexpected error occurred while processing the payment order.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c1f4cab8-4ea5-4e2e-b716-1c91a9cc2587",
+      "name": "/:paymentorderid/state",
+      "request": {
+        "name": "/:paymentorderid/state",
+        "description": {},
+        "url": {
+          "path": [
+            ":paymentorderid",
+            "state"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "paymentorderid",
+              "description": "(Required) Specifies the payment for which to get the state for"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) Correlation ID for request tracking.",
+            "key": "CorrelationId",
+            "value": "<uuid>"
+          },
+          {
+            "key": "Accept",
+            "value": "text/plain"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "87425d8b-b187-4075-a8e2-bf0250458bf7",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentorderid",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentorderid",
+                  "description": "(Required) Specifies the payment for which to get the state for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"stateCode\": \"completed\",\n  \"transactionStatus\": \"ACTC\",\n  \"paymentId\": \"urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b\",\n  \"error\": {\n    \"errorKCode\": \"K0000\",\n    \"errorIsoCode\": \"AC01\",\n    \"errorText\": \"Payment successfully completed.\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3f9bb747-a6f2-45f5-94a4-87c6c918ff61",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentorderid",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentorderid",
+                  "description": "(Required) Specifies the payment for which to get the state for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 400,\n  \"message\": \"Unauthorized Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "af24a6eb-5bf1-44c0-b182-03e0d909b135",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentorderid",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentorderid",
+                  "description": "(Required) Specifies the payment for which to get the state for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 401,\n  \"message\": \"Unauthorized Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4b3cff32-0c74-4bbc-8ef8-c1966937ab91",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentorderid",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentorderid",
+                  "description": "(Required) Specifies the payment for which to get the state for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 404,\n  \"message\": \"The specified payment order ID does not exist.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ee8f4a9b-3b14-4878-ba4e-7d291047714f",
+          "name": "Internal Server Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":paymentorderid",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentorderid",
+                  "description": "(Required) Specifies the payment for which to get the state for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Correlation ID for request tracking.",
+                "key": "CorrelationId",
+                "value": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": 500,\n  \"message\": \"State service unavailable.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c46b8ec4-0326-4e19-948c-8b841cbc8e8f",
+    "name": "Premium Payment Initiation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API is used to manage payment orders",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Premium Payment Initiation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "POST /{paymentproduct}",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders/:paymentproduct",
+        "headers": [
+          {
+            "name": "CorrelationId",
+            "value": ""
+          },
+          {
+            "name": "idempotency-key",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "paymentproduct",
+            "value": "",
+            "type": "path",
+            "description": "Specifies the payment product type to be created."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "GET /{paymentorderid}/state",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders/:paymentorderid/state",
+        "headers": [
+          {
+            "name": "CorrelationId",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "paymentorderid",
+            "value": "",
+            "type": "path",
+            "description": "Specifies the payment for which to get the state for"
+          }
+        ]
+      }
+    }
+  ],
+  "bundled": true
+}

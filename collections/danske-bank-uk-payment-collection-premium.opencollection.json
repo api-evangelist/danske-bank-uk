@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Payment Collection API",
+    "version": "1.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service/documents",
+            "headers": [
+              {
+                "name": "x-idempotency-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "DocumentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "NotificationStatuses",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "Content",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ContentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ContentLength",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ContentMD5",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "API for uploading a single document as a file to the Collection Service system."
+        },
+        {
+          "info": {
+            "name": "Get document content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service/documents/:documentId/content",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document id of uploaded document."
+              }
+            ]
+          },
+          "docs": "API to retrieve the file content of a document from the Collection Service system, based on a previously acquired unique document ID."
+        },
+        {
+          "info": {
+            "name": "Get document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document id of uploaded document."
+              }
+            ]
+          },
+          "docs": "API to retrieve the metadata of a document from the Collection Service system, based on a previously acquired unique document ID."
+        },
+        {
+          "info": {
+            "name": "Get statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service/documents/:documentId/statuses",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document id of uploaded document."
+              }
+            ]
+          },
+          "docs": "API to retrieve a full list of status updates for a specific document in the Collection Service system, based on a previously acquired unique document ID."
+        },
+        {
+          "info": {
+            "name": "Get current status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service/documents/:documentId/statuses/current",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document id of uploaded document."
+              }
+            ]
+          },
+          "docs": "API to retrieve the latest status update for a specific document in the Collection Service system, based on a previously acquired unique document ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

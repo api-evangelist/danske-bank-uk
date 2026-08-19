@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FX Trade Report API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FX Trade Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets trade details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/fx-open-and-historical-trades-api/v1/open-trades-service/trade-reports/trade/:tradeId",
+            "params": [
+              {
+                "name": "tradeId",
+                "value": "TRADE123456",
+                "type": "path",
+                "description": "Unique identifier for the executed trade."
+              }
+            ]
+          },
+          "docs": "Provides trade information for a specific trade based on provided trade ID"
+        },
+        {
+          "info": {
+            "name": "Gets all Open Trades for a given district user ID, based on maturity date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/fx-open-and-historical-trades-api/v1/open-trades-service/trade-reports/open",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Starting point of the records to retrieve (pagination)."
+              },
+              {
+                "name": "limit",
+                "value": "30",
+                "type": "query",
+                "description": "Number of records to retrieve per page (pagination)."
+              },
+              {
+                "name": "counterparts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves all Open Trades for a provided district user ID, optionally filtered by counterparts. Results are based on maturity/settlement date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages."
+        },
+        {
+          "info": {
+            "name": "Retrieves historical trades for a given district user ID within a date range, based on trade execution date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/fx-open-and-historical-trades-api/v1/open-trades-service/trade-reports",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "2025-01-01",
+                "type": "query",
+                "description": "Start date for the date range in YYYY-MM-DD format."
+              },
+              {
+                "name": "endDate",
+                "value": "2025-01-31",
+                "type": "query",
+                "description": "End date for the date range in YYYY-MM-DD format."
+              },
+              {
+                "name": "counterparts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Starting point of the records to retrieve (pagination)."
+              },
+              {
+                "name": "limit",
+                "value": "30",
+                "type": "query",
+                "description": "Number of records to retrieve per page (pagination)."
+              }
+            ]
+          },
+          "docs": "Retrieves Historical Trades for a provided district user ID within a given date range, optionally filtered by counterparts. Results are based on trade execution date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

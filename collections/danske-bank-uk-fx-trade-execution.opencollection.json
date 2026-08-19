@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FX Trade Execution API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trade execution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Executes a trade",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mock-api.danskebank.com/mock/sandbox/1.0.1/fx-trade-execution-api/v1/trade-service/trade-execution/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a trade based on provided parameters"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

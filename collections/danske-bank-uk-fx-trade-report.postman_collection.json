@@ -1,0 +1,1529 @@
+{
+  "item": [
+    {
+      "id": "8ebb7a3c-83e1-4c4c-8a4a-23ea2a6f2cb7",
+      "name": "FX Trade Report",
+      "description": {
+        "content": "Trade Report for Premium API users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a33e8d0-d33a-4a9b-838a-feb8fc317118",
+          "name": "Gets trade details by ID",
+          "request": {
+            "name": "Gets trade details by ID",
+            "description": {
+              "content": "Provides trade information for a specific trade based on provided trade ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade-reports",
+                "trade",
+                ":tradeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tradeId",
+                  "description": "(Required) Unique identifier for the executed trade."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d21bb614-578a-42fe-8306-34770333ce5b",
+              "name": "Trade details found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tradeId\": \"T250711A8787\",\n  \"tradeTime\": \"2025-10-10T06:53:28.541Z\",\n  \"counterpart\": \"DEMOCP1\",\n  \"counterpartName\": \"DEMOCP\",\n  \"maturityDate\": \"2025-10-10\",\n  \"bought\": {\n    \"currency\": \"DKK\",\n    \"amount\": 7.46\n  },\n  \"sold\": {\n    \"currency\": \"EUR\",\n    \"amount\": 1\n  },\n  \"product\": \"Forward\",\n  \"spotPrice\": 7.46372,\n  \"forwardPrice\": -0.0066376,\n  \"allInPrice\": 7.4570824,\n  \"autoSettle\": true,\n  \"comment\": \"Urgent client request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd0faddd-6b10-4de7-ba0d-d6ca5dfcaa14",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"BadRequest\",\n  \"message\": \"Invalid tradeId format.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8074232b-1adf-4f8e-912f-2611e5736d2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"AuthenticationException\",\n  \"message\": \"Session token validation failed: No key found in https://issuer.danskenet.net/.well-known/jwks.json with kid 6BBDAAA362B8C700FD2FF24BE979697DE0A58F5D.\",\n  \"timestamp\": \"2025-10-10T06:49:23.712321Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55eef8c9-e694-42b0-b1ee-8e84254b2c36",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"Forbidden\",\n  \"message\": \"You do not have permission to access this resource.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bebcc454-e469-40ea-8128-c1aaf12fbdb0",
+              "name": "Trade details not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"NotFound\",\n  \"message\": \"Trade details not found for the given tradeId.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03d4a8a3-7986-4d58-8a3b-66b530b49b5c",
+              "name": "Payload Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"PayloadTooLarge\",\n  \"message\": \"Request payload too large.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6a5eadc-da1f-480c-9803-e166cf7db05f",
+              "name": "Error while fetching Trade details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "trade",
+                    ":tradeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradeId",
+                      "description": "(Required) Unique identifier for the executed trade."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"ServerError\",\n  \"message\": \"An unexpected error occurred while fetching trade details.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16236f55-e03d-4850-9d8f-b886e6d2dbef",
+          "name": "Gets all Open Trades for a given district user ID, based on maturity date.",
+          "request": {
+            "name": "Gets all Open Trades for a given district user ID, based on maturity date.",
+            "description": {
+              "content": "Retrieves all Open Trades for a provided district user ID, optionally filtered by counterparts. Results are based on maturity/settlement date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade-reports",
+                "open"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting point of the records to retrieve (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "30",
+                  "description": "Number of records to retrieve per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "counterparts",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "counterparts",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84b94011-dcd4-4f64-8967-be1144f4580f",
+              "name": "List of Open Trades for the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"tradeId\": \"T250711A8787\",\n      \"tradeTime\": \"2025-10-10T06:44:22.702Z\",\n      \"counterpart\": \"DEMOCP1\",\n      \"counterpartName\": \"DEMOCP\",\n      \"maturityDate\": \"2025-10-10\",\n      \"bought\": {\n        \"currency\": \"DKK\",\n        \"amount\": 7.46\n      },\n      \"sold\": {\n        \"currency\": \"EUR\",\n        \"amount\": 1\n      },\n      \"product\": \"Forward\",\n      \"spotPrice\": 7.46372,\n      \"forwardPrice\": -0.0066376,\n      \"allInPrice\": 7.4570824,\n      \"autoSettle\": true,\n      \"comment\": \"Urgent client request\"\n    }\n  ],\n  \"next\": \"https://api.example.com/trade-reports?startDate=2025-05-20&endDate=2025-05-30&offset=5&limit=5\",\n  \"previous\": \"https://api.example.com/trade-reports?startDate=2025-05-20&endDate=2025-05-30&offset=4&limit=5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "217881a6-6c47-4ce7-bd50-5bdc5b7b7be4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"BadRequest\",\n  \"message\": \"The limit parameter must be a positive integer.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cdb916c-ec31-4d06-a2f2-c35cf25620e8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"AuthenticationException\",\n  \"message\": \"Session token validation failed: No key found in https://issuer.danskenet.net/.well-known/jwks.json with kid 6BBDAAA362B8C700FD2FF24BE979697DE0A58F5D.\",\n  \"timestamp\": \"2025-10-10T06:49:23.712321Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f9b437e-9de3-48cf-aa68-adbe71d83007",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"Forbidden\",\n  \"message\": \"You do not have permission to access this resource.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2848475-d7b0-4e07-96c7-cedcc96a1bde",
+              "name": "No Open Trades found for the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"NotFound\",\n  \"message\": \"No open trades found for the given parameters.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64825fbc-d7e1-4a99-939e-57681657c4fb",
+              "name": "Response Payload too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"PayloadTooLarge\",\n  \"message\": \"Request payload too large.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a1bac78-c190-4f3d-871a-2b83418439d9",
+              "name": "Error while fetching user details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"ServerError\",\n  \"message\": \"An unexpected error occurred while fetching open trades.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "470b9997-44bc-4955-add7-74292c868b67",
+          "name": "Retrieves historical trades for a given district user ID within a date range, based on trade execution date.",
+          "request": {
+            "name": "Retrieves historical trades for a given district user ID within a date range, based on trade execution date.",
+            "description": {
+              "content": "Retrieves Historical Trades for a provided district user ID within a given date range, optionally filtered by counterparts. Results are based on trade execution date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the date range in YYYY-MM-DD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "End date for the date range in YYYY-MM-DD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "counterparts",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "counterparts",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting point of the records to retrieve (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "30",
+                  "description": "Number of records to retrieve per page (pagination)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ac6e804-feb7-415d-9dd9-4227c01b0fd7",
+              "name": "Trades found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"tradeId\": \"T250711A8787\",\n      \"tradeTime\": \"2025-10-10T06:44:22.702Z\",\n      \"counterpart\": \"DEMOCP1\",\n      \"counterpartName\": \"DEMOCP\",\n      \"maturityDate\": \"2025-10-10\",\n      \"bought\": {\n        \"currency\": \"DKK\",\n        \"amount\": 14500\n      },\n      \"sold\": {\n        \"currency\": \"USD\",\n        \"amount\": 2079.32\n      },\n      \"product\": \"Forward\",\n      \"spotPrice\": 7.23,\n      \"forwardPrice\": 0.0002,\n      \"allInPrice\": 7.2302,\n      \"autoSettle\": true,\n      \"comment\": \"Urgent client request\"\n    }\n  ],\n  \"next\": \"https://api.example.com/trade-reports?startDate=2025-05-20&endDate=2025-05-30&offset=5&limit=5\",\n  \"previous\": \"https://api.example.com/trade-reports?startDate=2025-05-10&endDate=2025-05-20&offset=0&limit=5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f5cce76-ac55-47a7-b279-e75dd637aee2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"BadRequest\",\n  \"message\": \"The startDate parameter is required.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1907b0be-7de1-4886-b395-0dcf7476e2c9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"AuthenticationException\",\n  \"message\": \"Session token validation failed: No key found in https://issuer.danskenet.net/.well-known/jwks.json with kid 6BBDAAA362B8C700FD2FF24BE979697DE0A58F5D.\",\n  \"timestamp\": \"2025-10-10T06:49:23.712321Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fe3ec2b-c2ff-4a09-bac8-9f162f775548",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"Forbidden\",\n  \"message\": \"You do not have permission to access this resource.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10116204-5841-4e67-821b-0d05ee144ab5",
+              "name": "Trades not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"NotFound\",\n  \"message\": \"No trades found for the given parameters.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40148fc5-8f76-422c-8c64-6fddd462d026",
+              "name": "Response Payload too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"PayloadTooLarge\",\n  \"message\": \"Request payload too large.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e4ac8b8-3e35-44a3-b874-42d31fad0711",
+              "name": "Error while fetching Trades",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-01-31"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP123"
+                    },
+                    {
+                      "key": "counterparts",
+                      "value": "CP456"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"exception\": \"ServerError\",\n  \"message\": \"An unexpected error occurred while fetching trades.\",\n  \"timestamp\": \"2025-10-07T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2d60b6e6-8475-41dc-864e-0b4529daa690",
+      "name": "SPI-SHFD",
+      "description": {
+        "content": "SPI Code of the project.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "2d71b0b7-ef3b-4714-b993-ed112a9f30bb",
+      "name": "isDomainAPI-true",
+      "description": {
+        "content": "API is identified as domain API.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "0f5b8488-eedb-4bfc-96d8-9c35ae069883",
+      "name": "domain-Financial Markets",
+      "description": {
+        "content": "The API is a part of the Financial Markets domain.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "dac7d924-c401-4793-995f-cdab3662a6af",
+      "name": "subdomain-Trading",
+      "description": {
+        "content": "The API is a part of the Trading subdomain.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mock-api.danskebank.com/mock/sandbox/1.0.0/fx-open-and-historical-trades-api/v1/open-trades-service",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09d97460-954d-4d16-b242-ff9a6012d738",
+    "name": "FX Trade Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides access to open and historical FX trade reports.\n\n**Historical Trade Reports** - can be viewed by providing a specific date range via the `dateFrom` and `dateTo` parameters.\n\n**Filtering** - result set can be reduced by providing a filter parameter `counterparts`.\n\n**Pagination** - the API also supports pagination, allowing users to retrieve a specific number of records per page - `offset` and `limit` parameters.",
+      "type": "text/plain"
+    }
+  }
+}

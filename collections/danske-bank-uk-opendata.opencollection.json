@@ -1,0 +1,362 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opendata",
+    "version": "4.3.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SME",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all Unsecured SME Lending objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/unsecured-sme-loans",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all Unsecured SME Lending objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of Unsecured SME Lending data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/unsecured-sme-loans",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of Unsecured SME Lending data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PCA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all Personal Current Account objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/personal-current-accounts",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all Personal Current Account objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of Personal Current Account data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/personal-current-accounts",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of Personal Current Account data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CCC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all Commercial Credit Cards objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/commercial-credit-cards",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all Commercial Credit Cards objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of Commercial Credit Cards data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/commercial-credit-cards",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of Commercial Credit Cards data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BCA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all Business Current Account objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/business-current-accounts",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all Business Current Account objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of Business Current Account data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/business-current-accounts",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of Business Current Account data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ATM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all ATM objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/atms",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all ATM objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of ATM data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/atms",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of ATM data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Branch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all Branch objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/branches",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all Branch objects"
+        },
+        {
+          "info": {
+            "name": "Gets header information on the current set of Branch data",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://obp-data.danskebank.com/v2.2/branches",
+            "params": [
+              {
+                "name": "If-Modified-Since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "If-None-Match",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets header information on the current set of Branch data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /test",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/test"
+          }
+        },
+        {
+          "info": {
+            "name": "GET /ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://obp-data.danskebank.com/v2.2/ping"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
