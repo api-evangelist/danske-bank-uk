@@ -34,6 +34,19 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
+- Financial-Services
+- Banking
+- Open Banking
+- PSD2
+- OBIE
+- CMA9
+- United Kingdom
+- Northern Ireland
+- Payments
+- Account Information
+- FAPI
+- Fintech
+tags_raw:
 - Financial Services
 - Banking
 - Open Banking
@@ -60,6 +73,12 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - Open Data
+  - ATMs
+  - Branches
+  - Product
+  - Public
+  tags_raw:
   - Open Data
   - ATMs
   - Branches
@@ -169,6 +188,10 @@ apis:
   humanURL: https://developers.danskebank.com/
   baseURL: https://obp-api.danskebank.com/open-banking/v4.0
   tags:
+  - Event
+  - Notification
+  - Open Banking
+  tags_raw:
   - Events
   - Notifications
   - Open Banking
@@ -191,6 +214,11 @@ apis:
   - Premium
   - Corporate
   - Balances
+  - Transaction
+  tags_raw:
+  - Premium
+  - Corporate
+  - Balances
   - Transactions
   properties:
   - type: OpenAPI
@@ -206,6 +234,11 @@ apis:
   humanURL: https://developers.danskebank.com/
   baseURL: https://api.danskebank.com/corporate/api/v1/collection-service
   tags:
+  - Premium
+  - Corporate
+  - Payments
+  - Collection
+  tags_raw:
   - Premium
   - Corporate
   - Payments
