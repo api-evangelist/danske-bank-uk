@@ -775,6 +775,9 @@ apis:
   - type: Documentation
     url: https://danskebank.co.uk/important-information/open-banking/third-party-providers
 common:
+- type: CapabilityMap
+  url: capabilities/danske-bank-uk-capability-edges.yml
+  name: Danske Bank (UK) Business Capability Map
 - type: DomainSecurity
   url: security/danske-bank-uk-domain-security.yml
 - type: AgenticAccess

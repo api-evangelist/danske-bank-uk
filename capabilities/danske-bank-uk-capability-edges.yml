@@ -1,0 +1,27 @@
+slug: danske-bank-uk
+provider: Danske Bank (UK)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Trade execution
+  spec_file: danske-bank-uk-trade-execution-api-openapi.yml
+  capability_id: BC-210.40
+  capability_id_l1: BC-210
+  capability_name: Foreign Exchange Management
+  confidence: 0.7
+  evidence: '"FX Trade execution API" — "This API allows to execute Trades with existing quotes"; POST
+    /trade-execution/execute  executeTrade  "Executes a trade"'
+  reason: Operations execute foreign-exchange trades against previously obtained quotes, which is the
+    FX dealing/settlement activity described by Foreign Exchange Management. Confidence held at 0.7 because
+    the API is the bank's dealing service rather than a corporate treasury exposure-management tool, and
+    schemas (PremiumTradeRequest/Response) give only thin detail.
