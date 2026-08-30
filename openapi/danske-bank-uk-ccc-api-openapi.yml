@@ -1,0 +1,245 @@
+openapi: 3.2.0
+info:
+  title: Opendata CCC API
+  description: Open Data API V2.2 for Danske Bank
+  version: 4.3.3
+  x-db-template-version: 1.0.0
+servers:
+- description: prod Environment
+  url: https://obp-data.danskebank.com/v2.2
+tags:
+- name: CCC
+paths:
+  /commercial-credit-cards:
+    get:
+      tags:
+      - CCC
+      summary: Gets a list of all Commercial Credit Cards objects
+      description: Gets a list of all Commercial Credit Cards objects
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/CommercialCreditCardsResponse'
+              example:
+                metadata:
+                  timestamp: '2025-10-17T12:00:00Z'
+                  source: commercial-credit-cards
+                items:
+                - cardName: Business Platinum Card
+                  annualFee: 99
+                  currency: USD
+                - cardName: Business Gold Card
+                  annualFee: 49
+                  currency: USD
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve commercial credit cards
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+    head:
+      tags:
+      - CCC
+      summary: Gets header information on the current set of Commercial Credit Cards data
+      description: Gets header information on the current set of Commercial Credit Cards data
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/CommercialCreditCardsResponse'
+              example:
+                metadata:
+                  timestamp: '2025-10-17T12:00:00Z'
+                  source: commercial-credit-cards
+                items:
+                - cardName: Business Platinum Card
+                  annualFee: 99
+                  currency: USD
+                - cardName: Business Gold Card
+                  annualFee: 49
+                  currency: USD
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve commercial credit cards
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+components:
+  schemas:
+    Metadata:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        source:
+          type: string
+      required:
+      - timestamp
+      - source
+    CommercialCreditCardsResponse:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              cardName:
+                type: string
+              annualFee:
+                type: number
+              currency:
+                type: string
+      required:
+      - metadata
+      - items
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
+  securitySchemes:
+    clientIdHeader:
+      type: apiKey
+      name: X-IBM-Client-Id
+      in: header
+    clientSecretHeader:
+      type: apiKey
+      description: BC2702Z
+      name: X-IBM-Client-Secret
+      in: header

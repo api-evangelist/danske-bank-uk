@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  title: Opendata Test API
+  description: Open Data API V2.2 for Danske Bank
+  version: 4.3.3
+  x-db-template-version: 1.0.0
+servers:
+- description: prod Environment
+  url: https://obp-data.danskebank.com/v2.2
+tags:
+- name: Test
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/TestResponse'
+              example:
+                status: ok
+                message: Test
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Test endpoint failure
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+      tags:
+      - Test
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
+    TestResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      required:
+      - status
+      - message
+  securitySchemes:
+    clientIdHeader:
+      type: apiKey
+      name: X-IBM-Client-Id
+      in: header
+    clientSecretHeader:
+      type: apiKey
+      description: BC2702Z
+      name: X-IBM-Client-Secret
+      in: header

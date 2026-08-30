@@ -1,0 +1,713 @@
+openapi: 3.2.0
+info:
+  title: Payment Collection Documents API
+  description: API for managing collection service related operations. It supports operations such as uploading a new document, retrieving the content or metadata of an existing document, and obtaining the status or history of statuses for a document.
+  version: 1.0.3
+  x-db-template-version: 1.0.0
+servers:
+- description: Mock Environment - All possible response codes are randomly generated
+  url: https://mock-api.danskebank.com/mock/sandbox/1.0.3/collection-service-api-specification/v1/collection-service
+- description: PROD Environment
+  url: https://api.danskebank.com/corporate/api/v1/collection-service
+- description: SANDBOX Environment
+  url: https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/collection-service
+security:
+- BearerAuth: []
+tags:
+- name: Documents
+paths:
+  /documents:
+    post:
+      tags:
+      - Documents
+      summary: Upload document
+      description: API for uploading a single document as a file to the Collection Service system.
+      parameters:
+      - name: x-idempotency-key
+        in: header
+        description: Unique request identifier used as a idempotency key.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - Content
+              - ContentLength
+              - ContentMD5
+              - ContentType
+              - DocumentType
+              - NotificationStatuses
+              type: object
+              properties:
+                DocumentType:
+                  $ref: '#/components/schemas/OutgoingDocumentType'
+                NotificationStatuses:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/DocumentNotificationStatus'
+                  description: Document statuses that the user will be notified about.
+                Content:
+                  type: string
+                  description: The document to be uploaded. Ensure the file transfer follows the specifications outlined in `RFC 7578`, which defines file transfers using the `multipart/form-data` protocol.
+                  format: binary
+                  example: Content of the document
+                ContentType:
+                  type: string
+                  description: The standard MIME type and character set describing the format of the uploaded document.
+                  example: application/xml;ISO-8859-1
+                ContentLength:
+                  type: integer
+                  description: The size of the uploaded document in bytes.
+                  format: int64
+                  example: 106303
+                ContentMD5:
+                  type: string
+                  description: The hexadecimal-encoded 128-bit MD5 digest of the uploaded document. This is used as a message integrity check to verify that the data received is the same as the data originally sent.
+                  example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
+            encoding:
+              DocumentType:
+                style: form
+              NotificationStatuses:
+                style: form
+              Content:
+                style: form
+              ContentType:
+                style: form
+              ContentLength:
+                style: form
+              ContentMD5:
+                style: form
+      responses:
+        '200':
+          description: Document uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadDocumentResponse'
+              example:
+                documentId: 4704590c-004e-410d-adf7-acb7ca0a7052
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+              example:
+                type: Validation Error
+                title: Unexpected error occurred during upload document operation.
+                status: 400
+                detail: Specified content length 106303 has value that does not match actual value '8471'.
+                instance: /api/resource
+                errors:
+                  DocumentType:
+                  - DocumentType must not be empty.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Unauthorized Error
+                title: Unauthorized
+                status: 401
+                detail: Authentication token is missing or invalid.
+                instance: /api/resource
+                errors:
+                  Unauthorized:
+                  - Authentication token is missing or invalid.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Forbidden Error
+                title: Forbidden
+                status: 403
+                detail: You do not have permission to access this resource.
+                instance: /api/resource
+                errors:
+                  Forbidden:
+                  - You do not have permission to access this resource.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Internal Server Error
+                title: Internal Server Error
+                status: 500
+                detail: An unexpected error occurred. Please try again later.
+                instance: /api/resource
+                errors:
+                  Internal Server Error:
+                  - An unexpected error occurred. Please try again later.
+  /documents/{documentId}/content:
+    get:
+      tags:
+      - Documents
+      summary: Get document content
+      description: API to retrieve the file content of a document from the Collection Service system, based on a previously acquired unique document ID.
+      parameters:
+      - name: documentId
+        in: path
+        description: Document id of uploaded document.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Document content retrieved successfully.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                example: VGhpcyBpcyBhIHRlc3QgZG9jdW1lbnQgY29udGVudA==
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Unauthorized Error
+                title: Unauthorized
+                status: 401
+                detail: Authentication token is missing or invalid.
+                instance: /api/resource
+                errors:
+                  Unauthorized:
+                  - Authentication token is missing or invalid.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Forbidden Error
+                title: Forbidden
+                status: 403
+                detail: You do not have permission to access this resource.
+                instance: /api/resource
+                errors:
+                  Forbidden:
+                  - You do not have permission to access this resource.
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: NotFound Error
+                title: Unexpected error occurred during get document status operation.
+                status: 404
+                detail: 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad11 document was not found.
+                instance: /api/resource
+                errors:
+                  Not Found:
+                  - 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad11 document was not found.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Internal Server Error
+                title: Internal Server Error
+                status: 500
+                detail: An unexpected error occurred. Please try again later.
+                instance: /api/resource
+                errors:
+                  Internal Server Error:
+                  - An unexpected error occurred. Please try again later.
+  /documents/{documentId}:
+    get:
+      tags:
+      - Documents
+      summary: Get document
+      description: API to retrieve the metadata of a document from the Collection Service system, based on a previously acquired unique document ID.
+      parameters:
+      - name: documentId
+        in: path
+        description: Document id of uploaded document.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentResponse'
+              example:
+                documentType: FILL
+                contentLength: 106303
+                contentMD5: 0AFA741926B8C2B2FAD8D0BF13EC10FA
+                contentType: application/xml;ISO-8859-1
+                notificationStatuses:
+                - Accepted
+                - Processed
+                - Rejected
+                - Cancelled
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Unauthorized Error
+                title: Unauthorized
+                status: 401
+                detail: Authentication token is missing or invalid.
+                instance: /api/resource
+                errors:
+                  Unauthorized:
+                  - Authentication token is missing or invalid.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Forbidden Error
+                title: Forbidden
+                status: 403
+                detail: You do not have permission to access this resource.
+                instance: /api/resource
+                errors:
+                  Forbidden:
+                  - You do not have permission to access this resource.
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: NotFound Error
+                title: Unexpected error occurred during get document status operation.
+                status: 404
+                detail: 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad11 document was not found.
+                instance: /api/resource
+                errors:
+                  Not Found:
+                  - 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad11 document was not found.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Internal Server Error
+                title: Internal Server Error
+                status: 500
+                detail: An unexpected error occurred. Please try again later.
+                instance: /api/resource
+                errors:
+                  Internal Server Error:
+                  - An unexpected error occurred. Please try again later.
+  /documents/{documentId}/statuses:
+    get:
+      tags:
+      - Documents
+      summary: Get statuses
+      description: API to retrieve a full list of status updates for a specific document in the Collection Service system, based on a previously acquired unique document ID.
+      parameters:
+      - name: documentId
+        in: path
+        description: Document id of uploaded document.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'
+                description: List of document statuses, sorted from the most recent to the oldest one.
+              examples:
+                example1:
+                  summary: Rejected by another bank.
+                  value:
+                    text: Rejected by another bank.
+                    code: rejected
+                    date: '2025-10-08T14:50:57.7646992Z'
+                example2:
+                  summary: Forwarded to another bank.
+                  value:
+                    text: Forwarded to another bank.
+                    code: processed
+                    date: '2025-10-08T14:50:57.7647272Z'
+                example3:
+                  summary: Accepted by collection service.
+                  value:
+                    text: Accepted by collection service.
+                    code: accepted
+                    date: '2025-10-08T14:45:57.7647274Z'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Unauthorized Error
+                title: Unauthorized
+                status: 401
+                detail: Authentication token is missing or invalid.
+                instance: /api/resource
+                errors:
+                  Unauthorized:
+                  - Authentication token is missing or invalid.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Forbidden Error
+                title: Forbidden
+                status: 403
+                detail: You do not have permission to access this resource.
+                instance: /api/resource
+                errors:
+                  Forbidden:
+                  - You do not have permission to access this resource.
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: NotFound Error
+                title: Unexpected error occurred during get document status operation.
+                status: 404
+                detail: 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad10 document was not found.
+                instance: /api/resource
+                errors:
+                  Not Found:
+                  - 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad10 document was not found.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Internal Server Error
+                title: Internal Server Error
+                status: 500
+                detail: An unexpected error occurred. Please try again later.
+                instance: /api/resource
+                errors:
+                  Internal Server Error:
+                  - An unexpected error occurred. Please try again later.
+  /documents/{documentId}/statuses/current:
+    get:
+      tags:
+      - Documents
+      summary: Get current status
+      description: API to retrieve the latest status update for a specific document in the Collection Service system, based on a previously acquired unique document ID.
+      parameters:
+      - name: documentId
+        in: path
+        description: Document id of uploaded document.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentStatusResponse'
+              example:
+                text: Rejected by another bank.
+                code: rejected
+                date: '2025-10-08T14:51:20.8654955Z'
+                ackDocumentId: fd90ba7c-fb05-42d1-b2b5-c3a8b8df9420
+                cancellationDocumentId: d3a64a86-be56-4339-98b4-5ac3ab7b5af1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Unauthorized Error
+                title: Unauthorized
+                status: 401
+                detail: Authentication token is missing or invalid.
+                instance: /api/resource
+                errors:
+                  Unauthorized:
+                  - Authentication token is missing or invalid.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Forbidden Error
+                title: Forbidden
+                status: 403
+                detail: You do not have permission to access this resource.
+                instance: /api/resource
+                errors:
+                  Forbidden:
+                  - You do not have permission to access this resource.
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: NotFound Error
+                title: Unexpected error occurred during get document status operation.
+                status: 404
+                detail: 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad10 document was not found.
+                instance: /api/resource
+                errors:
+                  Not Found:
+                  - 8ab8e5ac-f43c-4a19-b136-7adbdcc7ad10 document was not found.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: Internal Server Error
+                title: Internal Server Error
+                status: 500
+                detail: An unexpected error occurred. Please try again later.
+                instance: /api/resource
+                errors:
+                  Internal Server Error:
+                  - An unexpected error occurred. Please try again later.
+components:
+  schemas:
+    Status:
+      required:
+      - code
+      - date
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document status.
+    GetDocumentStatusResponse:
+      required:
+      - code
+      - date
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document current status.
+    DocumentNotificationStatus:
+      enum:
+      - Accepted
+      - Processed
+      - Rejected
+      - Cancelled
+      type: string
+      description: Document status to be notified about.
+    GetDocumentResponse:
+      required:
+      - contentLength
+      - contentMD5
+      - contentType
+      - documentType
+      - notificationStatuses
+      type: object
+      properties:
+        documentType:
+          minLength: 1
+          type: string
+          description: 'The type of the document. Supported values: `FILL`, `FISL`, `FIPL`, `FINVOACK`, `FINVOATT`, `FIRN`, `FILN`, `FIVN`, `FIATFI`'
+        notificationStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentNotificationStatus'
+          description: Document statuses that the user will be notified about.
+        contentType:
+          minLength: 1
+          type: string
+          description: The standard MIME type and character set describing the format of the uploaded document.
+          example: application/xml;ISO-8859-1
+        contentLength:
+          type: integer
+          description: The size of the uploaded document in bytes.
+          format: int64
+          example: 106303
+        contentMD5:
+          minLength: 1
+          type: string
+          description: The hexadecimal-encoded 128-bit MD5 digest of the uploaded document. This is used as a message integrity check to verify that the data received is the same as the data originally sent.
+          example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
+      additionalProperties: false
+      description: Document response.
+    OutgoingDocumentType:
+      enum:
+      - FILL
+      - FISL
+      - FIPL
+      - FINVOACK
+      - FINVOATT
+      type: string
+      description: Type of the uploaded document.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    UploadDocumentResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the uploaded document.
+          format: uuid
+      additionalProperties: false
+      description: Document upload response.
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          example: FAILED
+        title:
+          type:
+          - string
+          - 'null'
+          example: TITLE
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          example: 1200
+        detail:
+          type:
+          - string
+          - 'null'
+          example: Uploaded document is not in required format
+        instance:
+          type:
+          - string
+          - 'null'
+          example: ACTIVE
+      additionalProperties: {}
+  securitySchemes:
+    BearerAuth:
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

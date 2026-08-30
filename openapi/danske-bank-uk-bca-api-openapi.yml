@@ -1,0 +1,677 @@
+openapi: 3.2.0
+info:
+  title: Opendata BCA API
+  description: Open Data API V2.2 for Danske Bank
+  version: 4.3.3
+  x-db-template-version: 1.0.0
+servers:
+- description: prod Environment
+  url: https://obp-data.danskebank.com/v2.2
+tags:
+- name: BCA
+paths:
+  /business-current-accounts:
+    get:
+      tags:
+      - BCA
+      summary: Gets a list of all Business Current Account objects
+      description: Gets a list of all Business Current Account objects
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/BusinessCurrentAccountsResponse'
+              example:
+                meta:
+                  LastUpdated: '2025-08-11T16:00:51.831Z'
+                  TotalResults: 5
+                  Agreement: Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions
+                  License: https://www.openbanking.org.uk/open-licence
+                  TermsOfUse: https://www.openbanking.org.uk/terms-conditions
+                data:
+                - BrandName: DanskeBank
+                  BCA:
+                  - Name: Danske Charity Account
+                    Identification: 41C
+                    Segment:
+                    - NonCommercial
+                    OnSaleIndicator: true
+                    BCAMarketingState:
+                    - Identification: 41C
+                      MarketingState: Regular
+                      FirstMarketedDate: 01/01/1900
+                      LastMarketedDate: 31/12/9999
+                      Overdraft:
+                        OverdraftTierBandSet:
+                        - TierBandMethod: Whole
+                          OverdraftType: OnDemand
+                          Identification: 41D-Arranged
+                          AuthorisedIndicator: true
+                          OverdraftTierBand:
+                          - Identification: 41D-25k
+                            TierValueMin: '1'
+                            TierValueMax: '25000'
+                            EAR: '11.46'
+                            OverdraftInterestChargingCoverage: Whole
+                            Notes:
+                            - Unsecured overdrafts between 1GBP and 25,000GBP will have a debit interest rate of 7% plus Bank of England Bank Rate.
+                    FeaturesAndBenefits:
+                      FeatureBenefitItem:
+                      - Identification: Free On-line Payments Module
+                        Type: Other
+                        Textual: Customer gets free access to online payments module to enable them to make payments from the accounts.
+                      Card:
+                      - Type: DebitCard
+                        Scheme:
+                        - MasterCard
+                        ContactlessIndicator: true
+                        MaxDailyCardWithdrawalLimit: '350'
+                      MobileWallet:
+                      - Type: IssuerMobileApp
+                    OtherFeesCharges:
+                    - FeeChargeDetail:
+                      - FeeCategory: Auto
+                        FeeType: FPSOut
+                        FeeAmount: '0.05'
+                        ApplicationFrequency: Monthly
+                        CalculationFrequency: PerItem
+                    CoreProduct:
+                      ProductURL: https://danskebank.co.uk/business/products-and-services/business-current-accounts/danske-charity-account
+                      ProductDescription: A current account for registered charities.
+                      TcsAndCsURL: http://www.danskebank.co.uk/sitecollectiondocuments/business/accounts/tcs-business-accounts.pdf
+                      SalesAccessChannels:
+                      - Branch
+                      - RelationshipManager
+                      ServicingAccessChannels:
+                      - Branch
+                      - CallCentre
+                      - Post
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve business current accounts
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+    head:
+      tags:
+      - BCA
+      summary: Gets header information on the current set of Business Current Account data
+      description: Gets header information on the current set of Business Current Account data
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/BusinessCurrentAccountsResponse'
+              example:
+                meta:
+                  LastUpdated: '2025-08-11T16:00:51.831Z'
+                  TotalResults: 5
+                  Agreement: Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions
+                  License: https://www.openbanking.org.uk/open-licence
+                  TermsOfUse: https://www.openbanking.org.uk/terms-conditions
+                data:
+                - BrandName: DanskeBank
+                  BCA:
+                  - Name: Danske Charity Account
+                    Identification: 41C
+                    Segment:
+                    - NonCommercial
+                    OnSaleIndicator: true
+                    BCAMarketingState:
+                    - Identification: 41C
+                      MarketingState: Regular
+                      FirstMarketedDate: 01/01/1900
+                      LastMarketedDate: 31/12/9999
+                      Overdraft:
+                        OverdraftTierBandSet:
+                        - TierBandMethod: Whole
+                          OverdraftType: OnDemand
+                          Identification: 41D-Arranged
+                          AuthorisedIndicator: true
+                          OverdraftTierBand:
+                          - Identification: 41D-25k
+                            TierValueMin: '1'
+                            TierValueMax: '25000'
+                            EAR: '11.46'
+                            OverdraftInterestChargingCoverage: Whole
+                            Notes:
+                            - Unsecured overdrafts between 1GBP and 25,000GBP will have a debit interest rate of 7% plus Bank of England Bank Rate.
+                    FeaturesAndBenefits:
+                      FeatureBenefitItem:
+                      - Identification: Free On-line Payments Module
+                        Type: Other
+                        Textual: Customer gets free access to online payments module to enable them to make payments from the accounts.
+                      Card:
+                      - Type: DebitCard
+                        Scheme:
+                        - MasterCard
+                        ContactlessIndicator: true
+                        MaxDailyCardWithdrawalLimit: '350'
+                      MobileWallet:
+                      - Type: IssuerMobileApp
+                    OtherFeesCharges:
+                    - FeeChargeDetail:
+                      - FeeCategory: Auto
+                        FeeType: FPSOut
+                        FeeAmount: '0.05'
+                        ApplicationFrequency: Monthly
+                        CalculationFrequency: PerItem
+                    CoreProduct:
+                      ProductURL: https://danskebank.co.uk/business/products-and-services/business-current-accounts/danske-charity-account
+                      ProductDescription: A current account for registered charities.
+                      TcsAndCsURL: http://www.danskebank.co.uk/sitecollectiondocuments/business/accounts/tcs-business-accounts.pdf
+                      SalesAccessChannels:
+                      - Branch
+                      - RelationshipManager
+                      ServicingAccessChannels:
+                      - Branch
+                      - CallCentre
+                      - Post
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve business current accounts
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+components:
+  schemas:
+    Meta:
+      type: object
+      properties:
+        LastUpdated:
+          type: string
+          format: date-time
+        TotalResults:
+          type: integer
+        Agreement:
+          type: string
+        License:
+          type: string
+          format: uri
+        TermsOfUse:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
+    BusinessCurrentAccountsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              BrandName:
+                type: string
+              BCA:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                    Identification:
+                      type: string
+                    Segment:
+                      type: array
+                      items:
+                        type: string
+                    OnSaleIndicator:
+                      type: boolean
+                    BCAMarketingState:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Identification:
+                            type: string
+                          MarketingState:
+                            type: string
+                          FirstMarketedDate:
+                            type: string
+                          LastMarketedDate:
+                            type: string
+                          Overdraft:
+                            type: object
+                            properties:
+                              OverdraftTierBandSet:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    TierBandMethod:
+                                      type: string
+                                    OverdraftType:
+                                      type: string
+                                    Identification:
+                                      type: string
+                                    AuthorisedIndicator:
+                                      type: boolean
+                                    OverdraftTierBand:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          Identification:
+                                            type: string
+                                          TierValueMin:
+                                            type: string
+                                          TierValueMax:
+                                            type: string
+                                          EAR:
+                                            type: string
+                                          OverdraftInterestChargingCoverage:
+                                            type: string
+                                          Notes:
+                                            type: array
+                                            items:
+                                              type: string
+                                          OverdraftFeesCharges:
+                                            type:
+                                            - array
+                                            - 'null'
+                                            items:
+                                              type: object
+                                              properties:
+                                                OverdraftFeeChargeCap:
+                                                  type: array
+                                                  items:
+                                                    type: object
+                                                    properties:
+                                                      FeeType:
+                                                        type: array
+                                                        items:
+                                                          type: string
+                                                      MinMaxType:
+                                                        type: string
+                                                      FeeCapOccurrence:
+                                                        type: integer
+                                                      CappingPeriod:
+                                                        type: string
+                                                      FeeCapAmount:
+                                                        type: string
+                                                OverdraftFeeChargeDetail:
+                                                  type: array
+                                                  items:
+                                                    type: object
+                                                    properties:
+                                                      FeeType:
+                                                        type: string
+                                                      FeeAmount:
+                                                        type: string
+                                                      FeeRate:
+                                                        type: string
+                                                      ApplicationFrequency:
+                                                        type: string
+                                                      CalculationFrequency:
+                                                        type: string
+                                                      Notes:
+                                                        type: array
+                                                        items:
+                                                          type: string
+                          Eligibility:
+                            type:
+                            - object
+                            - 'null'
+                            properties:
+                              LegalStructureEligibility:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: object
+                                  properties:
+                                    LegalStructure:
+                                      type: string
+                              IDEligibility:
+                                type: object
+                                properties:
+                                  Notes:
+                                    type:
+                                    - array
+                                    - 'null'
+                                    items:
+                                      type: string
+                              CreditCheckEligibility:
+                                type: object
+                                properties:
+                                  ScoringType:
+                                    type: string
+                                  Notes:
+                                    type: array
+                                    items:
+                                      type: string
+                          FeaturesAndBenefits:
+                            type:
+                            - object
+                            - 'null'
+                            properties:
+                              FeatureBenefitGroup:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: object
+                                  properties:
+                                    Name:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    Type:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    ApplicationFrequency:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    CalculationFrequency:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    FeatureBenefitItem:
+                                      type:
+                                      - array
+                                      - 'null'
+                                      items:
+                                        type: object
+                                        properties:
+                                          Identification:
+                                            type:
+                                            - string
+                                            - 'null'
+                                          Type:
+                                            type:
+                                            - string
+                                            - 'null'
+                                          Textual:
+                                            type:
+                                            - string
+                                            - 'null'
+                              FeatureBenefitItem:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: object
+                                  properties:
+                                    Identification:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    Type:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    Textual:
+                                      type:
+                                      - string
+                                      - 'null'
+                              Card:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: object
+                                  properties:
+                                    Type:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    Scheme:
+                                      type:
+                                      - array
+                                      - 'null'
+                                      items:
+                                        type:
+                                        - string
+                                        - 'null'
+                                    ContactlessIndicator:
+                                      type:
+                                      - boolean
+                                      - 'null'
+                                    MaxDailyCardWithdrawalLimit:
+                                      type:
+                                      - string
+                                      - 'null'
+                              MobileWallet:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: object
+                                  properties:
+                                    Type:
+                                      type:
+                                      - string
+                                      - 'null'
+                          OtherFeesCharges:
+                            type:
+                            - array
+                            - 'null'
+                            items:
+                              type: object
+                              properties:
+                                FeeChargeDetail:
+                                  type:
+                                  - array
+                                  - 'null'
+                                  items:
+                                    type: object
+                                    properties:
+                                      FeeCategory:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      FeeType:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      FeeAmount:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      FeeRate:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      ApplicationFrequency:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      CalculationFrequency:
+                                        type:
+                                        - string
+                                        - 'null'
+                                      Notes:
+                                        type:
+                                        - array
+                                        - 'null'
+                                        items:
+                                          type:
+                                          - string
+                                          - 'null'
+                          CoreProduct:
+                            type:
+                            - object
+                            - 'null'
+                            properties:
+                              ProductURL:
+                                type:
+                                - string
+                                - 'null'
+                                format: uri
+                              ProductDescription:
+                                type:
+                                - string
+                                - 'null'
+                              TcsAndCsURL:
+                                type:
+                                - string
+                                - 'null'
+                                format: uri
+                              SalesAccessChannels:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type:
+                                  - string
+                                  - 'null'
+                              ServicingAccessChannels:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type:
+                                  - string
+                                  - 'null'
+      required:
+      - meta
+      - data
+  securitySchemes:
+    clientIdHeader:
+      type: apiKey
+      name: X-IBM-Client-Id
+      in: header
+    clientSecretHeader:
+      type: apiKey
+      description: BC2702Z
+      name: X-IBM-Client-Secret
+      in: header

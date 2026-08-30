@@ -1,0 +1,233 @@
+openapi: 3.2.0
+info:
+  title: Premium Payment Initiation State API
+  description: This API is used to manage payment orders
+  version: 1.0.0
+  x-db-template-version: 1.0.0
+servers:
+- description: Mock Environment - All possible response codes are randomly generated
+  url: https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders
+- description: PROD Environment
+  url: https://api.danskebank.com/corporate/api/v1/corporate-paymentorders
+- description: SANDBOX Environment
+  url: https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/corporate-paymentorders
+security:
+- BearerAuth: []
+tags:
+- name: State
+paths:
+  /{paymentorderid}/state:
+    get:
+      parameters:
+      - name: CorrelationId
+        in: header
+        description: Correlation ID for request tracking.
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+      - name: paymentorderid
+        in: path
+        description: Specifies the payment for which to get the state for
+        required: true
+        schema:
+          type: string
+          example: urn:ttid:corporate:v1:premium:10b72f31-5279-4a98-946c-2ac08c934f7b
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Output'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+              examples:
+                completed:
+                  $ref: '#/components/examples/StateResponse_Completed'
+                rejected:
+                  $ref: '#/components/examples/StateResponse_Rejected'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 400
+                message: Unauthorized Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 400
+                message: Unauthorized Error
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 400
+                message: Unauthorized Error
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 401
+                message: Unauthorized Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 401
+                message: Unauthorized Error
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 401
+                message: Unauthorized Error
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 404
+                message: Unauthorized Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                notFound:
+                  $ref: '#/components/examples/Error_NotFound'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 404
+                message: Unauthorized Error
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 500
+                message: Internal Server Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                stateLookupFailure:
+                  $ref: '#/components/examples/Error_StateLookupFailure'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 500
+                message: Internal Server Error
+      tags:
+      - State
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          format: int32
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
+    Output:
+      required:
+      - stateCode
+      - transactionStatus
+      - paymentId
+      - error
+      type: object
+      properties:
+        stateCode:
+          type: string
+          description: State code of the payment.
+          example: pendingApproval
+        transactionStatus:
+          type: string
+          description: Transaction status of the payment.
+          example: ACTC
+        paymentId:
+          type: string
+          description: Payment id of the payment.
+          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          $ref: '#/components/schemas/ErrorWithCodes'
+    ErrorWithCodes:
+      required:
+      - errorKCode
+      - errorIsoCode
+      - errorText
+      type:
+      - object
+      - 'null'
+      properties:
+        errorKCode:
+          type: string
+          description: Error code.
+          example: K0813
+        errorIsoCode:
+          type: string
+          description: ISO code for the error
+          example: AC01
+        errorText:
+          type: string
+          description: Error text.
+          example: Payment has been rejected due to lack of funds on debtor account.
+      description: Error details in case payment has been rejected.
+  examples:
+    StateResponse_Rejected:
+      summary: Previously created payment now rejected
+      value:
+        stateCode: rejected
+        transactionStatus: RJCT
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0813
+          errorIsoCode: AC01
+          errorText: Payment has been rejected due to lack of funds on debtor account.
+    Error_StateLookupFailure:
+      summary: Failure retrieving state
+      value:
+        errorCode: 500
+        message: State service unavailable.
+    Error_NotFound:
+      summary: Payment order not found
+      value:
+        errorCode: 404
+        message: The specified payment order ID does not exist.
+    StateResponse_Completed:
+      summary: Payment successfully completed
+      value:
+        stateCode: completed
+        transactionStatus: ACTC
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0000
+          errorIsoCode: AC01
+          errorText: Payment successfully completed.
+  securitySchemes:
+    BearerAuth:
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

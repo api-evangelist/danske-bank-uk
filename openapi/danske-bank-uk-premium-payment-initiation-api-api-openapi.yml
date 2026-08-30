@@ -1,0 +1,1061 @@
+openapi: 3.2.0
+info:
+  title: Premium Payment Initiation API
+  description: This API is used to manage payment orders
+  version: 1.0.0
+  x-db-template-version: 1.0.0
+servers:
+- description: Mock Environment - All possible response codes are randomly generated
+  url: https://mock-api.danskebank.com/mock/sandbox/1.0.0/premium-corporate-payments-api/v1/corporate-paymentorders
+- description: PROD Environment
+  url: https://api.danskebank.com/corporate/api/v1/corporate-paymentorders
+- description: SANDBOX Environment
+  url: https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/corporate-paymentorders
+security:
+- BearerAuth: []
+tags:
+- name: Premium Payment Initiation API
+paths:
+  /{paymentproduct}:
+    post:
+      parameters:
+      - name: CorrelationId
+        in: header
+        description: Correlation ID for request tracking.
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+      - name: idempotency-key
+        in: header
+        description: A unique key to ensure the request is processed only once. Used to generate PaymentId.
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 09100714-2926-415e-8059-e6c439ef7fcc
+      - name: paymentproduct
+        in: path
+        description: Specifies the payment product type to be created.
+        required: true
+        schema:
+          type: string
+          example: dk-domestic-credit-transfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PremiumPaymentOrder'
+            examples:
+              salaryPayment:
+                $ref: '#/components/examples/CreatePaymentRequest_Salary'
+              fxContractPayment:
+                $ref: '#/components/examples/CreatePaymentRequest_ExpressFX'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PremiumPaymentOrder'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PremiumPaymentOrder'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Output'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+              examples:
+                pendingApproval:
+                  $ref: '#/components/examples/CreatePaymentResponse_PendingApproval'
+                rejectedInsufficientFunds:
+                  $ref: '#/components/examples/CreatePaymentResponse_Rejected'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 400
+                message: Bad Request Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalidAmount:
+                  summary: Invalid payment amount
+                  value:
+                    errorCode: 400
+                    message: Invalid payment amount specified.
+                missingRequiredField:
+                  $ref: '#/components/examples/Error_MissingField'
+                invalidExecutionDate:
+                  $ref: '#/components/examples/Error_InvalidDate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 400
+                message: Bad Request Error
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 401
+                message: Unauthorized Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missingToken:
+                  summary: Missing token
+                  value:
+                    errorCode: 401
+                    message: Authentication token is missing or invalid.
+                expiredToken:
+                  $ref: '#/components/examples/Error_ExpiredToken'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 401
+                message: Unauthorized Error
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 500
+                message: Internal Server Error
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                processingFailure:
+                  summary: Generic processing failure
+                  value:
+                    errorCode: 500
+                    message: An unexpected error occurred while processing the payment order.
+                downstreamTimeout:
+                  $ref: '#/components/examples/Error_DownstreamTimeout'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: 500
+                message: Internal Server Error
+      tags:
+      - Premium Payment Initiation API
+components:
+  schemas:
+    RequestForTransferInstruction:
+      required:
+      - paymentType
+      - separateFeeAccount
+      type:
+      - object
+      - 'null'
+      properties:
+        paymentType:
+          type:
+          - string
+          - 'null'
+          description: The payment type
+          example: UU
+        separateFeeAccount:
+          type:
+          - string
+          - 'null'
+          description: Ability to key in fee account. Only supported if it's allowed for the specific BIC address and payment type
+          example: '30013121012322'
+      description: RequestForTransferInstruction for the payment.
+    Output:
+      required:
+      - stateCode
+      - transactionStatus
+      - paymentId
+      - error
+      type: object
+      properties:
+        stateCode:
+          type: string
+          description: State code of the payment.
+          example: pendingApproval
+        transactionStatus:
+          type: string
+          description: Transaction status of the payment.
+          example: ACTC
+        paymentId:
+          type: string
+          description: Payment id of the payment.
+          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          $ref: '#/components/schemas/ErrorWithCodes'
+    DebtorAgentAddress:
+      required:
+      - streetName
+      - buildingNumber
+      - townName
+      - postCode
+      - country
+      - addresslines
+      type:
+      - object
+      - 'null'
+      properties:
+        streetName:
+          type:
+          - string
+          - 'null'
+          description: Street name.
+        buildingNumber:
+          type:
+          - string
+          - 'null'
+          description: Building number.
+        townName:
+          type:
+          - string
+          - 'null'
+          description: Town name.
+        postCode:
+          type:
+          - string
+          - 'null'
+          description: Postal code.
+        country:
+          type:
+          - string
+          - 'null'
+          description: Country.
+        addresslines:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Address lines. Unstructured address that consists of array.
+      description: The address of the debtor's financial institution.
+    CreditorAccount:
+      required:
+      - bban
+      - iban
+      - other
+      - entryText
+      - bgnr
+      - pgnr
+      type:
+      - object
+      - 'null'
+      properties:
+        bban:
+          type:
+          - string
+          - 'null'
+          description: Account BBAN number.
+          example: '30010930711860'
+        iban:
+          type:
+          - string
+          - 'null'
+          description: Account IBAN number. If both are provided, only IBAN is used as input.
+          example: DK02100100109307118603
+        other:
+          $ref: '#/components/schemas/Other'
+        entryText:
+          type:
+          - string
+          - 'null'
+          description: Short text on debtors account statement.
+          example: Free text
+        bgnr:
+          type:
+          - string
+          - 'null'
+          description: Account in BankGiro number format.
+          example: '53328795'
+        pgnr:
+          type:
+          - string
+          - 'null'
+          description: Account in PlusGiro number format.
+          example: '315'
+      description: Creditor account using BBAN or IBAN reference.
+    ErrorWithCodes:
+      required:
+      - errorKCode
+      - errorIsoCode
+      - errorText
+      type:
+      - object
+      - 'null'
+      properties:
+        errorKCode:
+          type: string
+          description: Error code.
+          example: K0813
+        errorIsoCode:
+          type: string
+          description: ISO code for the error
+          example: AC01
+        errorText:
+          type: string
+          description: Error text.
+          example: Payment has been rejected due to lack of funds on debtor account.
+      description: Error details in case payment has been rejected.
+    PremiumPaymentOrder:
+      required:
+      - localInstrument
+      - requestedExecutionDate
+      - requestedTransmissionDate
+      - debtorAccount
+      - debtorAgent
+      - creditorAccount
+      - creditorName
+      - creditorAddress
+      - instructedAmount
+      - currencyOfTransfer
+      - exchangeRateInformation
+      - endToEndId
+      - categoryPurpose
+      - purposeCode
+      - remittanceInformationUnstructured
+      - remittanceInformationUnstructuredArray
+      - remittanceInformationStructured
+      - ultimateCreditor
+      - ultimateDebtor
+      - ultimateDebtorAddress
+      - serviceLevel
+      - creditorAgent
+      - creditorAgentOther
+      - creditorAgentAddress
+      - chargeBearer
+      - instructionForDebtorAgent
+      - regulatoryReporting
+      - debtorAgentAddress
+      - chequeInstruction
+      - requestForTransferInstruction
+      type: object
+      properties:
+        localInstrument:
+          type:
+          - string
+          - 'null'
+          description: Identifies the clearing or settlement method.
+          example: ONCL
+        requestedExecutionDate:
+          type:
+          - string
+          - 'null'
+          description: Date for when the payment should be executed. If omitted, it will be pre-filled with first possible execution date
+          example: '2024-09-22'
+        requestedTransmissionDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the payment request is transmitted to the bank, formatted as YYYY-MM-DD.
+          example: '2024-09-22'
+        debtorAccount:
+          $ref: '#/components/schemas/DebtorAccount'
+        debtorAgent:
+          type:
+          - string
+          - 'null'
+          description: DebtorAgent is the BIC address of the bank that holds the debit account. The field is either 8 or 11 characters long
+          example: NDEADKKK
+        creditorAccount:
+          $ref: '#/components/schemas/CreditorAccount'
+        creditorName:
+          type:
+          - string
+          - 'null'
+          description: Creditor's name.
+          example: Danica
+        creditorAddress:
+          $ref: '#/components/schemas/CreditorAddress'
+        instructedAmount:
+          $ref: '#/components/schemas/InstructedAmount'
+        currencyOfTransfer:
+          type:
+          - string
+          - 'null'
+          description: Used for equivalent amount to specify the currency of transfer if different from the currency of amount.
+          example: DKK
+        exchangeRateInformation:
+          $ref: '#/components/schemas/ExchangeRateInformation'
+        endToEndId:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier for the payment transaction, enabling end-to-end tracking between debtor and creditor.
+          example: '5726365026523262'
+        categoryPurpose:
+          type:
+          - string
+          - 'null'
+          description: A code specifying the high-level purpose of the payment, such as salary or tax.
+          example: SALA
+        purposeCode:
+          type:
+          - string
+          - 'null'
+          description: A code indicating the specific purpose of the payment, such as salary, pension, or tax.
+          example: PENS
+        remittanceInformationUnstructured:
+          type:
+          - string
+          - 'null'
+          description: Free-text information for the payment.
+          example: Free text
+        remittanceInformationUnstructuredArray:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: An array of free-text lines for the payment.
+          example:
+          - Service payment for Q3
+          - 'Reference: 12345'
+        remittanceInformationStructured:
+          $ref: '#/components/schemas/RemittanceInformationStructured'
+        ultimateCreditor:
+          type:
+          - string
+          - 'null'
+          description: The final party that ultimately receives the payment funds.
+          example: John Doe
+        ultimateDebtor:
+          type:
+          - string
+          - 'null'
+          description: The original party responsible for the payment.
+          example: Danica
+        ultimateDebtorAddress:
+          $ref: '#/components/schemas/UltimateDebtorAddress'
+        serviceLevel:
+          type:
+          - string
+          - 'null'
+          description: Specifies the priority or processing speed of the payment. If nothing is given it will be processed according to what is stated in the local instrument.
+          example: URGP
+        creditorAgent:
+          type:
+          - string
+          - 'null'
+          description: The financial institution acting on behalf of the creditor.
+          example: BICFI
+        creditorAgentOther:
+          $ref: '#/components/schemas/CreditorAgentOther'
+        creditorAgentAddress:
+          $ref: '#/components/schemas/CreditorAgentAddress'
+        chargeBearer:
+          type:
+          - string
+          - 'null'
+          description: 'Indicates who pays the transaction fees: debtor (DEBT), creditor (cred), or shared (SHAR).'
+          example: DEBT
+        instructionForDebtorAgent:
+          type:
+          - string
+          - 'null'
+          description: Message or instructions from the debtor to their bank.
+          example: message text to Danske Bank
+        regulatoryReporting:
+          $ref: '#/components/schemas/RegulatoryReporting'
+        debtorAgentAddress:
+          $ref: '#/components/schemas/DebtorAgentAddress'
+        chequeInstruction:
+          $ref: '#/components/schemas/ChequeInstruction'
+        requestForTransferInstruction:
+          $ref: '#/components/schemas/RequestForTransferInstruction'
+    ChequeInstruction:
+      required:
+      - deliveryMethod
+      - formsCode
+      - senderInformation
+      type: object
+      properties:
+        deliveryMethod:
+          type:
+          - string
+          - 'null'
+          description: Delivery method. MLDB - default to null - cheque will be sent to debtor. MLCD - cheque will be sent to creditor. If MLCD creditor and name is required
+        formsCode:
+          type:
+          - string
+          - 'null'
+          description: CROSSED - information if the cheque is crossed
+        senderInformation:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Sender information - 2 lines of 35 characters are supported
+    Other:
+      required:
+      - schemeNameProprietary
+      - identification
+      type:
+      - object
+      - 'null'
+      properties:
+        schemeNameProprietary:
+          type: string
+          description: Creditor proprietary scheme name.
+          example: DanishSlip
+        identification:
+          type: string
+          description: Creditor identification.
+          example: '71123456789012345612345678'
+      description: Alternative account type if neither IBAN nor BBAN is used.
+    CreditorAgentAddress:
+      required:
+      - streetName
+      - buildingNumber
+      - townName
+      - postCode
+      - country
+      - addresslines
+      type:
+      - object
+      - 'null'
+      properties:
+        streetName:
+          type:
+          - string
+          - 'null'
+          description: Street name.
+        buildingNumber:
+          type:
+          - string
+          - 'null'
+          description: Building number.
+        townName:
+          type:
+          - string
+          - 'null'
+          description: Town name.
+        postCode:
+          type:
+          - string
+          - 'null'
+          description: Postal code.
+        country:
+          type:
+          - string
+          - 'null'
+          description: Country.
+        addresslines:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Address lines. Unstructured address that consists of array.
+      description: The address of the creditor's financial institution
+    UltimateDebtorAddress:
+      required:
+      - streetName
+      - buildingNumber
+      - townName
+      - postCode
+      - country
+      - addresslines
+      type:
+      - object
+      - 'null'
+      properties:
+        streetName:
+          type:
+          - string
+          - 'null'
+          description: Street name.
+          example: 123 Main St
+        buildingNumber:
+          type:
+          - string
+          - 'null'
+          description: Building number.
+          example: A
+        townName:
+          type:
+          - string
+          - 'null'
+          description: Town name.
+          example: Copenhagen
+        postCode:
+          type:
+          - string
+          - 'null'
+          description: Postal code.
+          example: 1000
+        country:
+          type:
+          - string
+          - 'null'
+          description: Country.
+          example: DK
+        addresslines:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - 123 Main St
+          - A
+          - Copenhagen
+          - DK
+          description: Address lines. Unstructured address that consists of array.
+      description: The original party's address responsible for the payment.
+    ReferredDocumentInformation:
+      required:
+      - type
+      - issuer
+      - number
+      - relatedDate
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the referenced document.
+          example: CINV
+        issuer:
+          type:
+          - string
+          - 'null'
+          description: The issuer of the referenced document.
+          example: Issuer
+        number:
+          type:
+          - string
+          - 'null'
+          description: The number of the referenced document.
+          example: '123456'
+        relatedDate:
+          type:
+          - string
+          - 'null'
+          description: The date related to the referenced document.
+          example: '2023-10-01'
+      description: Information about the related document(s) associated with the payment, such as invoices, credit notes, or statements.
+    ExchangeRateInformation:
+      required:
+      - type
+      - contractIdentification
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          type: string
+          description: The type of exchange rate applied to the payment.
+          example: SPOT
+        contractIdentification:
+          type:
+          - string
+          - 'null'
+          description: The contract number for an agreed exchange rate (AGRT type only).
+          example: VH4240926A0037
+      description: Payment exchange information
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          format: int32
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
+    DebtorAccount:
+      required:
+      - bban
+      - iban
+      - entryText
+      - bgnr
+      type: object
+      properties:
+        bban:
+          type:
+          - string
+          - 'null'
+          description: Account in BBAN format.
+          example: '30010930711860'
+        iban:
+          type:
+          - string
+          - 'null'
+          description: Account in IBAN format. If both BBAN and IBAN are provided, only IBAN is used as input.
+          example: DK02100100109307118603
+        entryText:
+          type:
+          - string
+          - 'null'
+          description: Short text on debtor's account statement.
+          example: Free text
+        bgnr:
+          type:
+          - string
+          - 'null'
+          description: Account in BankGiro number format.
+          example: '53328795'
+      description: Debtor account using BBAN or IBAN reference.
+    RegulatoryReporting:
+      required:
+      - detailsCode
+      - detailsInformation
+      - detailsCountry
+      type:
+      - object
+      - 'null'
+      properties:
+        detailsCode:
+          type:
+          - string
+          - 'null'
+          description: A code specifying the regulatory reporting detail.
+          example: '912'
+        detailsInformation:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Additional information for regulatory reporting.Can be provided as a single string or an array of strings.
+          example:
+          - Dividend on foreign shares
+        detailsCountry:
+          type:
+          - string
+          - 'null'
+          description: Details country
+          example: UK
+      description: Information required for regulatory compliance.
+    InstructedAmount:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The payment amount in decimal format.
+          format: double
+          example: 10.03
+        currency:
+          type: string
+          description: The currency of the payment amount.
+          example: DKK
+      description: The amount and currency to be transferred.
+    CreditorAgentOther:
+      required:
+      - clearingSystemId
+      - memberId
+      type:
+      - object
+      - 'null'
+      properties:
+        clearingSystemId:
+          type:
+          - string
+          - 'null'
+          description: The code identifying the international registration number for the branch of the creditor bank in the chosen country.
+          example: FW
+        memberId:
+          type:
+          - string
+          - 'null'
+          description: The bank or member ID. Must be entered as numbers only, without dashes or other characters.
+          example: '075000022'
+      description: Additional information about the creditor's agent
+    RemittanceInformationStructured:
+      required:
+      - reference
+      - referredDocumentInformation
+      type:
+      - object
+      - 'null'
+      properties:
+        reference:
+          type:
+          - string
+          - 'null'
+          description: A structured reference number for the payment.
+          example: RF12345678
+        referredDocumentInformation:
+          $ref: '#/components/schemas/ReferredDocumentInformation'
+      description: Structured remittance information for the payment.
+    CreditorAddress:
+      required:
+      - streetName
+      - buildingNumber
+      - townName
+      - postCode
+      - country
+      - addresslines
+      type:
+      - object
+      - 'null'
+      properties:
+        streetName:
+          type:
+          - string
+          - 'null'
+          description: Street name.
+          example: Oxford Lane
+        buildingNumber:
+          type:
+          - string
+          - 'null'
+          description: Building number.
+          example: '20'
+        townName:
+          type:
+          - string
+          - 'null'
+          description: Town name.
+          example: New York
+        postCode:
+          type:
+          - string
+          - 'null'
+          description: Postal code.
+          example: '8464'
+        country:
+          type:
+          - string
+          - 'null'
+          description: Country.
+          example: DK
+        addresslines:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Address lines. Unstructured address that consists of array.
+          example: '["BARCLAYS BANK PLC FRANCE", "21, RUE LAFITT", "F-75315 PARIS CEDEX 09"]'
+      description: The address of the creditor receiving the payment.
+  examples:
+    CreatePaymentRequest_Salary:
+      summary: Salary payment (local currency)
+      value:
+        localInstrument: ONCL
+        requestedExecutionDate: '2024-09-22'
+        debtorAccount:
+          bban: 30010930711860
+          iban: DK02100100109307118603
+          entryText: September Salary
+        creditorAccount:
+          bban: 30010930711860
+          iban: DK02100100109307118603
+          entryText: Employee Account
+        creditorName: John Employee
+        creditorAddress:
+          streetName: High Street
+          buildingNumber: '10'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - High Street 10
+          - Copenhagen
+          - DK-1000
+        instructedAmount:
+          amount: 15000.75
+          currency: DKK
+        currencyOfTransfer: DKK
+        exchangeRateInformation:
+          type: SPOT
+          contractIdentification: VH4240926A0037
+        endToEndId: E2E-SALARY-20240922-0001
+        categoryPurpose: SALA
+        purposeCode: PENS
+        remittanceInformationUnstructured: September Salary
+        remittanceInformationStructured:
+          reference: RF12345678
+          referenceType: SCOR
+        ultimateCreditor: John Employee
+        ultimateDebtor: Company A/S
+        ultimateDebtorAddress:
+          streetName: Business Park
+          buildingNumber: '5'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - Business Park 5
+          - Copenhagen
+          - DK
+        serviceLevel: URGP
+        creditorAgent: BICFI
+        creditorAgentAddress:
+          streetName: Agent Street
+          buildingNumber: '2'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - Agent Street 2
+          - Copenhagen
+          - DK
+        chargeBearer: DEBT
+        instructionForDebtorAgent: Process on execution date
+        regulatoryReporting:
+          detailsCode: '912'
+          detailsInformation: Salary payment
+          detailsCountry: DK
+        debtorAgentAddress:
+          streetName: Debtor Bank Rd
+          buildingNumber: '1'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - Debtor Bank Rd 1
+          - Copenhagen
+          - DK
+    CreatePaymentResponse_PendingApproval:
+      summary: Payment created and awaiting approval
+      value:
+        stateCode: pendingApproval
+        transactionStatus: ACTC
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0812
+          errorIsoCode: AC02
+          errorText: Payment created and awaiting approva.
+    CreatePaymentRequest_ExpressFX:
+      summary: Cross-currency payment using FX contract
+      value:
+        localInstrument: ONCL
+        requestedExecutionDate: '2024-09-23'
+        debtorAccount:
+          bban: 30010930711860
+          iban: DK02100100109307118603
+          entryText: FX Supplier
+        creditorAccount:
+          bban: 30010930711860
+          iban: DK02100100109307118603
+          entryText: Supplier Account
+        creditorName: Global Supplier Ltd
+        creditorAddress:
+          streetName: Export Ave
+          buildingNumber: '50'
+          townName: Hamburg
+          postCode: '20095'
+          country: DE
+          addresslines:
+          - Export Ave 50
+          - Hamburg
+          - DE
+        instructedAmount:
+          amount: 25000.0
+          currency: EUR
+        currencyOfTransfer: EUR
+        exchangeRateInformation:
+          type: SPOT
+          contractIdentification: FXC-2024-0915-001
+        endToEndId: E2E-FX-20240923-0099
+        categoryPurpose: SUPP
+        purposeCode: GDDS
+        remittanceInformationUnstructured: Invoice 9921
+        remittanceInformationStructured:
+          reference: RF55667788
+          referenceType: SCOR
+        ultimateCreditor: Global Supplier Ltd
+        ultimateDebtor: Company A/S
+        ultimateDebtorAddress:
+          streetName: Business Park
+          buildingNumber: '5'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - Business Park 5
+          - Copenhagen
+          - DK
+        serviceLevel: URGP
+        creditorAgent: BICFI
+        creditorAgentAddress:
+          streetName: Agent Straße
+          buildingNumber: '12'
+          townName: Hamburg
+          postCode: '20095'
+          country: DE
+          addresslines:
+          - Agent Straße 12
+          - Hamburg
+          - DE
+        chargeBearer: DEBT
+        instructionForDebtorAgent: Execute ASAP
+        regulatoryReporting:
+          detailsCode: '912'
+          detailsInformation: Goods import
+          detailsCountry: DE
+        debtorAgentAddress:
+          streetName: Debtor Bank Rd
+          buildingNumber: '1'
+          townName: Copenhagen
+          postCode: '1000'
+          country: DK
+          addresslines:
+          - Debtor Bank Rd 1
+          - Copenhagen
+          - DK
+    CreatePaymentResponse_Rejected:
+      summary: Payment rejected at creation time
+      value:
+        stateCode: rejected
+        transactionStatus: RJCT
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0813
+          errorIsoCode: AC01
+          errorText: Payment has been rejected due to lack of funds on debtor account.
+    Error_DownstreamTimeout:
+      summary: Timeout calling downstream clearing service
+      value:
+        errorCode: 500
+        message: Clearing network timeout; please retry later.
+    Error_InvalidDate:
+      summary: Invalid execution date
+      value:
+        errorCode: 400
+        message: requestedExecutionDate cannot be in the past.
+    Error_ExpiredToken:
+      summary: Expired authentication token
+      value:
+        errorCode: 401
+        message: Authentication token has expired.
+    Error_MissingField:
+      summary: Missing required field
+      value:
+        errorCode: 400
+        message: Field 'debtorAccount' is required.
+  securitySchemes:
+    BearerAuth:
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

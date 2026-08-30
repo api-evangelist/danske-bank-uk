@@ -1,0 +1,817 @@
+openapi: 3.2.0
+info:
+  title: Account Transaction & Balance Account Information Service (AIS) API
+  description: A real-time API that provides instant access to account transactions and balances.
+  version: 1.4.1
+  x-db-template-version: 1.0.0
+servers:
+- description: Mock Environment - All possible response codes are randomly generated
+  url: https://mock-api.danskebank.com/mock/sandbox/1.4.1/account-transaction-balance-api/v1/account-transaction-service
+- description: PROD Environment
+  url: https://api.danskebank.com/corporate/api/v1/account-transaction-service
+- description: SANDBOX Environment
+  url: https://sandbox-api.danskebank.com/sandbox-corporate/api/v1/account-transaction-service
+security:
+- BearerAuth: []
+tags:
+- name: Account Information Service (AIS)
+  description: "Provides access to account-related data services including:\n  * Transaction history for a specified account with booking status 'booked', including balances when available.\n  * A list of addressable accounts under the granted consent.\n  * Account information for a specific account or all accessible accounts based on consent.\n"
+paths:
+  /accounts/{accountId}/transactions:
+    get:
+      tags:
+      - Account Information Service (AIS)
+      summary: Get transactions.
+      description: The /accounts/{accountId}/transactions endpoint retrieves transactions for a specific account. Only transactions with valid account identifiers—obtained via the /accounts/list endpoint—can be fetched.
+      operationId: getTransactions
+      parameters:
+      - name: accountId
+        in: path
+        description: Identifier of an account.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: e03ef874-b6c5-5dbf-ac63-eae96984de22
+      - name: bookingDateFrom
+        in: query
+        description: Starting booking date of a transaction.
+        required: true
+        schema:
+          type: string
+        example: '2025-10-10'
+      - name: bookingDateTo
+        in: query
+        description: Ending booking date of a transaction.
+        required: false
+        schema:
+          type: string
+        example: '2025-10-10'
+      - name: aspspParameters
+        in: query
+        description: Aspsp Parameters.
+        required: false
+        schema:
+          type: string
+        example: 01JSY4QYEPEH2V2KT8NGA4ATDZ
+      - name: bankTransactionCode
+        in: query
+        description: ISO Bank Transaction Code.
+        required: false
+        schema:
+          type: string
+        example: PMNT-RCDT-DMCT
+      - name: languageCode
+        in: query
+        description: Language code to be used for the translation of transaction text.
+        required: false
+        schema:
+          type: string
+        example: EN
+      - name: limit
+        in: query
+        description: Limit value.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        example: 500
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions'
+        '400':
+          description: The request could not be understood or was missing required parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.validation.exceptions.ValidationException
+                status: BAD_REQUEST
+                details: 'Missing required parameter: bookingDateFrom is required for transaction retrieval.'
+        '401':
+          description: Authentication credentials were missing or incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthenticationException
+                status: UNAUTHORIZED
+                details: 'Access unauthorized: Access token is not provided.'
+        '403':
+          description: The request was understood, but it has been refused or access is not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthorizationException
+                status: FORBIDDEN
+                details: 'Access forbidden: Insufficient permissions to access account transactions.'
+        '404':
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.ResourceNotFoundException
+                status: NOT_FOUND
+                details: 'Account not found: The specified accountId does not exist or is not accessible.'
+        '500':
+          description: An error occurred on the server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: INTERNAL_SERVER_ERROR
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: BAD_GATEWAY
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: SERVICE_UNAVAILABLE
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '504':
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: GATEWAY_TIMEOUT
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+  /accounts/{accountId}/balances:
+    get:
+      tags:
+      - Account Information Service (AIS)
+      summary: Get balances.
+      description: Retrieves balance information for a specific account. The endpoint provides real-time access to account balance data.
+      operationId: getBalances
+      parameters:
+      - name: accountId
+        in: path
+        description: Unique identifier of the account for which balance information is requested.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: 7bf255d2-7352-50fd-a278-0e19f02df829
+      - name: dateTime
+        in: query
+        description: 'DateTime of the balance to retrieve. Supported formats: yyyy-MM-dd, HH:mm, HH:mm:ss, HH:mm:ss.SSSSSSZ, yyyy-MM-ddTHH:mm:ss.SSSSSSZ'
+        required: false
+        schema:
+          type: string
+        example: '2026-02-17T14:30:45.123456Z'
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+        '400':
+          description: The request could not be understood or was missing required parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.validation.exceptions.ValidationException
+                status: BAD_REQUEST
+                details: 'Invalid parameter: limit value must be between 1 and 100.'
+        '401':
+          description: Authentication credentials were missing or incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthenticationException
+                status: UNAUTHORIZED
+                details: 'Access unauthorized: Access token is not provided.'
+        '403':
+          description: The request was understood, but it has been refused or access is not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthorizationException
+                status: FORBIDDEN
+                details: 'Access forbidden: Insufficient permissions to access account list.'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.ResourceNotFoundException
+                status: NOT_FOUND
+                details: The specified resource does not exist.
+        '500':
+          description: An error occurred on the server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: INTERNAL_SERVER_ERROR
+                details: 'Internal server error: An unexpected error occurred while retrieving accounts.'
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: BAD_GATEWAY
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: SERVICE_UNAVAILABLE
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '504':
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: GATEWAY_TIMEOUT
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+  /accounts/list:
+    get:
+      tags:
+      - Account Information Service (AIS)
+      summary: Get accounts.
+      description: The /accounts/list endpoint returns the list of accounts that the technical user has enquiry permissions for. This is a prerequisite for fetching transactions, as it provides the account identifiers required for subsequent calls.
+      operationId: getAccounts
+      parameters:
+      - name: offset
+        in: query
+        description: Offset value.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        description: Limit value.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+        example: 100
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+        '400':
+          description: The request could not be understood or was missing required parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.validation.exceptions.ValidationException
+                status: BAD_REQUEST
+                details: 'Invalid parameter: limit value must be between 1 and 100.'
+        '401':
+          description: Authentication credentials were missing or incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthenticationException
+                status: UNAUTHORIZED
+                details: 'Access unauthorized: Access token is not provided.'
+        '403':
+          description: The request was understood, but it has been refused or access is not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.security.exceptions.AuthorizationException
+                status: FORBIDDEN
+                details: 'Access forbidden: Insufficient permissions to access account list.'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.ResourceNotFoundException
+                status: NOT_FOUND
+                details: The specified resource does not exist.
+        '500':
+          description: An error occurred on the server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: INTERNAL_SERVER_ERROR
+                details: 'Internal server error: An unexpected error occurred while retrieving accounts.'
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: BAD_GATEWAY
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: SERVICE_UNAVAILABLE
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+        '504':
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                exceptionType: accounts.api.exceptions.InternalServerException
+                status: GATEWAY_TIMEOUT
+                details: 'Internal server error: An unexpected error occurred while processing the request.'
+components:
+  schemas:
+    References:
+      type: object
+      description: Identifiers related to the transaction.
+      properties:
+        accountServicerReference:
+          type: string
+          description: A unique reference assigned by the account servicing institution to unambiguously identify the account entry.
+          example: 124CBC1FD2C25FEF
+        instructionId:
+          type: string
+          description: A unique identifier assigned by the instructing party to allow the instructed party to clearly identify and track the specific instruction.
+          example: 434534534534
+        endToEndId:
+          type: string
+          description: A unique identifier assigned by the initiating party to ensure consistent tracking of the transaction from initiation to completion, remaining unchanged throughout the process.
+          example: E2E-987654321
+    ProxyAccountIdentification:
+      type: object
+      description: Contains the structured information about the proxy.
+      properties:
+        typeCode:
+          type: string
+          description: Specifies the type of proxy used.
+          example: MBNO
+        identification:
+          type: string
+          description: The actual value of the proxy linked to the account.
+          example: +45 12 34 56 78
+    BalanceDetails:
+      type: object
+      description: Individual balance detail containing balance amount, type and reference date.
+      properties:
+        balanceAmount:
+          $ref: '#/components/schemas/BalanceAmount'
+        balanceType:
+          type: string
+          description: 'Type of balance. Possible values: interimBooked, valueBalance, intraGroupBooked, intraGroupInterest.'
+          example: interimBooked
+        referenceDate:
+          type: string
+          description: Reference date/time for the balance in ISO format.
+          example: '2026-02-17T14:30:45.123456Z'
+    AspspParameter:
+      type: object
+      description: Represents parameters specific to the account servicing payment service provider (ASPSP).
+      properties:
+        href:
+          type: string
+          description: A Universally Unique Lexicographically Sortable Identifier (ULID) for fetching only new transactions.
+          example: 01JXJDQBC0NHBEG5NJM8PS6BAY
+    BalanceAfterTransaction:
+      type: object
+      description: Represents the transaction balance based on the previous day's closing balance, adjusted by all transactions from the current day.
+      properties:
+        balanceAmount:
+          $ref: '#/components/schemas/BalanceAmount'
+        balanceType:
+          type: string
+          description: Hardcoded as interimBooked, indicating a balance that reflects all transactions booked during the day but not yet reconciled.
+          example: interimBooked
+    UltimateCreditor:
+      type: object
+      description: Ultimate party to which an amount of money is due.
+      properties:
+        name:
+          type: string
+          description: Name by which a party is known and which is usually used to identify that party.
+          example: Ultimate Creditor Ltd.
+    UltimateDebtor:
+      type: object
+      description: Ultimate party that owes an amount of money to the (ultimate) creditor.
+      properties:
+        name:
+          type: string
+          description: Name by which a party is known and which is usually used to identify that party.
+          example: Ultimate Debtor Inc.
+    Links:
+      type: object
+      description: Provides navigational URLs within the API to access related resources or perform specific actions.
+      properties:
+        aspspParameters:
+          $ref: '#/components/schemas/AspspParameter'
+    DocumentAmount:
+      type: object
+      description: Represents the monetary value of a document.
+      properties:
+        amount:
+          type: string
+          description: The monetary value.
+          example: 1000
+        currency:
+          type: string
+          description: The currency of the amount using the ISO 4217 Alpha-3 format.
+          example: DKK
+    TransactionAmount:
+      type: object
+      description: Represents the monetary value and currency of a transaction.
+      properties:
+        currency:
+          type: string
+          description: The three-letter ISO 4217 code of the currency used for the transaction.
+          example: DKK
+        amount:
+          type: string
+          description: The numerical value of the transaction in the specified currency.
+          example: 118411.45
+    Balance:
+      type: object
+      description: Response containing account details and all available balance types for the account.
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceDetails'
+    ReferredDocumentAmount:
+      type: object
+      description: Contains amounts related to referred documents in a transaction.
+      properties:
+        remittedAmount:
+          $ref: '#/components/schemas/DocumentAmount'
+        creditNoteAmount:
+          $ref: '#/components/schemas/DocumentAmount'
+    CreditorAgent:
+      type: object
+      description: Financial institution servicing an account for the creditor.
+      properties:
+        financialInstitutionId:
+          $ref: '#/components/schemas/FinancialInstitutionId'
+    CreditorReferenceInformation:
+      type: object
+      description: Reference information provided by the creditor
+      properties:
+        reference:
+          type: string
+          description: Reference assigned by the creditor to refer to the payment transaction.
+          example: RF98582382430498609861517
+        referenceTypeCode:
+          type: string
+          description: Coded creditor reference type.
+          example: SCOR
+        referenceTypeProprietary:
+          type: string
+          description: Proprietary reference type used when the reference type is not covered by a standard code.
+          example: BBAN
+    AmountDetails:
+      type: object
+      description: Provides detailed information about the original amount.
+      properties:
+        instructedAmount:
+          $ref: '#/components/schemas/InstructedAmount'
+    Proxy:
+      type: object
+      description: An object that holds the proxy details used for identifying an account indirectly.
+      properties:
+        proxyAccountIdentification:
+          $ref: '#/components/schemas/ProxyAccountIdentification'
+    ReferredDocumentInformation:
+      type: object
+      description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
+      properties:
+        typeCode:
+          type: string
+          description: Specifies the type of document.
+          example: CINV
+        number:
+          type: string
+          description: The unique identifier or reference number assigned to the document.
+          example: Invoice 23456
+        relatedDate:
+          type: string
+          description: The date associated with the document, such as the issue date or due date.
+          example: '2012-06-11'
+    BalanceAmount:
+      type: object
+      description: Specifies the monetary value of a balance, including the currency and amount.
+      properties:
+        amount:
+          type: string
+          description: The amount of the balance.
+          example: 4362846.68
+        currency:
+          type: string
+          description: The currency of the balance using the ISO 4217 Alpha-3 format.
+          example: DKK
+    FinancialInstitutionId:
+      type: object
+      description: A unique identifier for a financial institution, assigned through an international or proprietary identification scheme.
+      properties:
+        bicfi:
+          type: string
+          description: The Bank Identifier Code (BICFI), a unique code assigned to financial institutions by the Registration Authority
+          example: DABADKKK
+        clearingSystemMemberId:
+          type: string
+          description: An identifier assigned by a clearing system or its administrator, which can be used to recognise a participant within the clearing system.
+          example: 3204
+    Account:
+      type: object
+      description: Represents the details of a specific account.
+      properties:
+        iban:
+          type: string
+          description: International Bank Account Number. A standardised international identifier for bank accounts.
+          example: DK3030000011223388
+        bban:
+          type: string
+          description: Basic Bank Account Number. The domestic account number format used within a specific country.
+          example: 11223388
+        other:
+          type: string
+          format: uuid
+          description: A universally unique identifier (UUID) associated with the account for internal or alternative identification purposes.
+          example: b03bb874-b6c5-5bbf-bb63-bbb96984bb23
+        country:
+          type: string
+          description: The country where the account is registered or domiciled.
+          example: DK
+        currency:
+          type: string
+          description: Currency code of the account (ISO 4217 format). This field is optional.
+          example: NOK
+    Accounts:
+      type: object
+      description: A collection of multiple accounts.
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        next:
+          $ref: '#/components/schemas/Next'
+    Next:
+      type: object
+      description: Navigation link for pagination.
+      properties:
+        href:
+          type: string
+          description: URL for navigating to the next page.
+          example: /v1/accounts?offset=1314351&limit=10
+    Transactions:
+      type: object
+      properties:
+        transactions:
+          type: array
+          description: An object containing the details of one or more individual transactions.
+          items:
+            $ref: '#/components/schemas/Transaction'
+        next:
+          $ref: '#/components/schemas/Next'
+    Transaction:
+      type: object
+      description: Represents a single transaction with all its details
+      properties:
+        transactionId:
+          type: string
+          description: Unique identifier assigned to each transaction.
+          example: 1CEC333BC8FFB3F43F9704C5876D27683058EDD2126368B44AF2F60BEA5A2A66
+        entryReference:
+          type: string
+          description: Timestamp in UTC indicating the transaction was recorded.
+          example: '2025-03-10T19:52:13.952918Z'
+        batchIndicator:
+          type: boolean
+          description: Specifies whether the payment instruction is part of a batch of multiple transactions or a single, standalone transaction.
+          example: true
+        batchNumberOfTransactions:
+          type: integer
+          description: Indicates the total number of individual transactions included within a batch.
+          format: int32
+          example: 11
+        references:
+          $ref: '#/components/schemas/References'
+        bookingDate:
+          type: string
+          description: The date on which the transaction was recorded in the account by the account servicing institution.
+          example: '2025-04-15'
+        valueDate:
+          type: string
+          description: The date on which the funds from the transaction are considered available or start accruing interest.
+          example: '2025-04-15'
+        transactionAmount:
+          $ref: '#/components/schemas/TransactionAmount'
+        amountDetails:
+          $ref: '#/components/schemas/AmountDetails'
+        creditor:
+          $ref: '#/components/schemas/Creditor'
+        creditorAccount:
+          $ref: '#/components/schemas/TransactionAccount'
+          description: Identifies the account of the creditor in the payment transaction.
+        creditorAgent:
+          $ref: '#/components/schemas/CreditorAgent'
+        ultimateCreditor:
+          $ref: '#/components/schemas/UltimateCreditor'
+        debtor:
+          $ref: '#/components/schemas/Debtor'
+        debtorAccount:
+          $ref: '#/components/schemas/TransactionAccount'
+        debtorAgent:
+          $ref: '#/components/schemas/DebtorAgent'
+        ultimateDebtor:
+          $ref: '#/components/schemas/UltimateDebtor'
+        remittanceInformationUnstructured:
+          type: array
+          description: Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, eg, commercial invoices in an accounts' receivable system in an unstructured form.
+          items:
+            type: string
+            example: /VAT/1,32/IDC/87568757578/INV/98589/TXT/986986986
+        remittanceInformationStructured:
+          type: array
+          description: Provides structured information to help match a payment to the items or transactions it is intended to settle, such as invoice numbers, purchase orders, or references, ensuring efficient and accurate reconciliation.
+          items:
+            $ref: '#/components/schemas/RemittanceInformationStructured'
+        additionalTransactionInformation:
+          type: string
+          description: Supplementary details regarding a transaction that are not covered by standard transaction fields.
+          example: 4QTAGI76
+        bankTransactionCode:
+          type: string
+          description: ISO Bank Transaction Code.
+          example: BHMO-XYZA-HKTX
+        bankTransactionCodeProprietary:
+          type: string
+          description: Proprietary bank transaction code.
+          example: VIAC
+        balanceAfterTransaction:
+          $ref: '#/components/schemas/BalanceAfterTransaction'
+        links:
+          $ref: '#/components/schemas/Links'
+    ErrorResponse:
+      type: object
+      description: Standard error response structure returned by the API when an error occurs.
+      properties:
+        exceptionType:
+          type: string
+          description: The fully qualified name of the exception type that occurred.
+          example: accounts.api.security.exceptions.AuthenticationException
+        status:
+          type: string
+          description: The HTTP status code name corresponding to the error.
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - INTERNAL_SERVER_ERROR
+          example: UNAUTHORIZED
+        details:
+          type: string
+          description: A human-readable description of the error providing specific details about what went wrong.
+          example: 'Access unauthorized: Access token is not provided.'
+      required:
+      - exceptionType
+      - status
+      - details
+    Debtor:
+      type: object
+      description: Party that owes an amount of money to the (ultimate) creditor.
+      properties:
+        name:
+          type: string
+          description: Name of the debtor.
+          example: Debtor Inc.
+    InstructedAmount:
+      type: object
+      description: The amount of money to be transferred between the debtor and creditor, as specified by the initiating party, including currency and exchange details if differing from the entry amount or currency.
+      properties:
+        currency:
+          type: string
+          description: The currency in which the transfer is ordered, specified by the initiating party, using the ISO 4217 Alpha-3 format.
+          example: DKK
+        amount:
+          type: string
+          description: The amount to be transferred before charges, expressed in the debtor's account currency, intended for conversion into another currency.
+          example: 5738.12
+    Creditor:
+      type: object
+      description: Party to which an amount of money is due.
+      properties:
+        name:
+          type: string
+          description: Name of the creditor.
+          example: Creditor Inc.
+    TransactionAccount:
+      type: object
+      description: Identifies either the creditor or the debtor account in the payment transaction.
+      properties:
+        iban:
+          type: string
+          description: International Bank Account Number. A standardised international identifier for bank accounts.
+          example: DK7830000001000012
+        bban:
+          type: string
+          description: Basic Bank Account Number. The domestic account number format used within a specific country.
+          example: 1000012
+        other:
+          type: string
+          example: b03bb874-b6c5-5bbf-bb63-bbb96984bb23
+        proxy:
+          $ref: '#/components/schemas/Proxy'
+    DebtorAgent:
+      type: object
+      description: Financial institution servicing an account for the debtor.
+      properties:
+        financialInstitutionId:
+          $ref: '#/components/schemas/FinancialInstitutionId'
+    RemittanceInformationStructured:
+      type: object
+      description: Provides structured information to help match a payment to the items or transactions it is intended to settle, such as invoice numbers, purchase orders, or references, ensuring efficient and accurate reconciliation.
+      properties:
+        referredDocumentInformation:
+          type: array
+          description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
+          items:
+            $ref: '#/components/schemas/ReferredDocumentInformation'
+        referredDocumentAmount:
+          $ref: '#/components/schemas/ReferredDocumentAmount'
+        creditorReferenceInformation:
+          $ref: '#/components/schemas/CreditorReferenceInformation'
+  securitySchemes:
+    BearerAuth:
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

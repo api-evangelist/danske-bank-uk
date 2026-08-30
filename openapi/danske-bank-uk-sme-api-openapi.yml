@@ -1,0 +1,510 @@
+openapi: 3.2.0
+info:
+  title: Opendata SME API
+  description: Open Data API V2.2 for Danske Bank
+  version: 4.3.3
+  x-db-template-version: 1.0.0
+servers:
+- description: prod Environment
+  url: https://obp-data.danskebank.com/v2.2
+tags:
+- name: SME
+paths:
+  /unsecured-sme-loans:
+    get:
+      tags:
+      - SME
+      summary: Gets a list of all Unsecured SME Lending objects
+      description: Gets a list of all Unsecured SME Lending objects
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/UnsecuredSmeLoansResponse'
+              example:
+                meta:
+                  LastUpdated: 2025-08-11T16:00:20.201+0100
+                  TotalResults: 1
+                  Agreement: Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions
+                  License: https://www.openbanking.org.uk/open-licence
+                  TermsOfUse: https://www.openbanking.org.uk/terms-conditions
+                data:
+                - BrandName: DanskeBank
+                  SMELoan:
+                  - Name: Variable Rate Business Loan
+                    Identification: 43F
+                    Segment:
+                    - FlexibleBusinessLoan
+                    SMELoanMarketingState:
+                    - Identification: 43F
+                      MarketingState: Regular
+                      FirstMarketedDate: 01/01/1900
+                      LastMarketedDate: 31/12/9999
+                      LoanInterest:
+                        LoanInterestTierBandSet:
+                        - TierBandMethod: Whole
+                          Identification: 43F-25K
+                          CalculationMethod: Compound
+                          LoanInterestTierBand:
+                          - TierValueMinimum: '0'
+                            TierValueMaximum: '5000'
+                            TierValueMinTerm: 1
+                            MinTermPeriod: Year
+                            TierValueMaxTerm: 1
+                            MaxTermPeriod: Year
+                            FixedVariableInterestRateType: Variable
+                            RepAPR: '17.00'
+                            LoanProviderInterestRateType: BOEBaseRate
+                            LoanProviderInterestRate: '11.00'
+                            Notes:
+                            - Total Cost of Credit 5428.91 GBP
+                      Repayment:
+                      - RepaymentType: CapitalAndInterest
+                        RepaymentFrequency: Monthly
+                        AmountType: CapitalAndInterest
+                        RepaymentFeeCharges:
+                          RepaymentFeeChargeDetail:
+                          - FeeType: Arrangement
+                            FeeAmount: '125'
+                            ApplicationFrequency: OnOpening
+                            CalculationFrequency: OnOpening
+                      Eligibility:
+                        IDEligibility:
+                          Notes:
+                          - Sole traders/Partnerships - both individuals and business name are id checked
+                        CreditCheckEligibility:
+                          ScoringType: Hard
+                          Notes:
+                          - Experian Credit Check
+                      CoreProduct:
+                        ProductDescription: The Variable Rate Business Loan gives you the flexibility to choose the repayment frequency and adjust the payments to suit your cash flow.££
+                        ProductURL: https://danskebank.co.uk/business/products-and-services/loans-and-credit/variable-rate-business-loan
+                        TcsAndCsURL: https://danskebank.co.uk/business
+                        SalesAccessChannels:
+                        - Branch
+                        - RelationshipManager
+                        ServicingAccessChannels:
+                        - Branch
+                        - CallCentre
+                        - Post
+                        EarlyPaymentFeeApplicable: false
+                        OverPaymentFeeApplicable: false
+                        LoanApplicationFeeChargeType: NoLoanApplicationFee
+                        OverpaymentAllowedIndicator: true
+                        FullEarlyRepaymentAllowedIndicator: true
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve unsecured SME loans
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+    head:
+      tags:
+      - SME
+      summary: Gets header information on the current set of Unsecured SME Lending data
+      description: Gets header information on the current set of Unsecured SME Lending data
+      parameters:
+      - name: If-Modified-Since
+        in: query
+        schema:
+          type: string
+      - name: If-None-Match
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/UnsecuredSmeLoansResponse'
+              example:
+                meta:
+                  LastUpdated: 2025-08-11T16:00:20.201+0100
+                  TotalResults: 1
+                  Agreement: Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions
+                  License: https://www.openbanking.org.uk/open-licence
+                  TermsOfUse: https://www.openbanking.org.uk/terms-conditions
+                data:
+                - BrandName: DanskeBank
+                  SMELoan:
+                  - Name: Variable Rate Business Loan
+                    Identification: 43F
+                    Segment:
+                    - FlexibleBusinessLoan
+                    SMELoanMarketingState:
+                    - Identification: 43F
+                      MarketingState: Regular
+                      FirstMarketedDate: 01/01/1900
+                      LastMarketedDate: 31/12/9999
+                      LoanInterest:
+                        LoanInterestTierBandSet:
+                        - TierBandMethod: Whole
+                          Identification: 43F-25K
+                          CalculationMethod: Compound
+                          LoanInterestTierBand:
+                          - TierValueMinimum: '0'
+                            TierValueMaximum: '5000'
+                            TierValueMinTerm: 1
+                            MinTermPeriod: Year
+                            TierValueMaxTerm: 1
+                            MaxTermPeriod: Year
+                            FixedVariableInterestRateType: Variable
+                            RepAPR: '17.00'
+                            LoanProviderInterestRateType: BOEBaseRate
+                            LoanProviderInterestRate: '11.00'
+                            Notes:
+                            - Total Cost of Credit 5428.91 GBP
+                      Repayment:
+                      - RepaymentType: CapitalAndInterest
+                        RepaymentFrequency: Monthly
+                        AmountType: CapitalAndInterest
+                        RepaymentFeeCharges:
+                          RepaymentFeeChargeDetail:
+                          - FeeType: Arrangement
+                            FeeAmount: '125'
+                            ApplicationFrequency: OnOpening
+                            CalculationFrequency: OnOpening
+                      Eligibility:
+                        IDEligibility:
+                          Notes:
+                          - Sole traders/Partnerships - both individuals and business name are id checked
+                        CreditCheckEligibility:
+                          ScoringType: Hard
+                          Notes:
+                          - Experian Credit Check
+                      CoreProduct:
+                        ProductDescription: The Variable Rate Business Loan gives you the flexibility to choose the repayment frequency and adjust the payments to suit your cash flow.££
+                        ProductURL: https://danskebank.co.uk/business/products-and-services/loans-and-credit/variable-rate-business-loan
+                        TcsAndCsURL: https://danskebank.co.uk/business
+                        SalesAccessChannels:
+                        - Branch
+                        - RelationshipManager
+                        ServicingAccessChannels:
+                        - Branch
+                        - CallCentre
+                        - Post
+                        EarlyPaymentFeeApplicable: false
+                        OverPaymentFeeApplicable: false
+                        LoanApplicationFeeChargeType: NoLoanApplicationFee
+                        OverpaymentAllowedIndicator: true
+                        FullEarlyRepaymentAllowedIndicator: true
+        '400':
+          description: Bad request
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 400
+                message: Bad request
+                detail: You have sent a request which could not be understood
+        '408':
+          description: Client timeout
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 408
+                message: Client timeout
+                detail: Your client has failed to submit a request, and a timeout has occurred
+        '429':
+          description: Too many requests
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 429
+                message: Too many requests
+                detail: You have requested this resource too often, slow down
+        '500':
+          description: Internal Server Error
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 500
+                message: Internal Server Error
+                detail: Failed to retrieve unsecured SME loans (HEAD)
+        '503':
+          description: Service temporarily unavailable
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                status: error
+                code: 503
+                message: Service temporarily unavailable
+                detail: The service is temporarily unavailable
+components:
+  schemas:
+    UnsecuredSmeLoansResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              BrandName:
+                type: string
+              SMELoan:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                    Identification:
+                      type: string
+                    Segment:
+                      type: array
+                      items:
+                        type: string
+                    SMELoanMarketingState:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Identification:
+                            type: string
+                          MarketingState:
+                            type: string
+                          FirstMarketedDate:
+                            type: string
+                          LastMarketedDate:
+                            type: string
+                          LoanInterest:
+                            type: object
+                            properties:
+                              LoanInterestTierBandSet:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    TierBandMethod:
+                                      type: string
+                                    Identification:
+                                      type: string
+                                    CalculationMethod:
+                                      type: string
+                                    LoanInterestTierBand:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          TierValueMinimum:
+                                            type: string
+                                          TierValueMaximum:
+                                            type: string
+                                          TierValueMinTerm:
+                                            type: integer
+                                          MinTermPeriod:
+                                            type: string
+                                          TierValueMaxTerm:
+                                            type: integer
+                                          MaxTermPeriod:
+                                            type: string
+                                          FixedVariableInterestRateType:
+                                            type: string
+                                          RepAPR:
+                                            type: string
+                                          LoanProviderInterestRateType:
+                                            type: string
+                                          LoanProviderInterestRate:
+                                            type: string
+                                          Notes:
+                                            type: array
+                                            items:
+                                              type: string
+                          Repayment:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                RepaymentType:
+                                  type: string
+                                RepaymentFrequency:
+                                  type: string
+                                AmountType:
+                                  type: string
+                                RepaymentFeeCharges:
+                                  type: object
+                                  properties:
+                                    RepaymentFeeChargeDetail:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          FeeType:
+                                            type: string
+                                          FeeAmount:
+                                            type: string
+                                          ApplicationFrequency:
+                                            type: string
+                                          CalculationFrequency:
+                                            type: string
+                          Eligibility:
+                            type: object
+                            properties:
+                              IDEligibility:
+                                type: object
+                                properties:
+                                  Notes:
+                                    type: array
+                                    items:
+                                      type: string
+                              CreditCheckEligibility:
+                                type: object
+                                properties:
+                                  ScoringType:
+                                    type: string
+                                  Notes:
+                                    type: array
+                                    items:
+                                      type: string
+                          CoreProduct:
+                            type: object
+                            properties:
+                              ProductDescription:
+                                type: string
+                              ProductURL:
+                                type: string
+                                format: uri
+                              TcsAndCsURL:
+                                type: string
+                                format: uri
+                              SalesAccessChannels:
+                                type: array
+                                items:
+                                  type: string
+                              ServicingAccessChannels:
+                                type: array
+                                items:
+                                  type: string
+                              EarlyPaymentFeeApplicable:
+                                type: boolean
+                              OverPaymentFeeApplicable:
+                                type: boolean
+                              LoanApplicationFeeChargeType:
+                                type: string
+                              OverpaymentAllowedIndicator:
+                                type: boolean
+                              FullEarlyRepaymentAllowedIndicator:
+                                type: boolean
+      required:
+      - meta
+      - data
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
+    Meta:
+      type: object
+      properties:
+        LastUpdated:
+          type: string
+          format: date-time
+        TotalResults:
+          type: integer
+        Agreement:
+          type: string
+        License:
+          type: string
+          format: uri
+        TermsOfUse:
+          type: string
+          format: uri
+  securitySchemes:
+    clientIdHeader:
+      type: apiKey
+      name: X-IBM-Client-Id
+      in: header
+    clientSecretHeader:
+      type: apiKey
+      description: BC2702Z
+      name: X-IBM-Client-Secret
+      in: header
