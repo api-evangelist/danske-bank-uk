@@ -125,6 +125,8 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -413,6 +415,8 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -619,6 +623,8 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -700,6 +706,8 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - States
+  tags_raw:
   - State
   properties:
   - type: OpenAPI
@@ -719,7 +727,8 @@ apis:
   description: The Test API from Danske Bank (UK) — 1 operation(s) for test.
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -760,6 +769,8 @@ apis:
   humanURL: https://developers.danskebank.com/api_products/danske_bank_apis/od?view=reference
   baseURL: https://obp-data.danskebank.com/v2.2
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
