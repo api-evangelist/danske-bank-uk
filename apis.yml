@@ -32,16 +32,18 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup · Open Data public
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  - open-data
-  generated: '2026-07-23'
+  - scopes
+  - security
+  - sandbox
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
@@ -811,8 +813,9 @@ common:
   url: sandbox/danske-bank-uk-sandbox.yml
 - type: Webhooks
   url: asyncapi/danske-bank-uk-events-webhooks.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/danske-bank-uk-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/danske-bank-uk-llms.txt
 - type: DataModel
