@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Account Transaction & Balance Account Information Service (AIS) API
+  title: Account Transaction & Balance Account Information Service…
   description: A real-time API that provides instant access to account transactions and balances.
   version: 1.4.1
   x-db-template-version: 1.0.0
@@ -15,13 +15,19 @@ security:
 - BearerAuth: []
 tags:
 - name: Account Information Service (AIS)
-  description: "Provides access to account-related data services including:\n  * Transaction history for a specified account with booking status 'booked', including balances when available.\n  * A list of addressable accounts under the granted consent.\n  * Account information for a specific account or all accessible accounts based on consent.\n"
+  description: 'Provides access to account-related data services including:
+
+    * Transaction history for a specified account with booking status ''booked'', including balances when available.
+
+    * A list of addressable accounts under the granted consent.
+
+    * Account information for a specific account or all accessible accounts based on consent.'
 paths:
   /accounts/{accountId}/transactions:
     get:
       tags:
       - Account Information Service (AIS)
-      summary: Get transactions.
+      summary: Get transactions
       description: The /accounts/{accountId}/transactions endpoint retrieves transactions for a specific account. Only transactions with valid account identifiers—obtained via the /accounts/list endpoint—can be fetched.
       operationId: getTransactions
       parameters:
@@ -168,7 +174,7 @@ paths:
     get:
       tags:
       - Account Information Service (AIS)
-      summary: Get balances.
+      summary: Get balances
       description: Retrieves balance information for a specific account. The endpoint provides real-time access to account balance data.
       operationId: getBalances
       parameters:
@@ -278,7 +284,7 @@ paths:
     get:
       tags:
       - Account Information Service (AIS)
-      summary: Get accounts.
+      summary: Get accounts
       description: The /accounts/list endpoint returns the list of accounts that the technical user has enquiry permissions for. This is a prerequisite for fetching transactions, as it provides the account identifiers required for subsequent calls.
       operationId: getAccounts
       parameters:
@@ -389,6 +395,36 @@ paths:
                 details: 'Internal server error: An unexpected error occurred while processing the request.'
 components:
   schemas:
+    InstructedAmount:
+      type: object
+      description: The amount of money to be transferred between the debtor and creditor, as specified by the initiating party, including currency and exchange details if differing from the entry amount or currency.
+      properties:
+        currency:
+          type: string
+          description: The currency in which the transfer is ordered, specified by the initiating party, using the ISO 4217 Alpha-3 format.
+          example: DKK
+        amount:
+          type: string
+          description: The amount to be transferred before charges, expressed in the debtor's account currency, intended for conversion into another currency.
+          example: 5738.12
+    UltimateCreditor:
+      type: object
+      description: Ultimate party to which an amount of money is due.
+      properties:
+        name:
+          type: string
+          description: Name by which a party is known and which is usually used to identify that party.
+          example: Ultimate Creditor Ltd.
+    Balance:
+      type: object
+      description: Response containing account details and all available balance types for the account.
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceDetails'
     References:
       type: object
       description: Identifiers related to the transaction.
@@ -405,120 +441,6 @@ components:
           type: string
           description: A unique identifier assigned by the initiating party to ensure consistent tracking of the transaction from initiation to completion, remaining unchanged throughout the process.
           example: E2E-987654321
-    ProxyAccountIdentification:
-      type: object
-      description: Contains the structured information about the proxy.
-      properties:
-        typeCode:
-          type: string
-          description: Specifies the type of proxy used.
-          example: MBNO
-        identification:
-          type: string
-          description: The actual value of the proxy linked to the account.
-          example: +45 12 34 56 78
-    BalanceDetails:
-      type: object
-      description: Individual balance detail containing balance amount, type and reference date.
-      properties:
-        balanceAmount:
-          $ref: '#/components/schemas/BalanceAmount'
-        balanceType:
-          type: string
-          description: 'Type of balance. Possible values: interimBooked, valueBalance, intraGroupBooked, intraGroupInterest.'
-          example: interimBooked
-        referenceDate:
-          type: string
-          description: Reference date/time for the balance in ISO format.
-          example: '2026-02-17T14:30:45.123456Z'
-    AspspParameter:
-      type: object
-      description: Represents parameters specific to the account servicing payment service provider (ASPSP).
-      properties:
-        href:
-          type: string
-          description: A Universally Unique Lexicographically Sortable Identifier (ULID) for fetching only new transactions.
-          example: 01JXJDQBC0NHBEG5NJM8PS6BAY
-    BalanceAfterTransaction:
-      type: object
-      description: Represents the transaction balance based on the previous day's closing balance, adjusted by all transactions from the current day.
-      properties:
-        balanceAmount:
-          $ref: '#/components/schemas/BalanceAmount'
-        balanceType:
-          type: string
-          description: Hardcoded as interimBooked, indicating a balance that reflects all transactions booked during the day but not yet reconciled.
-          example: interimBooked
-    UltimateCreditor:
-      type: object
-      description: Ultimate party to which an amount of money is due.
-      properties:
-        name:
-          type: string
-          description: Name by which a party is known and which is usually used to identify that party.
-          example: Ultimate Creditor Ltd.
-    UltimateDebtor:
-      type: object
-      description: Ultimate party that owes an amount of money to the (ultimate) creditor.
-      properties:
-        name:
-          type: string
-          description: Name by which a party is known and which is usually used to identify that party.
-          example: Ultimate Debtor Inc.
-    Links:
-      type: object
-      description: Provides navigational URLs within the API to access related resources or perform specific actions.
-      properties:
-        aspspParameters:
-          $ref: '#/components/schemas/AspspParameter'
-    DocumentAmount:
-      type: object
-      description: Represents the monetary value of a document.
-      properties:
-        amount:
-          type: string
-          description: The monetary value.
-          example: 1000
-        currency:
-          type: string
-          description: The currency of the amount using the ISO 4217 Alpha-3 format.
-          example: DKK
-    TransactionAmount:
-      type: object
-      description: Represents the monetary value and currency of a transaction.
-      properties:
-        currency:
-          type: string
-          description: The three-letter ISO 4217 code of the currency used for the transaction.
-          example: DKK
-        amount:
-          type: string
-          description: The numerical value of the transaction in the specified currency.
-          example: 118411.45
-    Balance:
-      type: object
-      description: Response containing account details and all available balance types for the account.
-      properties:
-        account:
-          $ref: '#/components/schemas/Account'
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/BalanceDetails'
-    ReferredDocumentAmount:
-      type: object
-      description: Contains amounts related to referred documents in a transaction.
-      properties:
-        remittedAmount:
-          $ref: '#/components/schemas/DocumentAmount'
-        creditNoteAmount:
-          $ref: '#/components/schemas/DocumentAmount'
-    CreditorAgent:
-      type: object
-      description: Financial institution servicing an account for the creditor.
-      properties:
-        financialInstitutionId:
-          $ref: '#/components/schemas/FinancialInstitutionId'
     CreditorReferenceInformation:
       type: object
       description: Reference information provided by the creditor
@@ -535,58 +457,6 @@ components:
           type: string
           description: Proprietary reference type used when the reference type is not covered by a standard code.
           example: BBAN
-    AmountDetails:
-      type: object
-      description: Provides detailed information about the original amount.
-      properties:
-        instructedAmount:
-          $ref: '#/components/schemas/InstructedAmount'
-    Proxy:
-      type: object
-      description: An object that holds the proxy details used for identifying an account indirectly.
-      properties:
-        proxyAccountIdentification:
-          $ref: '#/components/schemas/ProxyAccountIdentification'
-    ReferredDocumentInformation:
-      type: object
-      description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
-      properties:
-        typeCode:
-          type: string
-          description: Specifies the type of document.
-          example: CINV
-        number:
-          type: string
-          description: The unique identifier or reference number assigned to the document.
-          example: Invoice 23456
-        relatedDate:
-          type: string
-          description: The date associated with the document, such as the issue date or due date.
-          example: '2012-06-11'
-    BalanceAmount:
-      type: object
-      description: Specifies the monetary value of a balance, including the currency and amount.
-      properties:
-        amount:
-          type: string
-          description: The amount of the balance.
-          example: 4362846.68
-        currency:
-          type: string
-          description: The currency of the balance using the ISO 4217 Alpha-3 format.
-          example: DKK
-    FinancialInstitutionId:
-      type: object
-      description: A unique identifier for a financial institution, assigned through an international or proprietary identification scheme.
-      properties:
-        bicfi:
-          type: string
-          description: The Bank Identifier Code (BICFI), a unique code assigned to financial institutions by the Registration Authority
-          example: DABADKKK
-        clearingSystemMemberId:
-          type: string
-          description: An identifier assigned by a clearing system or its administrator, which can be used to recognise a participant within the clearing system.
-          example: 3204
     Account:
       type: object
       description: Represents the details of a specific account.
@@ -612,34 +482,40 @@ components:
           type: string
           description: Currency code of the account (ISO 4217 format). This field is optional.
           example: NOK
-    Accounts:
+    Debtor:
       type: object
-      description: A collection of multiple accounts.
+      description: Party that owes an amount of money to the (ultimate) creditor.
       properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        next:
-          $ref: '#/components/schemas/Next'
-    Next:
-      type: object
-      description: Navigation link for pagination.
-      properties:
-        href:
+        name:
           type: string
-          description: URL for navigating to the next page.
-          example: /v1/accounts?offset=1314351&limit=10
-    Transactions:
+          description: Name of the debtor.
+          example: Debtor Inc.
+    ReferredDocumentInformation:
       type: object
+      description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
       properties:
-        transactions:
-          type: array
-          description: An object containing the details of one or more individual transactions.
-          items:
-            $ref: '#/components/schemas/Transaction'
-        next:
-          $ref: '#/components/schemas/Next'
+        typeCode:
+          type: string
+          description: Specifies the type of document.
+          example: CINV
+        number:
+          type: string
+          description: The unique identifier or reference number assigned to the document.
+          example: Invoice 23456
+        relatedDate:
+          type: string
+          description: The date associated with the document, such as the issue date or due date.
+          example: '2012-06-11'
+    BalanceAfterTransaction:
+      type: object
+      description: Represents the transaction balance based on the previous day's closing balance, adjusted by all transactions from the current day.
+      properties:
+        balanceAmount:
+          $ref: '#/components/schemas/BalanceAmount'
+        balanceType:
+          type: string
+          description: Hardcoded as interimBooked, indicating a balance that reflects all transactions booked during the day but not yet reconciled.
+          example: interimBooked
     Transaction:
       type: object
       description: Represents a single transaction with all its details
@@ -719,6 +595,132 @@ components:
           $ref: '#/components/schemas/BalanceAfterTransaction'
         links:
           $ref: '#/components/schemas/Links'
+    ReferredDocumentAmount:
+      type: object
+      description: Contains amounts related to referred documents in a transaction.
+      properties:
+        remittedAmount:
+          $ref: '#/components/schemas/DocumentAmount'
+        creditNoteAmount:
+          $ref: '#/components/schemas/DocumentAmount'
+    Creditor:
+      type: object
+      description: Party to which an amount of money is due.
+      properties:
+        name:
+          type: string
+          description: Name of the creditor.
+          example: Creditor Inc.
+    BalanceAmount:
+      type: object
+      description: Specifies the monetary value of a balance, including the currency and amount.
+      properties:
+        amount:
+          type: string
+          description: The amount of the balance.
+          example: 4362846.68
+        currency:
+          type: string
+          description: The currency of the balance using the ISO 4217 Alpha-3 format.
+          example: DKK
+    Transactions:
+      type: object
+      properties:
+        transactions:
+          type: array
+          description: An object containing the details of one or more individual transactions.
+          items:
+            $ref: '#/components/schemas/Transaction'
+        next:
+          $ref: '#/components/schemas/Next'
+    ProxyAccountIdentification:
+      type: object
+      description: Contains the structured information about the proxy.
+      properties:
+        typeCode:
+          type: string
+          description: Specifies the type of proxy used.
+          example: MBNO
+        identification:
+          type: string
+          description: The actual value of the proxy linked to the account.
+          example: +45 12 34 56 78
+    RemittanceInformationStructured:
+      type: object
+      description: Provides structured information to help match a payment to the items or transactions it is intended to settle, such as invoice numbers, purchase orders, or references, ensuring efficient and accurate reconciliation.
+      properties:
+        referredDocumentInformation:
+          type: array
+          description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
+          items:
+            $ref: '#/components/schemas/ReferredDocumentInformation'
+        referredDocumentAmount:
+          $ref: '#/components/schemas/ReferredDocumentAmount'
+        creditorReferenceInformation:
+          $ref: '#/components/schemas/CreditorReferenceInformation'
+    DebtorAgent:
+      type: object
+      description: Financial institution servicing an account for the debtor.
+      properties:
+        financialInstitutionId:
+          $ref: '#/components/schemas/FinancialInstitutionId'
+    CreditorAgent:
+      type: object
+      description: Financial institution servicing an account for the creditor.
+      properties:
+        financialInstitutionId:
+          $ref: '#/components/schemas/FinancialInstitutionId'
+    TransactionAccount:
+      type: object
+      description: Identifies either the creditor or the debtor account in the payment transaction.
+      properties:
+        iban:
+          type: string
+          description: International Bank Account Number. A standardised international identifier for bank accounts.
+          example: DK7830000001000012
+        bban:
+          type: string
+          description: Basic Bank Account Number. The domestic account number format used within a specific country.
+          example: 1000012
+        other:
+          type: string
+          example: b03bb874-b6c5-5bbf-bb63-bbb96984bb23
+        proxy:
+          $ref: '#/components/schemas/Proxy'
+    BalanceDetails:
+      type: object
+      description: Individual balance detail containing balance amount, type and reference date.
+      properties:
+        balanceAmount:
+          $ref: '#/components/schemas/BalanceAmount'
+        balanceType:
+          type: string
+          description: 'Type of balance. Possible values: interimBooked, valueBalance, intraGroupBooked, intraGroupInterest.'
+          example: interimBooked
+        referenceDate:
+          type: string
+          description: Reference date/time for the balance in ISO format.
+          example: '2026-02-17T14:30:45.123456Z'
+    AspspParameter:
+      type: object
+      description: Represents parameters specific to the account servicing payment service provider (ASPSP).
+      properties:
+        href:
+          type: string
+          description: A Universally Unique Lexicographically Sortable Identifier (ULID) for fetching only new transactions.
+          example: 01JXJDQBC0NHBEG5NJM8PS6BAY
+    Proxy:
+      type: object
+      description: An object that holds the proxy details used for identifying an account indirectly.
+      properties:
+        proxyAccountIdentification:
+          $ref: '#/components/schemas/ProxyAccountIdentification'
+    Links:
+      type: object
+      description: Provides navigational URLs within the API to access related resources or perform specific actions.
+      properties:
+        aspspParameters:
+          $ref: '#/components/schemas/AspspParameter'
     ErrorResponse:
       type: object
       description: Standard error response structure returned by the API when an error occurs.
@@ -745,70 +747,74 @@ components:
       - exceptionType
       - status
       - details
-    Debtor:
+    Accounts:
       type: object
-      description: Party that owes an amount of money to the (ultimate) creditor.
+      description: A collection of multiple accounts.
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        next:
+          $ref: '#/components/schemas/Next'
+    DocumentAmount:
+      type: object
+      description: Represents the monetary value of a document.
+      properties:
+        amount:
+          type: string
+          description: The monetary value.
+          example: 1000
+        currency:
+          type: string
+          description: The currency of the amount using the ISO 4217 Alpha-3 format.
+          example: DKK
+    UltimateDebtor:
+      type: object
+      description: Ultimate party that owes an amount of money to the (ultimate) creditor.
       properties:
         name:
           type: string
-          description: Name of the debtor.
-          example: Debtor Inc.
-    InstructedAmount:
+          description: Name by which a party is known and which is usually used to identify that party.
+          example: Ultimate Debtor Inc.
+    TransactionAmount:
       type: object
-      description: The amount of money to be transferred between the debtor and creditor, as specified by the initiating party, including currency and exchange details if differing from the entry amount or currency.
+      description: Represents the monetary value and currency of a transaction.
       properties:
         currency:
           type: string
-          description: The currency in which the transfer is ordered, specified by the initiating party, using the ISO 4217 Alpha-3 format.
+          description: The three-letter ISO 4217 code of the currency used for the transaction.
           example: DKK
         amount:
           type: string
-          description: The amount to be transferred before charges, expressed in the debtor's account currency, intended for conversion into another currency.
-          example: 5738.12
-    Creditor:
+          description: The numerical value of the transaction in the specified currency.
+          example: 118411.45
+    FinancialInstitutionId:
       type: object
-      description: Party to which an amount of money is due.
+      description: A unique identifier for a financial institution, assigned through an international or proprietary identification scheme.
       properties:
-        name:
+        bicfi:
           type: string
-          description: Name of the creditor.
-          example: Creditor Inc.
-    TransactionAccount:
+          description: The Bank Identifier Code (BICFI), a unique code assigned to financial institutions by the Registration Authority
+          example: DABADKKK
+        clearingSystemMemberId:
+          type: string
+          description: An identifier assigned by a clearing system or its administrator, which can be used to recognise a participant within the clearing system.
+          example: 3204
+    AmountDetails:
       type: object
-      description: Identifies either the creditor or the debtor account in the payment transaction.
+      description: Provides detailed information about the original amount.
       properties:
-        iban:
-          type: string
-          description: International Bank Account Number. A standardised international identifier for bank accounts.
-          example: DK7830000001000012
-        bban:
-          type: string
-          description: Basic Bank Account Number. The domestic account number format used within a specific country.
-          example: 1000012
-        other:
-          type: string
-          example: b03bb874-b6c5-5bbf-bb63-bbb96984bb23
-        proxy:
-          $ref: '#/components/schemas/Proxy'
-    DebtorAgent:
+        instructedAmount:
+          $ref: '#/components/schemas/InstructedAmount'
+    Next:
       type: object
-      description: Financial institution servicing an account for the debtor.
+      description: Navigation link for pagination.
       properties:
-        financialInstitutionId:
-          $ref: '#/components/schemas/FinancialInstitutionId'
-    RemittanceInformationStructured:
-      type: object
-      description: Provides structured information to help match a payment to the items or transactions it is intended to settle, such as invoice numbers, purchase orders, or references, ensuring efficient and accurate reconciliation.
-      properties:
-        referredDocumentInformation:
-          type: array
-          description: Provides details about a document referenced in the transaction, such as an invoice or credit note, to facilitate reconciliation and context for the payment.
-          items:
-            $ref: '#/components/schemas/ReferredDocumentInformation'
-        referredDocumentAmount:
-          $ref: '#/components/schemas/ReferredDocumentAmount'
-        creditorReferenceInformation:
-          $ref: '#/components/schemas/CreditorReferenceInformation'
+        href:
+          type: string
+          description: URL for navigating to the next page.
+          example: /v1/accounts?offset=1314351&limit=10
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

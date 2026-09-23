@@ -138,6 +138,10 @@ paths:
                 message: Internal Server Error
       tags:
       - State
+      summary: Get by paymentorderid state
+      x-summary-source: derived
+      operationId: getByPaymentorderidState
+      x-operation-id-source: derived
 components:
   schemas:
     ErrorResponse:
@@ -150,28 +154,6 @@ components:
         message:
           type: string
           example: Internal Server Error
-    Output:
-      required:
-      - stateCode
-      - transactionStatus
-      - paymentId
-      - error
-      type: object
-      properties:
-        stateCode:
-          type: string
-          description: State code of the payment.
-          example: pendingApproval
-        transactionStatus:
-          type: string
-          description: Transaction status of the payment.
-          example: ACTC
-        paymentId:
-          type: string
-          description: Payment id of the payment.
-          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
-        error:
-          $ref: '#/components/schemas/ErrorWithCodes'
     ErrorWithCodes:
       required:
       - errorKCode
@@ -194,6 +176,28 @@ components:
           description: Error text.
           example: Payment has been rejected due to lack of funds on debtor account.
       description: Error details in case payment has been rejected.
+    Output:
+      required:
+      - stateCode
+      - transactionStatus
+      - paymentId
+      - error
+      type: object
+      properties:
+        stateCode:
+          type: string
+          description: State code of the payment.
+          example: pendingApproval
+        transactionStatus:
+          type: string
+          description: Transaction status of the payment.
+          example: ACTC
+        paymentId:
+          type: string
+          description: Payment id of the payment.
+          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          $ref: '#/components/schemas/ErrorWithCodes'
   examples:
     StateResponse_Rejected:
       summary: Previously created payment now rejected
@@ -205,11 +209,6 @@ components:
           errorKCode: K0813
           errorIsoCode: AC01
           errorText: Payment has been rejected due to lack of funds on debtor account.
-    Error_StateLookupFailure:
-      summary: Failure retrieving state
-      value:
-        errorCode: 500
-        message: State service unavailable.
     Error_NotFound:
       summary: Payment order not found
       value:
@@ -225,6 +224,11 @@ components:
           errorKCode: K0000
           errorIsoCode: AC01
           errorText: Payment successfully completed.
+    Error_StateLookupFailure:
+      summary: Failure retrieving state
+      value:
+        errorCode: 500
+        message: State service unavailable.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

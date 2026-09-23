@@ -15,7 +15,6 @@ paths:
       tags:
       - Branch
       summary: Gets a list of all Branch objects
-      description: Gets a list of all Branch objects
       parameters:
       - name: If-Modified-Since
         in: query
@@ -130,11 +129,12 @@ paths:
                 code: 503
                 message: Service temporarily unavailable
                 detail: The service is temporarily unavailable
+      operationId: getBranches
+      x-operation-id-source: derived
     head:
       tags:
       - Branch
       summary: Gets header information on the current set of Branch data
-      description: Gets header information on the current set of Branch data
       parameters:
       - name: If-Modified-Since
         in: query
@@ -249,24 +249,10 @@ paths:
                 code: 503
                 message: Service temporarily unavailable
                 detail: The service is temporarily unavailable
+      operationId: headBranches
+      x-operation-id-source: derived
 components:
   schemas:
-    Meta:
-      type: object
-      properties:
-        LastUpdated:
-          type: string
-          format: date-time
-        TotalResults:
-          type: integer
-        Agreement:
-          type: string
-        License:
-          type: string
-          format: uri
-        TermsOfUse:
-          type: string
-          format: uri
     ErrorResponse:
       type: object
       properties:
@@ -393,6 +379,22 @@ components:
       required:
       - meta
       - data
+    Meta:
+      type: object
+      properties:
+        LastUpdated:
+          type: string
+          format: date-time
+        TotalResults:
+          type: integer
+        Agreement:
+          type: string
+        License:
+          type: string
+          format: uri
+        TermsOfUse:
+          type: string
+          format: uri
   securitySchemes:
     clientIdHeader:
       type: apiKey

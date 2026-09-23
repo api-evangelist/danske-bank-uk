@@ -58,21 +58,12 @@ paths:
                 detail: The service is temporarily unavailable
       tags:
       - Ping
+      summary: Get ping
+      x-summary-source: derived
+      operationId: getPing
+      x-operation-id-source: derived
 components:
   schemas:
-    PingResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        code:
-          type: integer
-        detail:
-          type: string
-      required:
-      - status
-      - code
-      - detail
     ErrorResponse:
       type: object
       properties:
@@ -88,6 +79,19 @@ components:
       - status
       - code
       - message
+      - detail
+    PingResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        detail:
+          type: string
+      required:
+      - status
+      - code
       - detail
   securitySchemes:
     clientIdHeader:

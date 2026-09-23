@@ -149,6 +149,8 @@ paths:
                 errors:
                   Internal Server Error:
                   - An unexpected error occurred. Please try again later.
+      operationId: postDocuments
+      x-operation-id-source: derived
   /documents/{documentId}/content:
     get:
       tags:
@@ -232,6 +234,8 @@ paths:
                 errors:
                   Internal Server Error:
                   - An unexpected error occurred. Please try again later.
+      operationId: getDocumentsByDocumentIdContent
+      x-operation-id-source: derived
   /documents/{documentId}:
     get:
       tags:
@@ -323,6 +327,8 @@ paths:
                 errors:
                   Internal Server Error:
                   - An unexpected error occurred. Please try again later.
+      operationId: getDocumentsByDocumentId
+      x-operation-id-source: derived
   /documents/{documentId}/statuses:
     get:
       tags:
@@ -426,6 +432,8 @@ paths:
                 errors:
                   Internal Server Error:
                   - An unexpected error occurred. Please try again later.
+      operationId: getDocumentsByDocumentIdStatuses
+      x-operation-id-source: derived
   /documents/{documentId}/statuses/current:
     get:
       tags:
@@ -513,82 +521,40 @@ paths:
                 errors:
                   Internal Server Error:
                   - An unexpected error occurred. Please try again later.
+      operationId: getDocumentsByDocumentIdStatusesCurrent
+      x-operation-id-source: derived
 components:
   schemas:
-    Status:
-      required:
-      - code
-      - date
-      - text
+    ProblemDetails:
       type: object
       properties:
-        text:
-          minLength: 1
-          type: string
-          description: The text of the status.
-          example: Forwarded to another bank.
-        code:
-          minLength: 1
-          type: string
-          description: The code representing the status.
-          example: processed
-        date:
-          type: string
-          description: The date when the status was assigned.
-          format: date-time
-        ackDocumentId:
+        type:
           type:
           - string
           - 'null'
-          description: Acknowledgement document id (if exists).
-        cancellationDocumentId:
+          example: FAILED
+        title:
           type:
           - string
           - 'null'
-          description: Cancellation document id (if exists).
-      additionalProperties: false
-      description: Document status.
-    GetDocumentStatusResponse:
-      required:
-      - code
-      - date
-      - text
-      type: object
-      properties:
-        text:
-          minLength: 1
-          type: string
-          description: The text of the status.
-          example: Forwarded to another bank.
-        code:
-          minLength: 1
-          type: string
-          description: The code representing the status.
-          example: processed
-        date:
-          type: string
-          description: The date when the status was assigned.
-          format: date-time
-        ackDocumentId:
+          example: TITLE
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          example: 1200
+        detail:
           type:
           - string
           - 'null'
-          description: Acknowledgement document id (if exists).
-        cancellationDocumentId:
+          example: Uploaded document is not in required format
+        instance:
           type:
           - string
           - 'null'
-          description: Cancellation document id (if exists).
-      additionalProperties: false
-      description: Document current status.
-    DocumentNotificationStatus:
-      enum:
-      - Accepted
-      - Processed
-      - Rejected
-      - Cancelled
-      type: string
-      description: Document status to be notified about.
+          example: ACTIVE
+      additionalProperties: {}
     GetDocumentResponse:
       required:
       - contentLength
@@ -624,15 +590,39 @@ components:
           example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
       additionalProperties: false
       description: Document response.
-    OutgoingDocumentType:
-      enum:
-      - FILL
-      - FISL
-      - FIPL
-      - FINVOACK
-      - FINVOATT
-      type: string
-      description: Type of the uploaded document.
+    GetDocumentStatusResponse:
+      required:
+      - code
+      - date
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document current status.
     ValidationProblemDetails:
       type: object
       properties:
@@ -675,36 +665,56 @@ components:
           format: uuid
       additionalProperties: false
       description: Document upload response.
-    ProblemDetails:
+    OutgoingDocumentType:
+      enum:
+      - FILL
+      - FISL
+      - FIPL
+      - FINVOACK
+      - FINVOATT
+      type: string
+      description: Type of the uploaded document.
+    DocumentNotificationStatus:
+      enum:
+      - Accepted
+      - Processed
+      - Rejected
+      - Cancelled
+      type: string
+      description: Document status to be notified about.
+    Status:
+      required:
+      - code
+      - date
+      - text
       type: object
       properties:
-        type:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
           type:
           - string
           - 'null'
-          example: FAILED
-        title:
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
           type:
           - string
           - 'null'
-          example: TITLE
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          example: 1200
-        detail:
-          type:
-          - string
-          - 'null'
-          example: Uploaded document is not in required format
-        instance:
-          type:
-          - string
-          - 'null'
-          example: ACTIVE
-      additionalProperties: {}
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document status.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

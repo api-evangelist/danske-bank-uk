@@ -171,8 +171,12 @@ paths:
     get:
       tags:
       - FX Trade Report
-      summary: Gets all Open Trades for a given district user ID, based on maturity date.
-      description: Retrieves all Open Trades for a provided district user ID, optionally filtered by counterparts. Results are based on maturity/settlement date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages.
+      summary: Gets all Open Trades for a given district user ID, based on maturity date
+      description: 'Retrieves all Open Trades for a provided district user ID, optionally filtered by counterparts. Results are based on maturity/settlement date.
+
+        Pagination is supported with ''offset'' defining the starting point and ''limit'' specifying the number of records per page.
+
+        The response includes links for previous and next pages.'
       operationId: getOpenTrades
       parameters:
       - name: offset
@@ -340,8 +344,12 @@ paths:
     get:
       tags:
       - FX Trade Report
-      summary: Retrieves historical trades for a given district user ID within a date range, based on trade execution date.
-      description: Retrieves Historical Trades for a provided district user ID within a given date range, optionally filtered by counterparts. Results are based on trade execution date.<br>Pagination is supported with 'offset' defining the starting point and 'limit' specifying the number of records per page.<br>The response includes links for previous and next pages.
+      summary: Retrieves historical trades for a given district user ID within a date range…
+      description: 'Retrieves Historical Trades for a provided district user ID within a given date range, optionally filtered by counterparts. Results are based on trade execution date.
+
+        Pagination is supported with ''offset'' defining the starting point and ''limit'' specifying the number of records per page.
+
+        The response includes links for previous and next pages.'
       operationId: getHistoricalTrades
       parameters:
       - name: startDate
@@ -521,17 +529,6 @@ paths:
                   timestamp: '2025-10-07T10:30:00Z'
 components:
   schemas:
-    Amount:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: Currency code in ISO 4217 format.
-          example: USD
-        amount:
-          type: number
-          description: Monetary value.
-          example: 100000.5
     PaginatedListExternalTrade:
       type: object
       properties:
@@ -565,6 +562,17 @@ components:
           type: string
           description: URL to fetch the previous page of results.
           example: /v1/open-trades-service/trade-reports?startDate=2025-01-01&endDate=2025-01-31&offset=0&limit=30
+    Amount:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code in ISO 4217 format.
+          example: USD
+        amount:
+          type: number
+          description: Monetary value.
+          example: 100000.5
     TradeError:
       type: object
       properties:

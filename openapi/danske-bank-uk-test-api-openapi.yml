@@ -57,6 +57,10 @@ paths:
                 detail: The service is temporarily unavailable
       tags:
       - Test
+      summary: Get test
+      x-summary-source: derived
+      operationId: getTest
+      x-operation-id-source: derived
 components:
   schemas:
     ErrorResponse:

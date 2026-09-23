@@ -15,7 +15,6 @@ paths:
       tags:
       - ATM
       summary: Gets a list of all ATM objects
-      description: Gets a list of all ATM objects
       parameters:
       - name: If-Modified-Since
         in: query
@@ -132,11 +131,12 @@ paths:
                 code: 503
                 message: Service temporarily unavailable
                 detail: The service is temporarily unavailable
+      operationId: getAtms
+      x-operation-id-source: derived
     head:
       tags:
       - ATM
       summary: Gets header information on the current set of ATM data
-      description: Gets header information on the current set of ATM data
       parameters:
       - name: If-Modified-Since
         in: query
@@ -253,8 +253,26 @@ paths:
                 code: 503
                 message: Service temporarily unavailable
                 detail: The service is temporarily unavailable
+      operationId: headAtms
+      x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
     Meta:
       type: object
       properties:
@@ -368,22 +386,6 @@ components:
       required:
       - meta
       - data
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - status
-      - code
-      - message
-      - detail
   securitySchemes:
     clientIdHeader:
       type: apiKey
