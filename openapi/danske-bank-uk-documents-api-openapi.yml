@@ -525,36 +525,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-          example: FAILED
-        title:
-          type:
-          - string
-          - 'null'
-          example: TITLE
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          example: 1200
-        detail:
-          type:
-          - string
-          - 'null'
-          example: Uploaded document is not in required format
-        instance:
-          type:
-          - string
-          - 'null'
-          example: ACTIVE
-      additionalProperties: {}
     GetDocumentResponse:
       required:
       - contentLength
@@ -623,65 +593,36 @@ components:
           description: Cancellation document id (if exists).
       additionalProperties: false
       description: Document current status.
-    ValidationProblemDetails:
+    ProblemDetails:
       type: object
       properties:
         type:
           type:
           - string
           - 'null'
+          example: FAILED
         title:
           type:
           - string
           - 'null'
+          example: TITLE
         status:
           type:
           - integer
           - 'null'
           format: int32
+          example: 1200
         detail:
           type:
           - string
           - 'null'
+          example: Uploaded document is not in required format
         instance:
           type:
           - string
           - 'null'
-        errors:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          example: ACTIVE
       additionalProperties: {}
-    UploadDocumentResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the uploaded document.
-          format: uuid
-      additionalProperties: false
-      description: Document upload response.
-    OutgoingDocumentType:
-      enum:
-      - FILL
-      - FISL
-      - FIPL
-      - FINVOACK
-      - FINVOATT
-      type: string
-      description: Type of the uploaded document.
-    DocumentNotificationStatus:
-      enum:
-      - Accepted
-      - Processed
-      - Rejected
-      - Cancelled
-      type: string
-      description: Document status to be notified about.
     Status:
       required:
       - code
@@ -715,6 +656,65 @@ components:
           description: Cancellation document id (if exists).
       additionalProperties: false
       description: Document status.
+    UploadDocumentResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the uploaded document.
+          format: uuid
+      additionalProperties: false
+      description: Document upload response.
+    OutgoingDocumentType:
+      enum:
+      - FILL
+      - FISL
+      - FIPL
+      - FINVOACK
+      - FINVOATT
+      type: string
+      description: Type of the uploaded document.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    DocumentNotificationStatus:
+      enum:
+      - Accepted
+      - Processed
+      - Rejected
+      - Cancelled
+      type: string
+      description: Document status to be notified about.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
