@@ -127,91 +127,70 @@ paths:
                     exceptionType: TradeExecutionException
                     details: An unexpected error occurred while processing the trade.
 components:
+  examples:
+    ApiError_ExpiredToken:
+      summary: Expired authentication token
+      value:
+        status: 401 UNAUTHORIZED
+        exceptionType: AuthenticationException
+        details: Token expired.
+    PremiumTradeResponse_Tenor1W:
+      summary: Executed forward trade (1W tenor)
+      value:
+        tradeId: TRADE654321
+        executionId: EXEC654321
+        tradeTime: '2025-10-07T11:05:12Z'
+        autoSettle: false
+        bought:
+          amount: 500000
+          currency: EUR
+        sold:
+          amount: 540500
+          currency: USD
+        spotPrice: 1.081
+        forwardPrice: 1.0816
+        maturityDate: '2025-10-14'
+        product: FX Forward
+    PremiumTradeRequest_MaturityDate:
+      summary: Spot/forward trade specifying maturityDate
+      value:
+        amount: 1000000
+        amountSide: BUY
+        baseSide: SELL
+        buyCurrency: DKK
+        sellCurrency: EUR
+        counterpart: LLBM1Q
+        maturityDate: '2026-08-31'
+        comment: Urgent client request
+    PremiumTradeRequest_Tenor:
+      summary: Forward trade using tenor instead of maturityDate
+      value:
+        amount: 500000
+        amountSide: SELL
+        baseSide: BUY
+        buyCurrency: EUR
+        sellCurrency: USD
+        counterpart: LLBM1Q
+        tenor: 1W
+        comment: Short-dated hedge
+    ApiError_MissingField:
+      summary: Missing required field (amount)
+      value:
+        status: 400 BAD_REQUEST
+        exceptionType: InvalidParameterException
+        details: Field 'amount' is required.
   schemas:
-    ApiError:
+    PremiumAmount:
       type: object
       properties:
-        exceptionType:
+        currency:
           type: string
-          description: Type of the exception encountered.
-          example: InvalidParameterException
-        status:
-          type: string
-          enum:
-          - 100 CONTINUE
-          - 101 SWITCHING_PROTOCOLS
-          - 102 PROCESSING
-          - 103 CHECKPOINT
-          - 200 OK
-          - 201 CREATED
-          - 202 ACCEPTED
-          - 203 NON_AUTHORITATIVE_INFORMATION
-          - 204 NO_CONTENT
-          - 205 RESET_CONTENT
-          - 206 PARTIAL_CONTENT
-          - 207 MULTI_STATUS
-          - 208 ALREADY_REPORTED
-          - 226 IM_USED
-          - 300 MULTIPLE_CHOICES
-          - 301 MOVED_PERMANENTLY
-          - 302 FOUND
-          - 302 MOVED_TEMPORARILY
-          - 303 SEE_OTHER
-          - 304 NOT_MODIFIED
-          - 305 USE_PROXY
-          - 307 TEMPORARY_REDIRECT
-          - 308 PERMANENT_REDIRECT
-          - 400 BAD_REQUEST
-          - 401 UNAUTHORIZED
-          - 402 PAYMENT_REQUIRED
-          - 403 FORBIDDEN
-          - 404 NOT_FOUND
-          - 405 METHOD_NOT_ALLOWED
-          - 406 NOT_ACCEPTABLE
-          - 407 PROXY_AUTHENTICATION_REQUIRED
-          - 408 REQUEST_TIMEOUT
-          - 409 CONFLICT
-          - 410 GONE
-          - 411 LENGTH_REQUIRED
-          - 412 PRECONDITION_FAILED
-          - 413 PAYLOAD_TOO_LARGE
-          - 413 REQUEST_ENTITY_TOO_LARGE
-          - 414 URI_TOO_LONG
-          - 414 REQUEST_URI_TOO_LONG
-          - 415 UNSUPPORTED_MEDIA_TYPE
-          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
-          - 417 EXPECTATION_FAILED
-          - 418 I_AM_A_TEAPOT
-          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
-          - 420 METHOD_FAILURE
-          - 421 DESTINATION_LOCKED
-          - 422 UNPROCESSABLE_ENTITY
-          - 423 LOCKED
-          - 424 FAILED_DEPENDENCY
-          - 425 TOO_EARLY
-          - 426 UPGRADE_REQUIRED
-          - 428 PRECONDITION_REQUIRED
-          - 429 TOO_MANY_REQUESTS
-          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
-          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
-          - 500 INTERNAL_SERVER_ERROR
-          - 501 NOT_IMPLEMENTED
-          - 502 BAD_GATEWAY
-          - 503 SERVICE_UNAVAILABLE
-          - 504 GATEWAY_TIMEOUT
-          - 505 HTTP_VERSION_NOT_SUPPORTED
-          - 506 VARIANT_ALSO_NEGOTIATES
-          - 507 INSUFFICIENT_STORAGE
-          - 508 LOOP_DETECTED
-          - 509 BANDWIDTH_LIMIT_EXCEEDED
-          - 510 NOT_EXTENDED
-          - 511 NETWORK_AUTHENTICATION_REQUIRED
-          description: HTTP status code indicating the result of the API call.
-          example: 400 BAD_REQUEST
-        details:
-          type: string
-          description: Detailed message explaining the error.
-          example: The provided currency code is not valid.
+          description: The currency code in ISO 4217 format.
+          example: EUR
+        amount:
+          type: number
+          description: The amount involved in the trade, expressed in the specified currency.
+          example: 100000.1
     PremiumTradeRequest:
       required:
       - amount
@@ -348,69 +327,90 @@ components:
           type: string
           description: Any additional comments regarding the trade (optional).
           example: Urgent client request
-    PremiumAmount:
+    ApiError:
       type: object
       properties:
-        currency:
+        exceptionType:
           type: string
-          description: The currency code in ISO 4217 format.
-          example: EUR
-        amount:
-          type: number
-          description: The amount involved in the trade, expressed in the specified currency.
-          example: 100000.1
-  examples:
-    ApiError_MissingField:
-      summary: Missing required field (amount)
-      value:
-        status: 400 BAD_REQUEST
-        exceptionType: InvalidParameterException
-        details: Field 'amount' is required.
-    PremiumTradeResponse_Tenor1W:
-      summary: Executed forward trade (1W tenor)
-      value:
-        tradeId: TRADE654321
-        executionId: EXEC654321
-        tradeTime: '2025-10-07T11:05:12Z'
-        autoSettle: false
-        bought:
-          amount: 500000
-          currency: EUR
-        sold:
-          amount: 540500
-          currency: USD
-        spotPrice: 1.081
-        forwardPrice: 1.0816
-        maturityDate: '2025-10-14'
-        product: FX Forward
-    ApiError_ExpiredToken:
-      summary: Expired authentication token
-      value:
-        status: 401 UNAUTHORIZED
-        exceptionType: AuthenticationException
-        details: Token expired.
-    PremiumTradeRequest_MaturityDate:
-      summary: Spot/forward trade specifying maturityDate
-      value:
-        amount: 1000000
-        amountSide: BUY
-        baseSide: SELL
-        buyCurrency: DKK
-        sellCurrency: EUR
-        counterpart: LLBM1Q
-        maturityDate: '2026-08-31'
-        comment: Urgent client request
-    PremiumTradeRequest_Tenor:
-      summary: Forward trade using tenor instead of maturityDate
-      value:
-        amount: 500000
-        amountSide: SELL
-        baseSide: BUY
-        buyCurrency: EUR
-        sellCurrency: USD
-        counterpart: LLBM1Q
-        tenor: 1W
-        comment: Short-dated hedge
+          description: Type of the exception encountered.
+          example: InvalidParameterException
+        status:
+          type: string
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+          description: HTTP status code indicating the result of the API call.
+          example: 400 BAD_REQUEST
+        details:
+          type: string
+          description: Detailed message explaining the error.
+          example: The provided currency code is not valid.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

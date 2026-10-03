@@ -529,39 +529,22 @@ paths:
                   timestamp: '2025-10-07T10:30:00Z'
 components:
   schemas:
-    PaginatedListExternalTrade:
+    TradeError:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalTrade'
-          example:
-            tradeId: W250429A1139
-            tradeTime: '2025-04-29T13:57:59.523Z'
-            counterpart: DBDEMO1
-            counterpartName: DANSKE BANK DEMOAA
-            maturityDate: '2025-05-23'
-            bought:
-              currency: DKK
-              amount: 7.46
-            sold:
-              currency: EUR
-              amount: 1
-            product: FWD
-            spotPrice: 7.46372
-            forwardPrice: -0.0066376
-            allInPrice: 7.4570824
-            autoSettle: true
-            comment: Successful retrieval of trades
-        next:
+        timestamp:
           type: string
-          description: URL to fetch the next page of results.
-          example: /v1/open-trades-service/trade-reports?startDate=2025-01-01&endDate=2025-01-31&offset=30&limit=30
-        previous:
+          format: date-time
+          description: Timestamp indicating when the error occurred.
+          example: '2025-10-07T10:41:00Z'
+        exception:
           type: string
-          description: URL to fetch the previous page of results.
-          example: /v1/open-trades-service/trade-reports?startDate=2025-01-01&endDate=2025-01-31&offset=0&limit=30
+          description: Type of the exception encountered.
+          example: InvalidParameterException
+        message:
+          type: string
+          description: Detailed error message.
+          example: End date can not be future date.
     ExternalTrade:
       type: object
       properties:
@@ -617,6 +600,39 @@ components:
           type: string
           description: Additional comments about the trade.
           example: Urgent trade settlement.
+    PaginatedListExternalTrade:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalTrade'
+          example:
+            tradeId: W250429A1139
+            tradeTime: '2025-04-29T13:57:59.523Z'
+            counterpart: DBDEMO1
+            counterpartName: DANSKE BANK DEMOAA
+            maturityDate: '2025-05-23'
+            bought:
+              currency: DKK
+              amount: 7.46
+            sold:
+              currency: EUR
+              amount: 1
+            product: FWD
+            spotPrice: 7.46372
+            forwardPrice: -0.0066376
+            allInPrice: 7.4570824
+            autoSettle: true
+            comment: Successful retrieval of trades
+        next:
+          type: string
+          description: URL to fetch the next page of results.
+          example: /v1/open-trades-service/trade-reports?startDate=2025-01-01&endDate=2025-01-31&offset=30&limit=30
+        previous:
+          type: string
+          description: URL to fetch the previous page of results.
+          example: /v1/open-trades-service/trade-reports?startDate=2025-01-01&endDate=2025-01-31&offset=0&limit=30
     Amount:
       type: object
       properties:
@@ -628,22 +644,6 @@ components:
           type: number
           description: Monetary value.
           example: 100000.5
-    TradeError:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Timestamp indicating when the error occurred.
-          example: '2025-10-07T10:41:00Z'
-        exception:
-          type: string
-          description: Type of the exception encountered.
-          example: InvalidParameterException
-        message:
-          type: string
-          description: Detailed error message.
-          example: End date can not be future date.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

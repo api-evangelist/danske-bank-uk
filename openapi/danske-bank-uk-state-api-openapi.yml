@@ -144,26 +144,6 @@ paths:
       x-operation-id-source: derived
 components:
   examples:
-    StateResponse_Rejected:
-      summary: Previously created payment now rejected
-      value:
-        stateCode: rejected
-        transactionStatus: RJCT
-        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
-        error:
-          errorKCode: K0813
-          errorIsoCode: AC01
-          errorText: Payment has been rejected due to lack of funds on debtor account.
-    Error_NotFound:
-      summary: Payment order not found
-      value:
-        errorCode: 404
-        message: The specified payment order ID does not exist.
-    Error_StateLookupFailure:
-      summary: Failure retrieving state
-      value:
-        errorCode: 500
-        message: State service unavailable.
     StateResponse_Completed:
       summary: Payment successfully completed
       value:
@@ -174,29 +154,27 @@ components:
           errorKCode: K0000
           errorIsoCode: AC01
           errorText: Payment successfully completed.
-  schemas:
-    Output:
-      required:
-      - stateCode
-      - transactionStatus
-      - paymentId
-      - error
-      type: object
-      properties:
-        stateCode:
-          type: string
-          description: State code of the payment.
-          example: pendingApproval
-        transactionStatus:
-          type: string
-          description: Transaction status of the payment.
-          example: ACTC
-        paymentId:
-          type: string
-          description: Payment id of the payment.
-          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+    Error_StateLookupFailure:
+      summary: Failure retrieving state
+      value:
+        errorCode: 500
+        message: State service unavailable.
+    Error_NotFound:
+      summary: Payment order not found
+      value:
+        errorCode: 404
+        message: The specified payment order ID does not exist.
+    StateResponse_Rejected:
+      summary: Previously created payment now rejected
+      value:
+        stateCode: rejected
+        transactionStatus: RJCT
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
         error:
-          $ref: '#/components/schemas/ErrorWithCodes'
+          errorKCode: K0813
+          errorIsoCode: AC01
+          errorText: Payment has been rejected due to lack of funds on debtor account.
+  schemas:
     ErrorWithCodes:
       required:
       - errorKCode
@@ -219,6 +197,28 @@ components:
           description: Error text.
           example: Payment has been rejected due to lack of funds on debtor account.
       description: Error details in case payment has been rejected.
+    Output:
+      required:
+      - stateCode
+      - transactionStatus
+      - paymentId
+      - error
+      type: object
+      properties:
+        stateCode:
+          type: string
+          description: State code of the payment.
+          example: pendingApproval
+        transactionStatus:
+          type: string
+          description: Transaction status of the payment.
+          example: ACTC
+        paymentId:
+          type: string
+          description: Payment id of the payment.
+          example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          $ref: '#/components/schemas/ErrorWithCodes'
     ErrorResponse:
       type: object
       properties:

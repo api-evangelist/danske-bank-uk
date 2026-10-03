@@ -63,6 +63,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TestResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      required:
+      - status
+      - message
     ErrorResponse:
       type: object
       properties:
@@ -79,16 +89,6 @@ components:
       - code
       - message
       - detail
-    TestResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-      required:
-      - status
-      - message
   securitySchemes:
     clientIdHeader:
       type: apiKey

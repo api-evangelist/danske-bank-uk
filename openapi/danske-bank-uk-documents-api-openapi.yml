@@ -525,74 +525,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetDocumentResponse:
-      required:
-      - contentLength
-      - contentMD5
-      - contentType
-      - documentType
-      - notificationStatuses
-      type: object
-      properties:
-        documentType:
-          minLength: 1
-          type: string
-          description: 'The type of the document. Supported values: `FILL`, `FISL`, `FIPL`, `FINVOACK`, `FINVOATT`, `FIRN`, `FILN`, `FIVN`, `FIATFI`'
-        notificationStatuses:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentNotificationStatus'
-          description: Document statuses that the user will be notified about.
-        contentType:
-          minLength: 1
-          type: string
-          description: The standard MIME type and character set describing the format of the uploaded document.
-          example: application/xml;ISO-8859-1
-        contentLength:
-          type: integer
-          description: The size of the uploaded document in bytes.
-          format: int64
-          example: 106303
-        contentMD5:
-          minLength: 1
-          type: string
-          description: The hexadecimal-encoded 128-bit MD5 digest of the uploaded document. This is used as a message integrity check to verify that the data received is the same as the data originally sent.
-          example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
-      additionalProperties: false
-      description: Document response.
-    GetDocumentStatusResponse:
-      required:
-      - code
-      - date
-      - text
-      type: object
-      properties:
-        text:
-          minLength: 1
-          type: string
-          description: The text of the status.
-          example: Forwarded to another bank.
-        code:
-          minLength: 1
-          type: string
-          description: The code representing the status.
-          example: processed
-        date:
-          type: string
-          description: The date when the status was assigned.
-          format: date-time
-        ackDocumentId:
-          type:
-          - string
-          - 'null'
-          description: Acknowledgement document id (if exists).
-        cancellationDocumentId:
-          type:
-          - string
-          - 'null'
-          description: Cancellation document id (if exists).
-      additionalProperties: false
-      description: Document current status.
     ProblemDetails:
       type: object
       properties:
@@ -656,6 +588,47 @@ components:
           description: Cancellation document id (if exists).
       additionalProperties: false
       description: Document status.
+    DocumentNotificationStatus:
+      enum:
+      - Accepted
+      - Processed
+      - Rejected
+      - Cancelled
+      type: string
+      description: Document status to be notified about.
+    GetDocumentStatusResponse:
+      required:
+      - code
+      - date
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document current status.
     UploadDocumentResponse:
       type: object
       properties:
@@ -665,6 +638,41 @@ components:
           format: uuid
       additionalProperties: false
       description: Document upload response.
+    GetDocumentResponse:
+      required:
+      - contentLength
+      - contentMD5
+      - contentType
+      - documentType
+      - notificationStatuses
+      type: object
+      properties:
+        documentType:
+          minLength: 1
+          type: string
+          description: 'The type of the document. Supported values: `FILL`, `FISL`, `FIPL`, `FINVOACK`, `FINVOATT`, `FIRN`, `FILN`, `FIVN`, `FIATFI`'
+        notificationStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentNotificationStatus'
+          description: Document statuses that the user will be notified about.
+        contentType:
+          minLength: 1
+          type: string
+          description: The standard MIME type and character set describing the format of the uploaded document.
+          example: application/xml;ISO-8859-1
+        contentLength:
+          type: integer
+          description: The size of the uploaded document in bytes.
+          format: int64
+          example: 106303
+        contentMD5:
+          minLength: 1
+          type: string
+          description: The hexadecimal-encoded 128-bit MD5 digest of the uploaded document. This is used as a message integrity check to verify that the data received is the same as the data originally sent.
+          example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
+      additionalProperties: false
+      description: Document response.
     OutgoingDocumentType:
       enum:
       - FILL
@@ -707,14 +715,6 @@ components:
             items:
               type: string
       additionalProperties: {}
-    DocumentNotificationStatus:
-      enum:
-      - Accepted
-      - Processed
-      - Rejected
-      - Cancelled
-      type: string
-      description: Document status to be notified about.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

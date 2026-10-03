@@ -253,22 +253,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
+    Meta:
       type: object
       properties:
-        status:
+        LastUpdated:
           type: string
-        code:
+          format: date-time
+        TotalResults:
           type: integer
-        message:
+        Agreement:
           type: string
-        detail:
+        License:
           type: string
-      required:
-      - status
-      - code
-      - message
-      - detail
+          format: uri
+        TermsOfUse:
+          type: string
+          format: uri
     BranchesResponse:
       type: object
       properties:
@@ -379,22 +379,22 @@ components:
       required:
       - meta
       - data
-    Meta:
+    ErrorResponse:
       type: object
       properties:
-        LastUpdated:
+        status:
           type: string
-          format: date-time
-        TotalResults:
+        code:
           type: integer
-        Agreement:
+        message:
           type: string
-        License:
+        detail:
           type: string
-          format: uri
-        TermsOfUse:
-          type: string
-          format: uri
+      required:
+      - status
+      - code
+      - message
+      - detail
   securitySchemes:
     clientIdHeader:
       type: apiKey
