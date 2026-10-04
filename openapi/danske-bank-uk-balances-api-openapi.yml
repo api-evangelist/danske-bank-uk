@@ -44,52 +44,8 @@ paths:
           $ref: '#/components/responses/503Error'
 components:
   responses:
-    401Error:
-      description: Unauthorized
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    200AccountsAccountIdBalancesRead:
-      description: Balances Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBReadBalance1'
     503Error:
       description: Service temporary unavailable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    403Error:
-      description: Forbidden
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    400Error:
-      description: Bad request
       headers:
         x-fapi-interaction-id:
           description: An RFC4122 UID used as a correlation id.
@@ -116,6 +72,50 @@ components:
           required: true
           schema:
             type: string
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    400Error:
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    200AccountsAccountIdBalancesRead:
+      description: Balances Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadBalance1'
     429Error:
       description: Too Many Requests
       headers:
@@ -142,35 +142,11 @@ components:
           schema:
             $ref: '#/components/schemas/OBErrorResponse1'
   schemas:
-    OBBalanceType1Code:
-      description: Balance type, in a coded form.
-      type: string
-      enum:
-      - CLAV
-      - CLBD
-      - FWAV
-      - INFO
-      - ITAV
-      - ITBD
-      - OPAV
-      - OPBD
-      - PRCD
-      - XPCD
     AccountId:
       description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
       type: string
       minLength: 1
       maxLength: 40
-    OBExternalStatusReason1Code:
-      description: Low level textual error code, for all enum values see `ExternalReason1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      minLength: 4
-      maxLength: 4
-      example: AC17
-    OBActiveCurrencyAndAmount_SimpleType:
-      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
-      type: string
-      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
     Links:
       description: Links relevant to the payload
       type: object
@@ -193,6 +169,38 @@ components:
         Last:
           type: string
           format: uri
+    OBCreditDebitCode_2:
+      description: 'Indicates whether the balance is a credit or a debit balance.  Usage: A zero balance is considered to be a credit balance.
+
+        '
+      type: string
+      enum:
+      - Credit
+      - Debit
+    ActiveOrHistoricCurrencyCode_1:
+      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'.
+      type: string
+      pattern: ^[A-Z]{3,3}$
+    OBExternalStatusReason1Code:
+      description: Low level textual error code, for all enum values see `ExternalReason1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      minLength: 4
+      maxLength: 4
+      example: AC17
+    OBBalanceType1Code:
+      description: Balance type, in a coded form.
+      type: string
+      enum:
+      - CLAV
+      - CLBD
+      - FWAV
+      - INFO
+      - ITAV
+      - ITBD
+      - OPAV
+      - OPBD
+      - PRCD
+      - XPCD
     OBErrorResponse1:
       description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
       type: object
@@ -210,6 +218,10 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/OBError1'
+    OBActiveCurrencyAndAmount_SimpleType:
+      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
     OBReadBalance1:
       type: object
       additionalProperties: false
@@ -330,25 +342,6 @@ components:
           $ref: '#/components/schemas/Links'
         Meta:
           $ref: '#/components/schemas/Meta'
-    Meta:
-      title: MetaData
-      description: Meta Data relevant to the payload
-      type: object
-      additionalProperties: false
-      properties:
-        TotalPages:
-          type: integer
-          format: int32
-        FirstAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
-        LastAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
-    ISODateTime:
-      description: 'All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
-
-        '
-      type: string
-      format: date-time
     OBError1:
       type: object
       minProperties: 1
@@ -373,33 +366,26 @@ components:
         Url:
           description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
           type: string
-    ActiveOrHistoricCurrencyCode_1:
-      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'.
-      type: string
-      pattern: ^[A-Z]{3,3}$
-    OBCreditDebitCode_2:
-      description: 'Indicates whether the balance is a credit or a debit balance.  Usage: A zero balance is considered to be a credit balance.
+    ISODateTime:
+      description: 'All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
 
         '
       type: string
-      enum:
-      - Credit
-      - Debit
+      format: date-time
+    Meta:
+      title: MetaData
+      description: Meta Data relevant to the payload
+      type: object
+      additionalProperties: false
+      properties:
+        TotalPages:
+          type: integer
+          format: int32
+        FirstAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+        LastAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
   parameters:
-    x-customer-user-agent:
-      name: x-customer-user-agent
-      in: header
-      description: Indicates the user-agent that the PSU is using.
-      required: false
-      schema:
-        type: string
-    AccountId:
-      name: AccountId
-      in: path
-      description: AccountId
-      required: true
-      schema:
-        type: string
     x-fapi-auth-date:
       name: x-fapi-auth-date
       in: header
@@ -410,6 +396,20 @@ components:
       schema:
         type: string
         pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
+    x-fapi-customer-ip-address:
+      name: x-fapi-customer-ip-address
+      in: header
+      description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      required: false
+      schema:
+        type: string
+    AccountId:
+      name: AccountId
+      in: path
+      description: AccountId
+      required: true
+      schema:
+        type: string
     x-fapi-interaction-id:
       name: x-fapi-interaction-id
       in: header
@@ -417,10 +417,10 @@ components:
       required: false
       schema:
         type: string
-    x-fapi-customer-ip-address:
-      name: x-fapi-customer-ip-address
+    x-customer-user-agent:
+      name: x-customer-user-agent
       in: header
-      description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      description: Indicates the user-agent that the PSU is using.
       required: false
       schema:
         type: string

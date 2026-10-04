@@ -525,77 +525,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-          example: FAILED
-        title:
-          type:
-          - string
-          - 'null'
-          example: TITLE
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          example: 1200
-        detail:
-          type:
-          - string
-          - 'null'
-          example: Uploaded document is not in required format
-        instance:
-          type:
-          - string
-          - 'null'
-          example: ACTIVE
-      additionalProperties: {}
-    Status:
-      required:
-      - code
-      - date
-      - text
-      type: object
-      properties:
-        text:
-          minLength: 1
-          type: string
-          description: The text of the status.
-          example: Forwarded to another bank.
-        code:
-          minLength: 1
-          type: string
-          description: The code representing the status.
-          example: processed
-        date:
-          type: string
-          description: The date when the status was assigned.
-          format: date-time
-        ackDocumentId:
-          type:
-          - string
-          - 'null'
-          description: Acknowledgement document id (if exists).
-        cancellationDocumentId:
-          type:
-          - string
-          - 'null'
-          description: Cancellation document id (if exists).
-      additionalProperties: false
-      description: Document status.
-    DocumentNotificationStatus:
+    OutgoingDocumentType:
       enum:
-      - Accepted
-      - Processed
-      - Rejected
-      - Cancelled
+      - FILL
+      - FISL
+      - FIPL
+      - FINVOACK
+      - FINVOATT
       type: string
-      description: Document status to be notified about.
+      description: Type of the uploaded document.
     GetDocumentStatusResponse:
       required:
       - code
@@ -629,15 +567,6 @@ components:
           description: Cancellation document id (if exists).
       additionalProperties: false
       description: Document current status.
-    UploadDocumentResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the uploaded document.
-          format: uuid
-      additionalProperties: false
-      description: Document upload response.
     GetDocumentResponse:
       required:
       - contentLength
@@ -673,15 +602,45 @@ components:
           example: 0AFA741926B8C2B2FAD8D0BF13EC10FA
       additionalProperties: false
       description: Document response.
-    OutgoingDocumentType:
-      enum:
-      - FILL
-      - FISL
-      - FIPL
-      - FINVOACK
-      - FINVOATT
-      type: string
-      description: Type of the uploaded document.
+    UploadDocumentResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the uploaded document.
+          format: uuid
+      additionalProperties: false
+      description: Document upload response.
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          example: FAILED
+        title:
+          type:
+          - string
+          - 'null'
+          example: TITLE
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          example: 1200
+        detail:
+          type:
+          - string
+          - 'null'
+          example: Uploaded document is not in required format
+        instance:
+          type:
+          - string
+          - 'null'
+          example: ACTIVE
+      additionalProperties: {}
     ValidationProblemDetails:
       type: object
       properties:
@@ -715,6 +674,47 @@ components:
             items:
               type: string
       additionalProperties: {}
+    DocumentNotificationStatus:
+      enum:
+      - Accepted
+      - Processed
+      - Rejected
+      - Cancelled
+      type: string
+      description: Document status to be notified about.
+    Status:
+      required:
+      - code
+      - date
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: The text of the status.
+          example: Forwarded to another bank.
+        code:
+          minLength: 1
+          type: string
+          description: The code representing the status.
+          example: processed
+        date:
+          type: string
+          description: The date when the status was assigned.
+          format: date-time
+        ackDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Acknowledgement document id (if exists).
+        cancellationDocumentId:
+          type:
+          - string
+          - 'null'
+          description: Cancellation document id (if exists).
+      additionalProperties: false
+      description: Document status.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

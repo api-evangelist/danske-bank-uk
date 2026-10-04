@@ -257,6 +257,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
     AtmsResponse:
       type: object
       properties:
@@ -370,22 +386,6 @@ components:
         TermsOfUse:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - status
-      - code
-      - message
-      - detail
   securitySchemes:
     clientIdHeader:
       type: apiKey

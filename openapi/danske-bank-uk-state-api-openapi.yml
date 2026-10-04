@@ -143,38 +143,17 @@ paths:
       operationId: getByPaymentorderidState
       x-operation-id-source: derived
 components:
-  examples:
-    StateResponse_Completed:
-      summary: Payment successfully completed
-      value:
-        stateCode: completed
-        transactionStatus: ACTC
-        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
-        error:
-          errorKCode: K0000
-          errorIsoCode: AC01
-          errorText: Payment successfully completed.
-    Error_StateLookupFailure:
-      summary: Failure retrieving state
-      value:
-        errorCode: 500
-        message: State service unavailable.
-    Error_NotFound:
-      summary: Payment order not found
-      value:
-        errorCode: 404
-        message: The specified payment order ID does not exist.
-    StateResponse_Rejected:
-      summary: Previously created payment now rejected
-      value:
-        stateCode: rejected
-        transactionStatus: RJCT
-        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
-        error:
-          errorKCode: K0813
-          errorIsoCode: AC01
-          errorText: Payment has been rejected due to lack of funds on debtor account.
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          format: int32
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
     ErrorWithCodes:
       required:
       - errorKCode
@@ -219,16 +198,37 @@ components:
           example: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
         error:
           $ref: '#/components/schemas/ErrorWithCodes'
-    ErrorResponse:
-      type: object
-      properties:
-        errorCode:
-          pattern: ^-?(?:0|[1-9]\d*)$
-          format: int32
-          example: 500
-        message:
-          type: string
-          example: Internal Server Error
+  examples:
+    StateResponse_Completed:
+      summary: Payment successfully completed
+      value:
+        stateCode: completed
+        transactionStatus: ACTC
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0000
+          errorIsoCode: AC01
+          errorText: Payment successfully completed.
+    Error_NotFound:
+      summary: Payment order not found
+      value:
+        errorCode: 404
+        message: The specified payment order ID does not exist.
+    StateResponse_Rejected:
+      summary: Previously created payment now rejected
+      value:
+        stateCode: rejected
+        transactionStatus: RJCT
+        paymentId: urn:ttid:district:v1:10b72f31-5279-4a98-946c-2ac08c934f7b
+        error:
+          errorKCode: K0813
+          errorIsoCode: AC01
+          errorText: Payment has been rejected due to lack of funds on debtor account.
+    Error_StateLookupFailure:
+      summary: Failure retrieving state
+      value:
+        errorCode: 500
+        message: State service unavailable.
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'

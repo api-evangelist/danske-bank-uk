@@ -732,22 +732,6 @@ components:
       required:
       - meta
       - data
-    Meta:
-      type: object
-      properties:
-        LastUpdated:
-          type: string
-          format: date-time
-        TotalResults:
-          type: integer
-        Agreement:
-          type: string
-        License:
-          type: string
-          format: uri
-        TermsOfUse:
-          type: string
-          format: uri
     ErrorResponse:
       type: object
       properties:
@@ -764,6 +748,22 @@ components:
       - code
       - message
       - detail
+    Meta:
+      type: object
+      properties:
+        LastUpdated:
+          type: string
+          format: date-time
+        TotalResults:
+          type: integer
+        Agreement:
+          type: string
+        License:
+          type: string
+          format: uri
+        TermsOfUse:
+          type: string
+          format: uri
   securitySchemes:
     clientIdHeader:
       type: apiKey

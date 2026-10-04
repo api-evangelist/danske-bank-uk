@@ -128,6 +128,12 @@ paths:
                     details: An unexpected error occurred while processing the trade.
 components:
   examples:
+    ApiError_MissingField:
+      summary: Missing required field (amount)
+      value:
+        status: 400 BAD_REQUEST
+        exceptionType: InvalidParameterException
+        details: Field 'amount' is required.
     ApiError_ExpiredToken:
       summary: Expired authentication token
       value:
@@ -173,160 +179,7 @@ components:
         counterpart: LLBM1Q
         tenor: 1W
         comment: Short-dated hedge
-    ApiError_MissingField:
-      summary: Missing required field (amount)
-      value:
-        status: 400 BAD_REQUEST
-        exceptionType: InvalidParameterException
-        details: Field 'amount' is required.
   schemas:
-    PremiumAmount:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: The currency code in ISO 4217 format.
-          example: EUR
-        amount:
-          type: number
-          description: The amount involved in the trade, expressed in the specified currency.
-          example: 100000.1
-    PremiumTradeRequest:
-      required:
-      - amount
-      - amountSide
-      - baseSide
-      - buyCurrency
-      - counterpart
-      - sellCurrency
-      type: object
-      properties:
-        counterpart:
-          type: string
-          description: Identifier for the counterpart involved in the trade.
-          example: DEMOCP1
-        buyCurrency:
-          type: string
-          description: The currency to be purchased in the trade.
-          example: DKK
-        sellCurrency:
-          type: string
-          description: The currency to be sold in the trade.
-          example: EUR
-        amount:
-          type: number
-          description: Trade amount.
-          example: 1000000
-        amountSide:
-          type: string
-          enum:
-          - BUY
-          - SELL
-          description: Indicates whether the trade is a buy or sell action.
-          example: BUY
-        baseSide:
-          type: string
-          enum:
-          - BUY
-          - SELL
-          description: Indicates the base side of the trade.
-          example: SELL
-        maturityDate:
-          type: string
-          description: The date when the trade matures. Required if tenor is not provided.
-          example: '2026-08-31'
-        tenor:
-          type: string
-          description: The tenor for the trade, required if maturityDate is not provided.
-          example: 1W
-          enum:
-          - 'ON'
-          - TOM
-          - TN
-          - SP
-          - SN
-          - 1W
-          - 2W
-          - 3W
-          - 1M
-          - 2M
-          - 3M
-          - 4M
-          - 5M
-          - 6M
-          - 7M
-          - 8M
-          - 9M
-          - 10M
-          - 11M
-          - 15M
-          - 18M
-          - 1Y
-          - 2Y
-          - 3Y
-          - 4Y
-          - 5Y
-        comment:
-          type: string
-          description: Any additional comments regarding the trade (optional).
-          example: Urgent client request
-      description: Request for creating a premium trade. The 'comment' field is optional. Either 'maturityDate' or 'tenor' is required. If both are provided, 'maturityDate' will be used and 'tenor' will be ignored.
-    PremiumTradeResponse:
-      type: object
-      properties:
-        tradeId:
-          type: string
-          description: Unique identifier for the executed trade.
-          example: T250711A8787
-        executionId:
-          type: string
-          description: Identifier for the execution request.
-          example: CRGHIT89765643787654INF15000Fx0000
-        counterpart:
-          type: string
-          description: Counterpart
-          example: DEMOCP1
-        bought:
-          $ref: '#/components/schemas/PremiumAmount'
-        sold:
-          $ref: '#/components/schemas/PremiumAmount'
-        maturityDate:
-          type: string
-          format: date
-          description: The maturity date of the trade.
-          example: '2026-08-31'
-        product:
-          type: string
-          description: Type of the FX Trade (Spot, Forward, Swap)
-          example: Forward
-        tradeTime:
-          type: string
-          format: date-time
-          description: Timestamp indicating when the trade was executed.
-          example: '2025-10-09T11:55:19.547Z'
-        spotPrice:
-          type: number
-          format: double
-          description: The spot price at which the trade was executed.
-          example: 7.46372
-        forwardPrice:
-          type: number
-          format: double
-          description: The forward price agreed upon for the trade.
-          example: -0.0066376
-        allInPrice:
-          type: number
-          format: double
-          description: Total price including fees.
-          example: 7.4570824
-        autoSettle:
-          type: boolean
-          description: Indicates if the trade will be settled automatically.
-          example: true
-        comment:
-          type: string
-          description: Any additional comments regarding the trade (optional).
-          example: Urgent client request
     ApiError:
       type: object
       properties:
@@ -411,6 +264,153 @@ components:
           type: string
           description: Detailed message explaining the error.
           example: The provided currency code is not valid.
+    PremiumTradeResponse:
+      type: object
+      properties:
+        tradeId:
+          type: string
+          description: Unique identifier for the executed trade.
+          example: T250711A8787
+        executionId:
+          type: string
+          description: Identifier for the execution request.
+          example: CRGHIT89765643787654INF15000Fx0000
+        counterpart:
+          type: string
+          description: Counterpart
+          example: DEMOCP1
+        bought:
+          $ref: '#/components/schemas/PremiumAmount'
+        sold:
+          $ref: '#/components/schemas/PremiumAmount'
+        maturityDate:
+          type: string
+          format: date
+          description: The maturity date of the trade.
+          example: '2026-08-31'
+        product:
+          type: string
+          description: Type of the FX Trade (Spot, Forward, Swap)
+          example: Forward
+        tradeTime:
+          type: string
+          format: date-time
+          description: Timestamp indicating when the trade was executed.
+          example: '2025-10-09T11:55:19.547Z'
+        spotPrice:
+          type: number
+          format: double
+          description: The spot price at which the trade was executed.
+          example: 7.46372
+        forwardPrice:
+          type: number
+          format: double
+          description: The forward price agreed upon for the trade.
+          example: -0.0066376
+        allInPrice:
+          type: number
+          format: double
+          description: Total price including fees.
+          example: 7.4570824
+        autoSettle:
+          type: boolean
+          description: Indicates if the trade will be settled automatically.
+          example: true
+        comment:
+          type: string
+          description: Any additional comments regarding the trade (optional).
+          example: Urgent client request
+    PremiumTradeRequest:
+      required:
+      - amount
+      - amountSide
+      - baseSide
+      - buyCurrency
+      - counterpart
+      - sellCurrency
+      type: object
+      properties:
+        counterpart:
+          type: string
+          description: Identifier for the counterpart involved in the trade.
+          example: DEMOCP1
+        buyCurrency:
+          type: string
+          description: The currency to be purchased in the trade.
+          example: DKK
+        sellCurrency:
+          type: string
+          description: The currency to be sold in the trade.
+          example: EUR
+        amount:
+          type: number
+          description: Trade amount.
+          example: 1000000
+        amountSide:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          description: Indicates whether the trade is a buy or sell action.
+          example: BUY
+        baseSide:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          description: Indicates the base side of the trade.
+          example: SELL
+        maturityDate:
+          type: string
+          description: The date when the trade matures. Required if tenor is not provided.
+          example: '2026-08-31'
+        tenor:
+          type: string
+          description: The tenor for the trade, required if maturityDate is not provided.
+          example: 1W
+          enum:
+          - 'ON'
+          - TOM
+          - TN
+          - SP
+          - SN
+          - 1W
+          - 2W
+          - 3W
+          - 1M
+          - 2M
+          - 3M
+          - 4M
+          - 5M
+          - 6M
+          - 7M
+          - 8M
+          - 9M
+          - 10M
+          - 11M
+          - 15M
+          - 18M
+          - 1Y
+          - 2Y
+          - 3Y
+          - 4Y
+          - 5Y
+        comment:
+          type: string
+          description: Any additional comments regarding the trade (optional).
+          example: Urgent client request
+      description: Request for creating a premium trade. The 'comment' field is optional. Either 'maturityDate' or 'tenor' is required. If both are provided, 'maturityDate' will be used and 'tenor' will be ignored.
+    PremiumAmount:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency code in ISO 4217 format.
+          example: EUR
+        amount:
+          type: number
+          description: The amount involved in the trade, expressed in the specified currency.
+          example: 100000.1
   securitySchemes:
     BearerAuth:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
