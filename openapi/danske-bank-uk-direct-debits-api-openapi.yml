@@ -46,16 +46,56 @@ paths:
           $ref: '#/components/responses/503Error'
 components:
   schemas:
-    PointInTime:
-      description: 'Exact2NumericText - Further information on the exact point in time the event should take place. Specifies a frequency in terms of an exact point in time or moment within a specified frequency type. Note: should not be used alongside `CountPerPeriod`. Danske Bank: Interpreted in combination with ''Type'': https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#standing_order_frequencies'
+    OBMandateRelatedInformation1:
+      type: object
+      description: Provides further details of the mandate signed between the creditor and the debtor.
+      required:
+      - Frequency
+      properties:
+        MandateIdentification:
+          description: Unique identification, as assigned by the creditor, to unambiguously identify the mandate.
+          type: string
+          example: Golfers
+          minLength: 1
+          maxLength: 35
+        Classification:
+          $ref: '#/components/schemas/OBExternalMandateClassification1Code'
+        CategoryPurposeCode:
+          $ref: '#/components/schemas/ExternalCategoryPurpose1Code'
+        FirstPaymentDateTime:
+          description: The date on which the first payment for a recurrent credit transfer will be made.
+          example: '2024-04-25T12:46:49.425Z'
+          type: string
+          format: date-time
+        RecurringPaymentDateTime:
+          description: 'The date on which the first recurring payment for a Standing Order schedule will be made.  Usage: This must be populated only if the first recurring date is different to the first payment date. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
+          type: string
+          example: '2024-04-25T12:46:49.425Z'
+          format: date-time
+        FinalPaymentDateTime:
+          description: The date on which the final payment for a recurrent credit transfer will be made.
+          type: string
+          example: '2024-04-25T12:46:49.425Z'
+          format: date-time
+        Frequency:
+          $ref: '#/components/schemas/OBFrequency6'
+        Reason:
+          description: Reason for the setup of the credit transfer mandate.
+          type: string
+          example: To pay monthly membership
+          maxLength: 256
+          minLength: 1
+    ISODateTime:
+      description: 'All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
+
+        '
       type: string
-      example: '00'
-      maxLength: 2
-    AccountId:
-      description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
+      format: date-time
+    Name_2:
+      description: Name of Service User.
       type: string
       minLength: 1
-      maxLength: 40
+      maxLength: 70
     Links:
       description: Links relevant to the payload
       type: object
@@ -78,88 +118,6 @@ components:
         Last:
           type: string
           format: uri
-    OBExternalMandateClassification1Code:
-      description: Type of mandate instruction. For a full list of values see `OBExternalMandateClassification1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      example: FIXE
-      enum:
-      - FIXE
-      - USGB
-      - VARI
-    ExternalMandateStatus1Code:
-      description: Specifies the status of the standing order in code form. For a full list of enumeration values refer to 'ExternalMandateStatus1Code' in *ISO_External_Codeset* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      enum:
-      - ACTV
-      - CANC
-      - EXPI
-      - SUSP
-      example: ACTV
-    OBReadDirectDebit2:
-      type: object
-      additionalProperties: false
-      required:
-      - Data
-      properties:
-        Data:
-          type: object
-          properties:
-            DirectDebit:
-              type: array
-              items:
-                type: object
-                description: Account to or from which a cash entry is made.
-                required:
-                - AccountId
-                - Name
-                properties:
-                  AccountId:
-                    $ref: '#/components/schemas/AccountId'
-                  DirectDebitId:
-                    $ref: '#/components/schemas/DirectDebitId'
-                  DirectDebitStatusCode:
-                    $ref: '#/components/schemas/ExternalMandateStatus1Code'
-                  MandateRelatedInformation:
-                    $ref: '#/components/schemas/OBMandateRelatedInformation1'
-                  Name:
-                    $ref: '#/components/schemas/Name_2'
-                  PreviousPaymentDateTime:
-                    $ref: '#/components/schemas/PreviousPaymentDateTime'
-                  PreviousPaymentAmount:
-                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount_0'
-        Links:
-          $ref: '#/components/schemas/Links'
-        Meta:
-          $ref: '#/components/schemas/Meta'
-    Name_2:
-      description: Name of Service User.
-      type: string
-      minLength: 1
-      maxLength: 70
-    ActiveOrHistoricCurrencyCode_1:
-      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'.
-      type: string
-      pattern: ^[A-Z]{3,3}$
-    OBExternalStatusReason1Code:
-      description: Low level textual error code, for all enum values see `ExternalReason1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      minLength: 4
-      maxLength: 4
-      example: AC17
-    OBFrequency6Code:
-      description: 'For a full list of values see `OBFrequency6Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets) Values supported by Danske Bank: YEAR, FRTN, MNTH, QURT, MIAN, WEEK, WODL, TWMH, NONE. Value NONE is used in DirectDebits only. Danske Bank: Interpreted in combination with ''PointInTime'': https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#standing_order_frequencies'
-      type: string
-      example: MNTH
-      enum:
-      - YEAR
-      - FRTN
-      - MNTH
-      - QURT
-      - MIAN
-      - WEEK
-      - WODL
-      - TWMH
-      - NONE
     ExternalCategoryPurpose1Code:
       description: Enumeration of codes that outlines the type of purpose behind a transaction, payment or risk.  For all enum values see `ExternalCategoryPurpose1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
       type: string
@@ -208,44 +166,34 @@ components:
       - CIPC
       - CONC
       - CGWV
-    OBErrorResponse1:
-      description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
-      type: object
-      additionalProperties: false
-      required:
-      - Errors
-      properties:
-        Id:
-          description: A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
-          type: string
-          minLength: 1
-          maxLength: 40
-        Errors:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OBError1'
-    OBActiveCurrencyAndAmount_SimpleType:
-      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
+    PointInTime:
+      description: 'Exact2NumericText - Further information on the exact point in time the event should take place. Specifies a frequency in terms of an exact point in time or moment within a specified frequency type. Note: should not be used alongside `CountPerPeriod`. Danske Bank: Interpreted in combination with ''Type'': https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#standing_order_frequencies'
       type: string
-      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
-    PreviousPaymentDateTime:
-      description: 'Date of most recent direct debit collection. All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
-
-        '
+      example: '00'
+      maxLength: 2
+    OBExternalMandateClassification1Code:
+      description: Type of mandate instruction. For a full list of values see `OBExternalMandateClassification1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
       type: string
-      format: date-time
-    OBActiveOrHistoricCurrencyAndAmount_0:
-      description: The amount of the most recent direct debit collection.
+      example: FIXE
+      enum:
+      - FIXE
+      - USGB
+      - VARI
+    OBFrequency6:
+      description: Regularity with which credit transfer instructions are to be created and processed
       type: object
       required:
-      - Amount
-      - Currency
+      - Type
       properties:
-        Amount:
-          $ref: '#/components/schemas/OBActiveCurrencyAndAmount_SimpleType'
-        Currency:
-          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode_1'
+        Type:
+          $ref: '#/components/schemas/OBFrequency6Code'
+        CountPerPeriod:
+          description: 'Number of instructions to be created and processed during the specified period. Specifies a frequency in terms of a count per period within a specified frequency type. Note: should not be used alongside `PointInTime`'
+          type: integer
+          example: 1
+          format: int32
+        PointInTime:
+          $ref: '#/components/schemas/PointInTime'
     OBError1:
       type: object
       minProperties: 1
@@ -270,66 +218,35 @@ components:
         Url:
           description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
           type: string
-    OBFrequency6:
-      description: Regularity with which credit transfer instructions are to be created and processed
+    OBActiveOrHistoricCurrencyAndAmount_0:
+      description: The amount of the most recent direct debit collection.
       type: object
       required:
-      - Type
+      - Amount
+      - Currency
       properties:
-        Type:
-          $ref: '#/components/schemas/OBFrequency6Code'
-        CountPerPeriod:
-          description: 'Number of instructions to be created and processed during the specified period. Specifies a frequency in terms of a count per period within a specified frequency type. Note: should not be used alongside `PointInTime`'
-          type: integer
-          example: 1
-          format: int32
-        PointInTime:
-          $ref: '#/components/schemas/PointInTime'
-    OBMandateRelatedInformation1:
-      type: object
-      description: Provides further details of the mandate signed between the creditor and the debtor.
-      required:
-      - Frequency
-      properties:
-        MandateIdentification:
-          description: Unique identification, as assigned by the creditor, to unambiguously identify the mandate.
-          type: string
-          example: Golfers
-          minLength: 1
-          maxLength: 35
-        Classification:
-          $ref: '#/components/schemas/OBExternalMandateClassification1Code'
-        CategoryPurposeCode:
-          $ref: '#/components/schemas/ExternalCategoryPurpose1Code'
-        FirstPaymentDateTime:
-          description: The date on which the first payment for a recurrent credit transfer will be made.
-          example: '2024-04-25T12:46:49.425Z'
-          type: string
-          format: date-time
-        RecurringPaymentDateTime:
-          description: 'The date on which the first recurring payment for a Standing Order schedule will be made.  Usage: This must be populated only if the first recurring date is different to the first payment date. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
-          type: string
-          example: '2024-04-25T12:46:49.425Z'
-          format: date-time
-        FinalPaymentDateTime:
-          description: The date on which the final payment for a recurrent credit transfer will be made.
-          type: string
-          example: '2024-04-25T12:46:49.425Z'
-          format: date-time
-        Frequency:
-          $ref: '#/components/schemas/OBFrequency6'
-        Reason:
-          description: Reason for the setup of the credit transfer mandate.
-          type: string
-          example: To pay monthly membership
-          maxLength: 256
-          minLength: 1
-    ISODateTime:
-      description: 'All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
-
-        '
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount_SimpleType'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode_1'
+    AccountId:
+      description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
       type: string
-      format: date-time
+      minLength: 1
+      maxLength: 40
+    ActiveOrHistoricCurrencyCode_1:
+      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'.
+      type: string
+      pattern: ^[A-Z]{3,3}$
+    ExternalMandateStatus1Code:
+      description: Specifies the status of the standing order in code form. For a full list of enumeration values refer to 'ExternalMandateStatus1Code' in *ISO_External_Codeset* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      enum:
+      - ACTV
+      - CANC
+      - EXPI
+      - SUSP
+      example: ACTV
     Meta:
       title: MetaData
       description: Meta Data relevant to the payload
@@ -343,42 +260,97 @@ components:
           $ref: '#/components/schemas/ISODateTime'
         LastAvailableDateTime:
           $ref: '#/components/schemas/ISODateTime'
+    OBReadDirectDebit2:
+      type: object
+      additionalProperties: false
+      required:
+      - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            DirectDebit:
+              type: array
+              items:
+                type: object
+                description: Account to or from which a cash entry is made.
+                required:
+                - AccountId
+                - Name
+                properties:
+                  AccountId:
+                    $ref: '#/components/schemas/AccountId'
+                  DirectDebitId:
+                    $ref: '#/components/schemas/DirectDebitId'
+                  DirectDebitStatusCode:
+                    $ref: '#/components/schemas/ExternalMandateStatus1Code'
+                  MandateRelatedInformation:
+                    $ref: '#/components/schemas/OBMandateRelatedInformation1'
+                  Name:
+                    $ref: '#/components/schemas/Name_2'
+                  PreviousPaymentDateTime:
+                    $ref: '#/components/schemas/PreviousPaymentDateTime'
+                  PreviousPaymentAmount:
+                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount_0'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'
+    OBExternalStatusReason1Code:
+      description: Low level textual error code, for all enum values see `ExternalReason1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      minLength: 4
+      maxLength: 4
+      example: AC17
+    OBFrequency6Code:
+      description: 'For a full list of values see `OBFrequency6Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets) Values supported by Danske Bank: YEAR, FRTN, MNTH, QURT, MIAN, WEEK, WODL, TWMH, NONE. Value NONE is used in DirectDebits only. Danske Bank: Interpreted in combination with ''PointInTime'': https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#standing_order_frequencies'
+      type: string
+      example: MNTH
+      enum:
+      - YEAR
+      - FRTN
+      - MNTH
+      - QURT
+      - MIAN
+      - WEEK
+      - WODL
+      - TWMH
+      - NONE
+    PreviousPaymentDateTime:
+      description: 'Date of most recent direct debit collection. All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
+
+        '
+      type: string
+      format: date-time
     DirectDebitId:
       description: A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.
       type: string
       minLength: 1
       maxLength: 40
+    OBErrorResponse1:
+      description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
+      type: object
+      additionalProperties: false
+      required:
+      - Errors
+      properties:
+        Id:
+          description: A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
+          type: string
+          minLength: 1
+          maxLength: 40
+        Errors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OBError1'
+    OBActiveCurrencyAndAmount_SimpleType:
+      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
   responses:
     503Error:
       description: Service temporary unavailable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    405Error:
-      description: Method Not Allowed
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    406Error:
-      description: Not Acceptable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    403Error:
-      description: Forbidden
       headers:
         x-fapi-interaction-id:
           description: An RFC4122 UID used as a correlation id.
@@ -401,18 +373,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/OBErrorResponse1'
-    200AccountsAccountIdDirectDebitsRead:
-      description: Direct Debits Read
+    404Error:
+      description: Not found
       headers:
         x-fapi-interaction-id:
           description: An RFC4122 UID used as a correlation id.
           required: true
           schema:
             type: string
-      content:
-        application/json:
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
           schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
+            type: string
     401Error:
       description: Unauthorized
       headers:
@@ -434,6 +410,18 @@ components:
           required: true
           schema:
             type: string
+    200AccountsAccountIdDirectDebitsRead:
+      description: Direct Debits Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
     500Error:
       description: Internal Server Error
       headers:
@@ -446,8 +434,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/OBErrorResponse1'
-    404Error:
-      description: Not found
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    406Error:
+      description: Not Acceptable
       headers:
         x-fapi-interaction-id:
           description: An RFC4122 UID used as a correlation id.
@@ -465,6 +465,13 @@ components:
       schema:
         type: string
         pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
+    x-customer-user-agent:
+      name: x-customer-user-agent
+      in: header
+      description: Indicates the user-agent that the PSU is using.
+      required: false
+      schema:
+        type: string
     x-fapi-customer-ip-address:
       name: x-fapi-customer-ip-address
       in: header
@@ -483,13 +490,6 @@ components:
       name: x-fapi-interaction-id
       in: header
       description: An RFC4122 UID used as a correlation id.
-      required: false
-      schema:
-        type: string
-    x-customer-user-agent:
-      name: x-customer-user-agent
-      in: header
-      description: Indicates the user-agent that the PSU is using.
       required: false
       schema:
         type: string

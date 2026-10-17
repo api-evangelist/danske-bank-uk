@@ -62,91 +62,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/OBErrorResponse1'
-    405Error:
-      description: Method Not Allowed
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    406Error:
-      description: Not Acceptable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    415Error:
-      description: Unsupported Media Type
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    403Error:
-      description: Forbidden
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
     400Error:
       description: Bad request
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    401Error:
-      description: Unauthorized
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    200EventsRead:
-      description: Read awaiting events
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBEventPollingResponse1'
-    429Error:
-      description: Too Many Requests
-      headers:
-        Retry-After:
-          description: Number in seconds to wait
-          schema:
-            type: integer
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    201EventsCreated:
-      description: Events Created
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBEventPollingResponse1'
-    500Error:
-      description: Internal Server Error
       headers:
         x-fapi-interaction-id:
           description: An RFC4122 UID used as a correlation id.
@@ -163,14 +80,89 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
-  requestBodies:
-    OBEventPolling1Param:
-      description: Default
+    201EventsCreated:
+      description: Events Created
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OBEventPolling1'
-      required: true
+            $ref: '#/components/schemas/OBEventPollingResponse1'
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    429Error:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    500Error:
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    415Error:
+      description: Unsupported Media Type
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    406Error:
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    200EventsRead:
+      description: Read awaiting events
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBEventPollingResponse1'
   parameters:
     x-fapi-auth-date:
       name: x-fapi-auth-date
@@ -180,6 +172,13 @@ components:
       schema:
         type: string
         pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
+    x-customer-user-agent:
+      name: x-customer-user-agent
+      in: header
+      description: Indicates the user-agent that the PSU is using.
+      required: false
+      schema:
+        type: string
     x-fapi-customer-ip-address:
       name: x-fapi-customer-ip-address
       in: header
@@ -194,14 +193,47 @@ components:
       description: An RFC4122 UID used as a correlation id.
       schema:
         type: string
-    x-customer-user-agent:
-      name: x-customer-user-agent
-      in: header
-      description: Indicates the user-agent that the PSU is using.
-      required: false
-      schema:
-        type: string
   schemas:
+    OBEventPollingResponse1:
+      type: object
+      additionalProperties: false
+      required:
+      - moreAvailable
+      - sets
+      properties:
+        moreAvailable:
+          description: A JSON boolean value that indicates if more unacknowledged event notifications are available to be returned.
+          type: boolean
+        sets:
+          description: A JSON object that contains zero or more nested JSON attributes. If there are no outstanding event notifications to be transmitted, the JSON object SHALL be empty.
+          type: object
+          additionalProperties:
+            description: 'An object named with the jti of the event notification to be delivered. The value is the event notification, expressed as a string.
+
+              The payload of the event should be defined in the OBEventNotification2 format.'
+            type: string
+    OBError1:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      required:
+      - ErrorCode
+      properties:
+        ErrorCode:
+          $ref: '#/components/schemas/OBExternalStatusReason1Code'
+        Message:
+          description: A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBIE doesn't standardise this field
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
+          type: string
+          minLength: 1
+          maxLength: 500
+        Url:
+          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
+          type: string
     OBEventPolling1:
       type: object
       additionalProperties: false
@@ -238,24 +270,6 @@ components:
                 type: string
                 minLength: 1
                 maxLength: 256
-    OBEventPollingResponse1:
-      type: object
-      additionalProperties: false
-      required:
-      - moreAvailable
-      - sets
-      properties:
-        moreAvailable:
-          description: A JSON boolean value that indicates if more unacknowledged event notifications are available to be returned.
-          type: boolean
-        sets:
-          description: A JSON object that contains zero or more nested JSON attributes. If there are no outstanding event notifications to be transmitted, the JSON object SHALL be empty.
-          type: object
-          additionalProperties:
-            description: 'An object named with the jti of the event notification to be delivered. The value is the event notification, expressed as a string.
-
-              The payload of the event should be defined in the OBEventNotification2 format.'
-            type: string
     OBExternalStatusReason1Code:
       description: Low level textual error code, for all enum values see `ExternalReturnReason1Code` here - https://github.com/OpenBankingUK/External_Interal_CodeSets/
       type: string
@@ -279,28 +293,14 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/OBError1'
-    OBError1:
-      type: object
-      minProperties: 1
-      additionalProperties: false
-      required:
-      - ErrorCode
-      properties:
-        ErrorCode:
-          $ref: '#/components/schemas/OBExternalStatusReason1Code'
-        Message:
-          description: A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBIE doesn't standardise this field
-          type: string
-          minLength: 1
-          maxLength: 500
-        Path:
-          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
-          type: string
-          minLength: 1
-          maxLength: 500
-        Url:
-          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
-          type: string
+  requestBodies:
+    OBEventPolling1Param:
+      description: Default
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBEventPolling1'
+      required: true
   securitySchemes:
     BearerAuth:
       type: http

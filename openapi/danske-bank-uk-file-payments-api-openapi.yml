@@ -242,15 +242,862 @@ paths:
         '503':
           $ref: '#/components/responses/503Error'
 components:
+  responses:
+    503Error:
+      description: Service temporary unavailable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    200FilePaymentsFilePaymentIdRead:
+      description: File Payments Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFileResponse3'
+    400Error:
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    409Error:
+      description: Conflict
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    404Error:
+      description: Not found
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    429Error:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          required: true
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    200FilePaymentConsentsConsentIdFileCreated:
+      description: File Payment Consents Created
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    200FilePaymentConsentsConsentIdRead:
+      description: File Payment Consents Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFileConsentResponse4'
+    406Error:
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    415Error:
+      description: Unsupported Media Type
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    201FilePaymentsCreated:
+      description: File Payments Created
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFileResponse3'
+    200FilePaymentsFilePaymentIdReportFileRead:
+      description: File Payments Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/File'
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    500Error:
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    201FilePaymentConsentsCreated:
+      description: File Payment Consents Created
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        x-jws-signature:
+          description: Header containing a detached JWS signature of the body of the payload.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFileConsentResponse4'
   schemas:
+    Links:
+      description: Links relevant to the payload
+      type: object
+      additionalProperties: false
+      required:
+      - Self
+      properties:
+        Self:
+          type: string
+          format: uri
+        First:
+          type: string
+          format: uri
+        Prev:
+          type: string
+          format: uri
+        Next:
+          type: string
+          format: uri
+        Last:
+          type: string
+          format: uri
+    OBProxy1:
+      description: Specifies an alternate assumed name for the identification of the account.
+      type: object
+      required:
+      - Identification
+      - Code
+      properties:
+        Identification:
+          description: Identification used to indicate the account identification under another specified name.
+          type: string
+          minLength: 1
+          maxLength: 2048
+        Code:
+          $ref: '#/components/schemas/ExternalProxyAccountType1Code'
+        Type:
+          type: string
+          description: Type of the proxy identification.
+          minLength: 1
+          maxLength: 35
+    PostBox:
+      description: Information that locates and identifies a box in a post office assigned to a person or organization, where letters for them are kept until called for.
+      type: string
+      minLength: 1
+      maxLength: 16
+    Identification_4:
+      description: Identification of the party to whom an invoice is issued, when it is different from the debtor or ultimate debtor.
+      type: string
+      example: '80200112344562'
+      minLength: 1
+      maxLength: 256
+    OBSupplementaryData1:
+      description: Additional information that can not be captured in the structured fields and/or any other specific block.
+      type: object
+      additionalProperties: false
+    OBError1:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      required:
+      - ErrorCode
+      properties:
+        ErrorCode:
+          $ref: '#/components/schemas/OBInternalErrorResponseError1Code'
+        Message:
+          description: A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBL doesn't standardise this field
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
+          type: string
+          minLength: 1
+          maxLength: 500
+        Url:
+          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
+          type: string
+    BuildingNumber:
+      description: Number that identifies the position of a building on a street.
+      type: string
+      minLength: 1
+      maxLength: 16
+    OBRemittanceInformationStructured:
+      type: object
+      description: 'Danske Bank: object properties are not supported. Empty object should be used as a connection to CreditorReferenceInformation in cases when Reference has to be provided.'
+      properties:
+        ReferredDocumentInformation:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReferredDocumentInformation'
+        ReferredDocumentAmount:
+          description: Provides details on the amounts of the referred document.
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 2147483647
+        CreditorReferenceInformation:
+          description: 'Reference information provided by the creditor to allow the identification of the underlying documents. Danske Bank: only Reference is supported.'
+          type: object
+          properties:
+            Code:
+              $ref: '#/components/schemas/ExternalCreditorReferenceType1Code'
+            Issuer:
+              description: Entity that assigns the identification.
+              type: string
+              minLength: 1
+              maxLength: 35
+            Reference:
+              description: 'Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Danske Bank: The Faster Payments Scheme can only accept 18 characters reference. Only 16 characters are allowed when using UK.OBIE.CHAPS as LocalInstrument. Not supported in International payments.'
+              type: string
+              minLength: 1
+              maxLength: 35
+        Invoicer:
+          $ref: '#/components/schemas/Identification_3'
+        Invoicee:
+          $ref: '#/components/schemas/Identification_4'
+        TaxRemittance:
+          description: Provides remittance information about a payment made for tax-related purposes.
+          type: string
+          maxLength: 140
+          minLength: 1
+        AdditionalRemittanceInformation:
+          description: Additional information, in free text form, to complement the structured remittance information.
+          type: array
+          items:
+            type: string
+            maxLength: 140
+            minLength: 1
+          maxItems: 3
+    OBReferredDocumentInformation:
+      type: object
+      description: 'Danske Bank: object and its properties are not supported.'
+      properties:
+        Code:
+          $ref: '#/components/schemas/ExternalDocumentType1Code'
+        Issuer:
+          description: Identification of the issuer of the reference document type.
+          type: string
+          maxLength: 35
+          minLength: 1
+        Number:
+          description: Identification of the type specified for the referred document line.
+          type: string
+          maxLength: 35
+          minLength: 1
+        RelatedDate:
+          description: Date associated with the referred document line.
+          type: string
+          format: date-time
+        LineDetails:
+          description: Set of elements used to provide the content of the referred document line.
+          type: array
+          items:
+            type: string
+            maxLength: 140
+            minLength: 1
+    Name:
+      description: Name by which an agent is known and which is usually used to identify that agent.
+      type: string
+      minLength: 1
+      maxLength: 140
+    DistrictName:
+      description: Number that of the regional area, known as a district, which forms part of an address
+      type: string
+      minLength: 1
+      maxLength: 140
+    OBErrorResponse1:
+      description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
+      type: object
+      additionalProperties: false
+      required:
+      - Errors
+      properties:
+        Id:
+          description: A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
+          type: string
+          minLength: 1
+          maxLength: 40
+        Errors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OBError1'
+    OBWriteFileConsentResponse4:
+      type: object
+      additionalProperties: false
+      required:
+      - Data
+      properties:
+        Data:
+          type: object
+          additionalProperties: false
+          required:
+          - ConsentId
+          - CreationDateTime
+          - Status
+          - StatusUpdateDateTime
+          - Initiation
+          properties:
+            ConsentId:
+              description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.'
+              type: string
+              minLength: 1
+              maxLength: 128
+            CreationDateTime:
+              description: 'Date and time at which the resource was created. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
+              type: string
+              format: date-time
+            Status:
+              description: 'Specifies the status of consent resource in code form. Danske Bank: Please note that Payment consents with status AWAU (AwaitingAuthorisation) will expire after aprx. 24 hours from consent creation time. Payment consents with status AUTH (Authorised) will expire after apprx. 15 minutes from consent authorization but must be within 24 hours from consent creation. Status will not be updated for expired consents.'
+              type: string
+              enum:
+              - AWAU
+              - AWUP
+              - RJCT
+              - AUTH
+              - COND
+            StatusReason:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBStatusReason'
+            StatusUpdateDateTime:
+              description: 'Date and time at which the consent resource status was updated. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
+              type: string
+              format: date-time
+            CutOffDateTime:
+              description: 'Specified cut-off date and time for the payment consent. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
+              type: string
+              format: date-time
+            Charges:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                description: Set of elements used to provide details of a charge for the payment initiation.
+                required:
+                - ChargeBearer
+                - Type
+                - Amount
+                properties:
+                  ChargeBearer:
+                    $ref: '#/components/schemas/OBInternalChargeBearerType1Code'
+                  Type:
+                    $ref: '#/components/schemas/OBInternalPaymentChargeType1Code'
+                  Amount:
+                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount'
+            Initiation:
+              description: The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds using a payment file.
+              type: object
+              additionalProperties: false
+              required:
+              - FileType
+              - FileHash
+              properties:
+                FileType:
+                  description: Specifies the payment file type.
+                  type: string
+                  x-namespaced-enum:
+                  - DK.DanskeBank.pain.001.001.03
+                FileHash:
+                  description: 'A base64 encoding of a SHA256 hash of the file to be uploaded. Note that the file from TPP has to be sent with headers: Content-Type: application/octet-stream'
+                  type: string
+                  minLength: 1
+                  maxLength: 44
+                FileReference:
+                  description: Reference for the file.
+                  type: string
+                  minLength: 1
+                  maxLength: 40
+                NumberOfTransactions:
+                  description: Number of individual transactions contained in the payment information group.
+                  type: string
+                  pattern: '[0-9]{1,15}'
+                ControlSum:
+                  description: Total of all individual amounts included in the group, irrespective of currencies.
+                  type: number
+                RequestedExecutionDateTime:
+                  description: 'Date at which the initiating party requests the clearing agent to process the payment. Usage: This is the date on which the debtor''s account is to be debited. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Danske Bank: Value is accepted but ignored.'
+                  type: string
+                  format: date-time
+                LocalInstrument:
+                  $ref: '#/components/schemas/OBInternalLocalInstrument11Code'
+                CreditorAgent:
+                  type: object
+                  additionalProperties: false
+                  description: Financial institution servicing an account for the creditor.
+                  properties:
+                    SchemeName:
+                      $ref: '#/components/schemas/OBInternalFinancialInstitutionIdentification4Code'
+                    Identification:
+                      $ref: '#/components/schemas/Identification_1'
+                    Name:
+                      $ref: '#/components/schemas/Name'
+                    LEI:
+                      $ref: '#/components/schemas/LEI'
+                    PostalAddress:
+                      $ref: '#/components/schemas/OBPostalAddress7'
+                DebtorAccount:
+                  description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - SchemeName
+                  - Identification
+                  properties:
+                    SchemeName:
+                      $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
+                    Identification:
+                      description: 'Identification assigned by an institution to identify an account. This identification is known by the account owner. Danske Bank: value is accepted but ignored.
+
+                        '
+                      allOf:
+                      - $ref: '#/components/schemas/Identification_0'
+                    Name:
+                      description: 'The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP''s online channels. Note, the account name is not the product name or the nickname of the account. Danske Bank: value is accepted but ignored.'
+                      type: string
+                      minLength: 1
+                      maxLength: 350
+                    SecondaryIdentification:
+                      description: 'This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). Danske Bank: value is accepted but ignored.
+
+                        '
+                      allOf:
+                      - $ref: '#/components/schemas/SecondaryIdentification'
+                    Proxy:
+                      $ref: '#/components/schemas/OBProxy1'
+                UltimateDebtor:
+                  $ref: '#/components/schemas/OBUltimateDebtor1'
+                RemittanceInformation:
+                  $ref: '#/components/schemas/OBRemittanceInformation2'
+                SupplementaryData:
+                  $ref: '#/components/schemas/OBSupplementaryData1'
+            Authorisation:
+              description: The authorisation type request from the TPP.
+              type: object
+              additionalProperties: false
+              required:
+              - AuthorisationType
+              properties:
+                AuthorisationType:
+                  description: 'Type of authorisation flow requested. Danske Bank: If you request ‘Single’ and the PSU does not have the authority to make a payment without needing another person to approve it, the payment will be rejected.'
+                  type: string
+                  enum:
+                  - Any
+                  - Single
+                CompletionDateTime:
+                  description: 'Date and time at which the requested authorisation flow must be completed. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Warning: Danske Bank does not support this functionality. Payments which require further authorisation must be fully authorised in our online channel by midnight of the due date or the payment will be rejected.'
+                  type: string
+                  format: date-time
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'
+    ExternalCreditorReferenceType1Code:
+      type: string
+      minLength: 1
+      maxLength: 4
+      description: Specifies the type of creditor reference as published in an external creditor reference type code set. For more information see `ExternalCreditorReferenceType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      enum:
+      - DISP
+      - FXDR
+      - PUOR
+      - RPIN
+      - RADM
+      - SCOR
+    OBStatusReason:
+      type: object
+      properties:
+        StatusReasonCode:
+          type: string
+          description: "Specifies the status reason in a code form. \nFor a full list of values refer to `OBExternalStatusReason1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)"
+          minLength: 1
+          maxLength: 4
+          example: ERIN
+        StatusReasonDescription:
+          description: Description supporting the StatusReasonCode.
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          type: string
+          description: Path is optional but relevant when the status reason refers to an object/field and hence conditional to provide JSON path.
+          minLength: 1
+          maxLength: 500
+    Room:
+      description: Information that locates and identifies a room to form part of an address
+      type: string
+      minLength: 1
+      maxLength: 70
+    ExternalDocumentType1Code:
+      type: string
+      minLength: 1
+      maxLength: 4
+      description: Specifies the document type as published in an external document type code list. For more information see `ExternalDocumentType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      enum:
+      - CINV
+      - CNFA
+      - CONT
+      - CREN
+      - DEBN
+      - DISP
+      - DNFA
+      - HIRI
+      - INVS
+      - MSIN
+      - PROF
+      - PUOR
+      - QUOT
+      - SBIN
+      - SPRR
+      - TISH
+      - USAR
+      - AROI
+      - BOLD
+      - CMCN
+      - SOAC
+      - TSUT
+      - VCHR
     StreetName:
       description: Name of a street or thoroughfare.
       type: string
       minLength: 1
       maxLength: 140
-    File:
+    OBSCASupportData1:
+      type: object
+      additionalProperties: false
+      description: 'Supporting Data provided by TPP, when requesting SCA Exemption.         Danske Bank: object and its properties are not supported.'
+      properties:
+        RequestedSCAExemptionType:
+          type: string
+          description: This field allows a PISP to request specific SCA Exemption for a Payment Initiation. For a full list of values reefer to `OBInternalSCAExemptionType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+          enum:
+          - BillPayment
+          - ContactlessTravel
+          - EcommerceGoods
+          - EcommerceServices
+          - Kiosk
+          - Parking
+          - PartyToParty
+        AppliedAuthenticationApproach:
+          type: string
+          maxLength: 40
+          description: 'Specifies a character string with a maximum length of 40 characters. Usage: This field indicates whether the PSU was subject to SCA performed by the TPP For a full list of values refer to `OBInternalAppliedAuthenticationApproach1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)'
+          enum:
+          - CA
+          - SCA
+        ReferencePaymentOrderId:
+          type: string
+          maxLength: 40
+          minLength: 1
+          description: If the payment is recurring, then this field is populated with the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence. The value here refers to the payment id e.g. DomesticPaymentId
+    SecondaryIdentification:
+      description: This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).
       type: string
-      format: binary
+      minLength: 1
+      maxLength: 34
+    TownName:
+      description: Name of a built-up area, with defined boundaries, and a local government.
+      type: string
+      minLength: 1
+      maxLength: 140
+    Meta:
+      title: MetaData
+      description: Meta Data relevant to the payload
+      type: object
+      additionalProperties: false
+      properties:
+        TotalPages:
+          type: integer
+          format: int32
+        FirstAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+        LastAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+    OBWriteFileConsent3:
+      type: object
+      additionalProperties: false
+      required:
+      - Data
+      properties:
+        Data:
+          type: object
+          additionalProperties: false
+          required:
+          - Initiation
+          properties:
+            Initiation:
+              description: The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds using a payment file.
+              type: object
+              additionalProperties: false
+              required:
+              - FileType
+              - FileHash
+              properties:
+                FileType:
+                  description: Specifies the payment file type.
+                  type: string
+                  x-namespaced-enum:
+                  - DK.DanskeBank.pain.001.001.03
+                FileHash:
+                  description: 'A base64 encoding of a SHA256 hash of the file to be. Note that the file from TPP has to be sent with headers: Content-Type: application/octet-stream uploaded.'
+                  type: string
+                  minLength: 1
+                  maxLength: 44
+                FileReference:
+                  description: Reference for the file.
+                  type: string
+                  minLength: 1
+                  maxLength: 40
+                NumberOfTransactions:
+                  description: Number of individual transactions contained in the payment information group.
+                  type: string
+                  pattern: '[0-9]{1,15}'
+                ControlSum:
+                  description: 'Total of all individual amounts included in the group, irrespective of currencies. Danske Bank: due to Danske Bank infrastructure specifics, value should not contain trailing zeroes. E.g. 100.00 should be stated as 100'
+                  type: number
+                RequestedExecutionDateTime:
+                  description: 'Date at which the initiating party requests the clearing agent to process the payment. Usage: This is the date on which the debtor''s account is to be debited. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Danske Bank: value is accepted but ignored.'
+                  type: string
+                  format: date-time
+                LocalInstrument:
+                  $ref: '#/components/schemas/OBInternalLocalInstrument11Code'
+                CreditorAgent:
+                  type: object
+                  additionalProperties: false
+                  description: Financial institution servicing an account for the creditor.
+                  properties:
+                    SchemeName:
+                      $ref: '#/components/schemas/OBInternalFinancialInstitutionIdentification4Code'
+                    Identification:
+                      $ref: '#/components/schemas/Identification_1'
+                    Name:
+                      $ref: '#/components/schemas/Name'
+                    LEI:
+                      $ref: '#/components/schemas/LEI'
+                    PostalAddress:
+                      $ref: '#/components/schemas/OBPostalAddress7'
+                DebtorAccount:
+                  description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - SchemeName
+                  - Identification
+                  properties:
+                    SchemeName:
+                      $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
+                    Identification:
+                      description: 'Identification assigned by an institution to identify an account. This identification is known by the account owner. Danske Bank: value is accepted but ignored.
+
+                        '
+                      allOf:
+                      - $ref: '#/components/schemas/Identification_0'
+                    Name:
+                      description: 'The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP''s online channels. Note, the account name is not the product name or the nickname of the account. Danske Bank: value is accepted but ignored.'
+                      type: string
+                      minLength: 1
+                      maxLength: 350
+                    SecondaryIdentification:
+                      description: 'This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). Danske Bank: value is accepted but ignored.
+
+                        '
+                      allOf:
+                      - $ref: '#/components/schemas/SecondaryIdentification'
+                    Proxy:
+                      $ref: '#/components/schemas/OBProxy1'
+                UltimateDebtor:
+                  $ref: '#/components/schemas/OBUltimateDebtor1'
+                RemittanceInformation:
+                  $ref: '#/components/schemas/OBRemittanceInformation2'
+                SupplementaryData:
+                  $ref: '#/components/schemas/OBSupplementaryData1'
+            Authorisation:
+              description: The authorisation type request from the TPP.
+              type: object
+              additionalProperties: false
+              required:
+              - AuthorisationType
+              properties:
+                AuthorisationType:
+                  description: 'Type of authorisation flow requested. Danske Bank: If you request ‘Single’ and the PSU does not have the authority to make a payment without needing another person to approve it, the payment will be rejected.'
+                  type: string
+                  enum:
+                  - Any
+                  - Single
+                CompletionDateTime:
+                  description: 'Date and time at which the requested authorisation flow must be completed. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Warning: Danske Bank does not support this functionality. Payments which require further authorisation must be fully authorised in our online channel by midnight of the due date or the payment will be rejected.'
+                  type: string
+                  format: date-time
+            SCASupportData:
+              $ref: '#/components/schemas/OBSCASupportData1'
+    OBInternalPaymentChargeType1Code:
+      description: Charge type, in a coded form. For a full list of values refer to `OBInternalPaymentChargeType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      x-namespaced-enum:
+      - UK.OBIE.CHAPSOut
+      - UK.OBIE.BalanceTransferOut
+      - UK.OBIE.MoneyTransferOut
+    UnitNumber:
+      description: Number that identifies the unit of a specific address .
+      type: string
+      minLength: 1
+      maxLength: 16
+    ActiveOrHistoricCurrencyCode:
+      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+      type: string
+      pattern: ^[A-Z]{3,3}$
+    OBActiveCurrencyAndAmount_SimpleType:
+      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
+    OBInternalErrorResponseError1Code:
+      description: Low level textual error code, for all enum values see `OBInternalErrorResponseError1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      minLength: 4
+      maxLength: 4
+      example: U001
+    OBInternalLocalInstrument11Code:
+      description: 'User community specific instrument. Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level. Danske Bank: Value is accepted but ignored.'
+      type: string
+      minLength: 1
+      maxLength: 50
     OBInternalAccountIdentification45Code:
       description: 'Name of the identification scheme, in a coded form as published in an external list. Value is accepted but ignored.
 
@@ -258,25 +1105,109 @@ components:
       type: string
       minLength: 1
       maxLength: 40
-    CountryCode:
-      description: Nation with its own government.
+    OBPostalAddress7:
+      type: object
+      additionalProperties: false
+      description: Information that locates and identifies a specific address, as defined by postal services.
+      properties:
+        AddressType:
+          $ref: '#/components/schemas/OBAddressType2Code'
+        Department:
+          $ref: '#/components/schemas/Department'
+        SubDepartment:
+          $ref: '#/components/schemas/SubDepartment'
+        StreetName:
+          $ref: '#/components/schemas/StreetName'
+        BuildingNumber:
+          $ref: '#/components/schemas/BuildingNumber'
+        BuildingName:
+          $ref: '#/components/schemas/BuildingName'
+        Floor:
+          $ref: '#/components/schemas/Floor'
+        UnitNumber:
+          $ref: '#/components/schemas/UnitNumber'
+        Room:
+          $ref: '#/components/schemas/Room'
+        PostBox:
+          $ref: '#/components/schemas/PostBox'
+        TownLocationName:
+          $ref: '#/components/schemas/TownName'
+        DistrictName:
+          $ref: '#/components/schemas/DistrictName'
+        CareOf:
+          $ref: '#/components/schemas/CareOf'
+        PostCode:
+          $ref: '#/components/schemas/PostCode'
+        TownName:
+          $ref: '#/components/schemas/TownName'
+        CountrySubDivision:
+          $ref: '#/components/schemas/CountrySubDivision'
+        Country:
+          $ref: '#/components/schemas/CountryCode'
+        AddressLine:
+          type: array
+          minItems: 0
+          maxItems: 7
+          items:
+            description: Information that locates and identifies a specific address, as defined by postal services, presented in free format text.
+            type: string
+            minLength: 1
+            maxLength: 70
+    OBInternalChargeBearerType1Code:
+      description: Specifies which party/parties will bear the charges associated with the processing of the payment transaction. For a full list of values refer to `OBInternalChargeBearerType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
       type: string
-      pattern: ^[A-Z]{2,2}$
-    UnitNumber:
-      description: Number that identifies the unit of a specific address .
-      type: string
-      minLength: 1
-      maxLength: 16
-    SubDepartment:
-      description: Identification of a sub-division of a large organisation or building.
-      type: string
-      minLength: 1
-      maxLength: 70
+      enum:
+      - BorneByCreditor
+      - BorneByDebtor
+      - FollowingServiceLevel
+      - Shared
     Identification_0:
       description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
       type: string
       minLength: 1
       maxLength: 256
+    BuildingName:
+      description: Name of a referenced building.
+      type: string
+      minLength: 1
+      maxLength: 140
+    OBAddressType2Code:
+      description: Identifies the nature of the postal address. For a full set of codes see `OBAddressType2Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets).
+      type: string
+      enum:
+      - BIZZ
+      - DLVY
+      - MLTO
+      - PBOX
+      - ADDR
+      - HOME
+      - CORR
+      - STAT
+    ExternalProxyAccountType1Code:
+      description: Specifies the external proxy account type code, as published in the proxy account type external code set.<br /> For a full list of values see `ExternalProxyAccountType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      enum:
+      - TELE
+      - EMAL
+      - DNAM
+      - CINC
+      - COTX
+      - COID
+      - CUST
+      - DRLC
+      - EIDN
+      - EWAL
+      - PVTX
+      - LEIC
+      - MBNO
+      - NIDN
+      - CCPT
+      - SHID
+      - SOSE
+      - TOKN
+      - UBIL
+      - VIPN
+      - BIID
     OBWriteFileResponse3:
       type: object
       additionalProperties: false
@@ -458,602 +1389,17 @@ components:
           $ref: '#/components/schemas/Links'
         Meta:
           $ref: '#/components/schemas/Meta'
-    OBActiveCurrencyAndAmount_SimpleType:
-      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
-      type: string
-      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
-    OBAddressType2Code:
-      description: Identifies the nature of the postal address. For a full set of codes see `OBAddressType2Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets).
-      type: string
-      enum:
-      - BIZZ
-      - DLVY
-      - MLTO
-      - PBOX
-      - ADDR
-      - HOME
-      - CORR
-      - STAT
-    OBError1:
-      type: object
-      minProperties: 1
-      additionalProperties: false
-      required:
-      - ErrorCode
-      properties:
-        ErrorCode:
-          $ref: '#/components/schemas/OBInternalErrorResponseError1Code'
-        Message:
-          description: A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBL doesn't standardise this field
-          type: string
-          minLength: 1
-          maxLength: 500
-        Path:
-          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
-          type: string
-          minLength: 1
-          maxLength: 500
-        Url:
-          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
-          type: string
-    Department:
-      description: Identification of a division of a large organisation or building.
-      type: string
-      minLength: 1
-      maxLength: 70
-    Identification_3:
-      description: Identification of the organisation issuing the invoice, when it is different from the creditor or ultimate creditor
-      type: string
-      example: '80200112344562'
-      minLength: 1
-      maxLength: 256
-    Meta:
-      title: MetaData
-      description: Meta Data relevant to the payload
-      type: object
-      additionalProperties: false
-      properties:
-        TotalPages:
-          type: integer
-          format: int32
-        FirstAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
-        LastAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
-    ExternalCreditorReferenceType1Code:
-      type: string
-      minLength: 1
-      maxLength: 4
-      description: Specifies the type of creditor reference as published in an external creditor reference type code set. For more information see `ExternalCreditorReferenceType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      enum:
-      - DISP
-      - FXDR
-      - PUOR
-      - RPIN
-      - RADM
-      - SCOR
-    OBWriteFileConsentResponse4:
-      type: object
-      additionalProperties: false
-      required:
-      - Data
-      properties:
-        Data:
-          type: object
-          additionalProperties: false
-          required:
-          - ConsentId
-          - CreationDateTime
-          - Status
-          - StatusUpdateDateTime
-          - Initiation
-          properties:
-            ConsentId:
-              description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.'
-              type: string
-              minLength: 1
-              maxLength: 128
-            CreationDateTime:
-              description: 'Date and time at which the resource was created. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
-              type: string
-              format: date-time
-            Status:
-              description: 'Specifies the status of consent resource in code form. Danske Bank: Please note that Payment consents with status AWAU (AwaitingAuthorisation) will expire after aprx. 24 hours from consent creation time. Payment consents with status AUTH (Authorised) will expire after apprx. 15 minutes from consent authorization but must be within 24 hours from consent creation. Status will not be updated for expired consents.'
-              type: string
-              enum:
-              - AWAU
-              - AWUP
-              - RJCT
-              - AUTH
-              - COND
-            StatusReason:
-              type: array
-              items:
-                $ref: '#/components/schemas/OBStatusReason'
-            StatusUpdateDateTime:
-              description: 'Date and time at which the consent resource status was updated. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
-              type: string
-              format: date-time
-            CutOffDateTime:
-              description: 'Specified cut-off date and time for the payment consent. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
-              type: string
-              format: date-time
-            Charges:
-              type: array
-              items:
-                type: object
-                additionalProperties: false
-                description: Set of elements used to provide details of a charge for the payment initiation.
-                required:
-                - ChargeBearer
-                - Type
-                - Amount
-                properties:
-                  ChargeBearer:
-                    $ref: '#/components/schemas/OBInternalChargeBearerType1Code'
-                  Type:
-                    $ref: '#/components/schemas/OBInternalPaymentChargeType1Code'
-                  Amount:
-                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount'
-            Initiation:
-              description: The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds using a payment file.
-              type: object
-              additionalProperties: false
-              required:
-              - FileType
-              - FileHash
-              properties:
-                FileType:
-                  description: Specifies the payment file type.
-                  type: string
-                  x-namespaced-enum:
-                  - DK.DanskeBank.pain.001.001.03
-                FileHash:
-                  description: 'A base64 encoding of a SHA256 hash of the file to be uploaded. Note that the file from TPP has to be sent with headers: Content-Type: application/octet-stream'
-                  type: string
-                  minLength: 1
-                  maxLength: 44
-                FileReference:
-                  description: Reference for the file.
-                  type: string
-                  minLength: 1
-                  maxLength: 40
-                NumberOfTransactions:
-                  description: Number of individual transactions contained in the payment information group.
-                  type: string
-                  pattern: '[0-9]{1,15}'
-                ControlSum:
-                  description: Total of all individual amounts included in the group, irrespective of currencies.
-                  type: number
-                RequestedExecutionDateTime:
-                  description: 'Date at which the initiating party requests the clearing agent to process the payment. Usage: This is the date on which the debtor''s account is to be debited. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Danske Bank: Value is accepted but ignored.'
-                  type: string
-                  format: date-time
-                LocalInstrument:
-                  $ref: '#/components/schemas/OBInternalLocalInstrument11Code'
-                CreditorAgent:
-                  type: object
-                  additionalProperties: false
-                  description: Financial institution servicing an account for the creditor.
-                  properties:
-                    SchemeName:
-                      $ref: '#/components/schemas/OBInternalFinancialInstitutionIdentification4Code'
-                    Identification:
-                      $ref: '#/components/schemas/Identification_1'
-                    Name:
-                      $ref: '#/components/schemas/Name'
-                    LEI:
-                      $ref: '#/components/schemas/LEI'
-                    PostalAddress:
-                      $ref: '#/components/schemas/OBPostalAddress7'
-                DebtorAccount:
-                  description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                  type: object
-                  additionalProperties: false
-                  required:
-                  - SchemeName
-                  - Identification
-                  properties:
-                    SchemeName:
-                      $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
-                    Identification:
-                      description: 'Identification assigned by an institution to identify an account. This identification is known by the account owner. Danske Bank: value is accepted but ignored.
-
-                        '
-                      allOf:
-                      - $ref: '#/components/schemas/Identification_0'
-                    Name:
-                      description: 'The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP''s online channels. Note, the account name is not the product name or the nickname of the account. Danske Bank: value is accepted but ignored.'
-                      type: string
-                      minLength: 1
-                      maxLength: 350
-                    SecondaryIdentification:
-                      description: 'This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). Danske Bank: value is accepted but ignored.
-
-                        '
-                      allOf:
-                      - $ref: '#/components/schemas/SecondaryIdentification'
-                    Proxy:
-                      $ref: '#/components/schemas/OBProxy1'
-                UltimateDebtor:
-                  $ref: '#/components/schemas/OBUltimateDebtor1'
-                RemittanceInformation:
-                  $ref: '#/components/schemas/OBRemittanceInformation2'
-                SupplementaryData:
-                  $ref: '#/components/schemas/OBSupplementaryData1'
-            Authorisation:
-              description: The authorisation type request from the TPP.
-              type: object
-              additionalProperties: false
-              required:
-              - AuthorisationType
-              properties:
-                AuthorisationType:
-                  description: 'Type of authorisation flow requested. Danske Bank: If you request ‘Single’ and the PSU does not have the authority to make a payment without needing another person to approve it, the payment will be rejected.'
-                  type: string
-                  enum:
-                  - Any
-                  - Single
-                CompletionDateTime:
-                  description: 'Date and time at which the requested authorisation flow must be completed. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Warning: Danske Bank does not support this functionality. Payments which require further authorisation must be fully authorised in our online channel by midnight of the due date or the payment will be rejected.'
-                  type: string
-                  format: date-time
-        Links:
-          $ref: '#/components/schemas/Links'
-        Meta:
-          $ref: '#/components/schemas/Meta'
-    OBStatusReason:
-      type: object
-      properties:
-        StatusReasonCode:
-          type: string
-          description: "Specifies the status reason in a code form. \nFor a full list of values refer to `OBExternalStatusReason1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)"
-          minLength: 1
-          maxLength: 4
-          example: ERIN
-        StatusReasonDescription:
-          description: Description supporting the StatusReasonCode.
-          type: string
-          minLength: 1
-          maxLength: 500
-        Path:
-          type: string
-          description: Path is optional but relevant when the status reason refers to an object/field and hence conditional to provide JSON path.
-          minLength: 1
-          maxLength: 500
-    Name:
-      description: Name by which an agent is known and which is usually used to identify that agent.
-      type: string
-      minLength: 1
-      maxLength: 140
-    OBInternalLocalInstrument11Code:
-      description: 'User community specific instrument. Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level. Danske Bank: Value is accepted but ignored.'
-      type: string
-      minLength: 1
-      maxLength: 50
-    DistrictName:
-      description: Number that of the regional area, known as a district, which forms part of an address
-      type: string
-      minLength: 1
-      maxLength: 140
-    ActiveOrHistoricCurrencyCode:
-      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
-      type: string
-      pattern: ^[A-Z]{3,3}$
-    LEI:
-      description: Legal entity identification as an alternate identification for a party. Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
-      type: string
-      minLength: 1
-      maxLength: 20
-      pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
-    CountrySubDivision:
-      description: Identifies a subdivision of a country such as state, region, country.
-      type: string
-      minLength: 1
-      maxLength: 35
-    TownName:
-      description: Name of a built-up area, with defined boundaries, and a local government.
-      type: string
-      minLength: 1
-      maxLength: 140
-    CareOf:
-      description: The 'care of' address is used whenever sending mail to a person or organisation who does not actually live or work at the address. They will receive the mail for the individual.
-      type: string
-      minLength: 1
-      maxLength: 140
-    OBReferredDocumentInformation:
-      type: object
-      description: 'Danske Bank: object and its properties are not supported.'
-      properties:
-        Code:
-          $ref: '#/components/schemas/ExternalDocumentType1Code'
-        Issuer:
-          description: Identification of the issuer of the reference document type.
-          type: string
-          maxLength: 35
-          minLength: 1
-        Number:
-          description: Identification of the type specified for the referred document line.
-          type: string
-          maxLength: 35
-          minLength: 1
-        RelatedDate:
-          description: Date associated with the referred document line.
-          type: string
-          format: date-time
-        LineDetails:
-          description: Set of elements used to provide the content of the referred document line.
-          type: array
-          items:
-            type: string
-            maxLength: 140
-            minLength: 1
-    OBSCASupportData1:
-      type: object
-      additionalProperties: false
-      description: 'Supporting Data provided by TPP, when requesting SCA Exemption.         Danske Bank: object and its properties are not supported.'
-      properties:
-        RequestedSCAExemptionType:
-          type: string
-          description: This field allows a PISP to request specific SCA Exemption for a Payment Initiation. For a full list of values reefer to `OBInternalSCAExemptionType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-          enum:
-          - BillPayment
-          - ContactlessTravel
-          - EcommerceGoods
-          - EcommerceServices
-          - Kiosk
-          - Parking
-          - PartyToParty
-        AppliedAuthenticationApproach:
-          type: string
-          maxLength: 40
-          description: 'Specifies a character string with a maximum length of 40 characters. Usage: This field indicates whether the PSU was subject to SCA performed by the TPP For a full list of values refer to `OBInternalAppliedAuthenticationApproach1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)'
-          enum:
-          - CA
-          - SCA
-        ReferencePaymentOrderId:
-          type: string
-          maxLength: 40
-          minLength: 1
-          description: If the payment is recurring, then this field is populated with the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence. The value here refers to the payment id e.g. DomesticPaymentId
     ISODateTime:
       description: 'All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00'
       type: string
       format: date-time
-    OBSupplementaryData1:
-      description: Additional information that can not be captured in the structured fields and/or any other specific block.
-      type: object
-      additionalProperties: false
-    OBProxy1:
-      description: Specifies an alternate assumed name for the identification of the account.
-      type: object
-      required:
-      - Identification
-      - Code
-      properties:
-        Identification:
-          description: Identification used to indicate the account identification under another specified name.
-          type: string
-          minLength: 1
-          maxLength: 2048
-        Code:
-          $ref: '#/components/schemas/ExternalProxyAccountType1Code'
-        Type:
-          type: string
-          description: Type of the proxy identification.
-          minLength: 1
-          maxLength: 35
-    PostCode:
-      description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.
-      type: string
-      minLength: 1
-      maxLength: 16
-    SecondaryIdentification:
-      description: This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).
-      type: string
-      minLength: 1
-      maxLength: 34
-    Room:
-      description: Information that locates and identifies a room to form part of an address
+    SubDepartment:
+      description: Identification of a sub-division of a large organisation or building.
       type: string
       minLength: 1
       maxLength: 70
-    OBRemittanceInformation2:
-      type: object
-      description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system. Danske Bank: Note, Remittance information is not supported in File payments.'
-      properties:
-        Structured:
-          type: array
-          maxItems: 1
-          description: 'Danske Bank: Only one item is supported by Danske Bank.'
-          items:
-            $ref: '#/components/schemas/OBRemittanceInformationStructured'
-        Unstructured:
-          type: array
-          maxItems: 1
-          description: Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. When using UK.OBIE.CHAPS as LocalInstrument, only 18 characters are allowed for transfers within Danske Bank and 70 characters for transfers outside Danske. Only one item is supported by Danske Bank. Not supported in Standing Orders.
-          items:
-            type: string
-            maxLength: 140
-            minLength: 1
-    Identification_1:
-      description: 'Unique and unambiguous identification of a financial institution or a branch of a financial institution. Danske bank supports 8 or 11 length UK.OBIE.BICFI identifiers. In case of UK.OBIE.NCC.[ISO3166-aplha2-CountryCode] the following rules will apply: https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#creditoragent_ncc_identification_values'
-      type: string
-      minLength: 8
-      maxLength: 14
-    OBInternalErrorResponseError1Code:
-      description: Low level textual error code, for all enum values see `OBInternalErrorResponseError1Code` [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      minLength: 4
-      maxLength: 4
-      example: U001
-    OBRemittanceInformationStructured:
-      type: object
-      description: 'Danske Bank: object properties are not supported. Empty object should be used as a connection to CreditorReferenceInformation in cases when Reference has to be provided.'
-      properties:
-        ReferredDocumentInformation:
-          type: array
-          items:
-            $ref: '#/components/schemas/OBReferredDocumentInformation'
-        ReferredDocumentAmount:
-          description: Provides details on the amounts of the referred document.
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 2147483647
-        CreditorReferenceInformation:
-          description: 'Reference information provided by the creditor to allow the identification of the underlying documents. Danske Bank: only Reference is supported.'
-          type: object
-          properties:
-            Code:
-              $ref: '#/components/schemas/ExternalCreditorReferenceType1Code'
-            Issuer:
-              description: Entity that assigns the identification.
-              type: string
-              minLength: 1
-              maxLength: 35
-            Reference:
-              description: 'Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Danske Bank: The Faster Payments Scheme can only accept 18 characters reference. Only 16 characters are allowed when using UK.OBIE.CHAPS as LocalInstrument. Not supported in International payments.'
-              type: string
-              minLength: 1
-              maxLength: 35
-        Invoicer:
-          $ref: '#/components/schemas/Identification_3'
-        Invoicee:
-          $ref: '#/components/schemas/Identification_4'
-        TaxRemittance:
-          description: Provides remittance information about a payment made for tax-related purposes.
-          type: string
-          maxLength: 140
-          minLength: 1
-        AdditionalRemittanceInformation:
-          description: Additional information, in free text form, to complement the structured remittance information.
-          type: array
-          items:
-            type: string
-            maxLength: 140
-            minLength: 1
-          maxItems: 3
-    Links:
-      description: Links relevant to the payload
-      type: object
-      additionalProperties: false
-      required:
-      - Self
-      properties:
-        Self:
-          type: string
-          format: uri
-        First:
-          type: string
-          format: uri
-        Prev:
-          type: string
-          format: uri
-        Next:
-          type: string
-          format: uri
-        Last:
-          type: string
-          format: uri
-    ExternalProxyAccountType1Code:
-      description: Specifies the external proxy account type code, as published in the proxy account type external code set.<br /> For a full list of values see `ExternalProxyAccountType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      enum:
-      - TELE
-      - EMAL
-      - DNAM
-      - CINC
-      - COTX
-      - COID
-      - CUST
-      - DRLC
-      - EIDN
-      - EWAL
-      - PVTX
-      - LEIC
-      - MBNO
-      - NIDN
-      - CCPT
-      - SHID
-      - SOSE
-      - TOKN
-      - UBIL
-      - VIPN
-      - BIID
-    BuildingNumber:
-      description: Number that identifies the position of a building on a street.
-      type: string
-      minLength: 1
-      maxLength: 16
-    PostBox:
-      description: Information that locates and identifies a box in a post office assigned to a person or organization, where letters for them are kept until called for.
-      type: string
-      minLength: 1
-      maxLength: 16
-    OBUltimateDebtor1:
-      description: 'Ultimate party that owes an amount of money to the (ultimate) creditor. Danske Bank: Object is accepted but ignored.'
-      type: object
-      properties:
-        Name:
-          description: Name by which a party is known and which is usually used to identify that party.
-          type: string
-          minLength: 1
-          maxLength: 140
-        Identification:
-          description: Identification assigned by an institution.
-          type: string
-          minLength: 1
-          maxLength: 256
-        LEI:
-          $ref: '#/components/schemas/LEI'
-        SchemeName:
-          $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
-        PostalAddress:
-          $ref: '#/components/schemas/OBPostalAddress7'
-    OBInternalPaymentChargeType1Code:
-      description: Charge type, in a coded form. For a full list of values refer to `OBInternalPaymentChargeType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      x-namespaced-enum:
-      - UK.OBIE.CHAPSOut
-      - UK.OBIE.BalanceTransferOut
-      - UK.OBIE.MoneyTransferOut
-    BuildingName:
-      description: Name of a referenced building.
-      type: string
-      minLength: 1
-      maxLength: 140
-    ExternalDocumentType1Code:
-      type: string
-      minLength: 1
-      maxLength: 4
-      description: Specifies the document type as published in an external document type code list. For more information see `ExternalDocumentType1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      enum:
-      - CINV
-      - CNFA
-      - CONT
-      - CREN
-      - DEBN
-      - DISP
-      - DNFA
-      - HIRI
-      - INVS
-      - MSIN
-      - PROF
-      - PUOR
-      - QUOT
-      - SBIN
-      - SPRR
-      - TISH
-      - USAR
-      - AROI
-      - BOLD
-      - CMCN
-      - SOAC
-      - TSUT
-      - VCHR
-    Floor:
-      description: Number that identifies the level within a building
+    Department:
+      description: Identification of a division of a large organisation or building.
       type: string
       minLength: 1
       maxLength: 70
@@ -1080,77 +1426,43 @@ components:
       - UK.OBIE.NCC.IE
       - UK.OBIE.NCC.IM
       - UK.OBIE.NCC.JE
-    OBPostalAddress7:
-      type: object
-      additionalProperties: false
-      description: Information that locates and identifies a specific address, as defined by postal services.
-      properties:
-        AddressType:
-          $ref: '#/components/schemas/OBAddressType2Code'
-        Department:
-          $ref: '#/components/schemas/Department'
-        SubDepartment:
-          $ref: '#/components/schemas/SubDepartment'
-        StreetName:
-          $ref: '#/components/schemas/StreetName'
-        BuildingNumber:
-          $ref: '#/components/schemas/BuildingNumber'
-        BuildingName:
-          $ref: '#/components/schemas/BuildingName'
-        Floor:
-          $ref: '#/components/schemas/Floor'
-        UnitNumber:
-          $ref: '#/components/schemas/UnitNumber'
-        Room:
-          $ref: '#/components/schemas/Room'
-        PostBox:
-          $ref: '#/components/schemas/PostBox'
-        TownLocationName:
-          $ref: '#/components/schemas/TownName'
-        DistrictName:
-          $ref: '#/components/schemas/DistrictName'
-        CareOf:
-          $ref: '#/components/schemas/CareOf'
-        PostCode:
-          $ref: '#/components/schemas/PostCode'
-        TownName:
-          $ref: '#/components/schemas/TownName'
-        CountrySubDivision:
-          $ref: '#/components/schemas/CountrySubDivision'
-        Country:
-          $ref: '#/components/schemas/CountryCode'
-        AddressLine:
-          type: array
-          minItems: 0
-          maxItems: 7
-          items:
-            description: Information that locates and identifies a specific address, as defined by postal services, presented in free format text.
-            type: string
-            minLength: 1
-            maxLength: 70
-    OBErrorResponse1:
-      description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
-      type: object
-      additionalProperties: false
-      required:
-      - Errors
-      properties:
-        Id:
-          description: A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
-          type: string
-          minLength: 1
-          maxLength: 40
-        Errors:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OBError1'
-    Identification_4:
-      description: Identification of the party to whom an invoice is issued, when it is different from the debtor or ultimate debtor.
+    Identification_3:
+      description: Identification of the organisation issuing the invoice, when it is different from the creditor or ultimate creditor
       type: string
       example: '80200112344562'
       minLength: 1
       maxLength: 256
+    CountrySubDivision:
+      description: Identifies a subdivision of a country such as state, region, country.
+      type: string
+      minLength: 1
+      maxLength: 35
+    LEI:
+      description: Legal entity identification as an alternate identification for a party. Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
+      type: string
+      minLength: 1
+      maxLength: 20
+      pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
+    OBUltimateDebtor1:
+      description: 'Ultimate party that owes an amount of money to the (ultimate) creditor. Danske Bank: Object is accepted but ignored.'
+      type: object
+      properties:
+        Name:
+          description: Name by which a party is known and which is usually used to identify that party.
+          type: string
+          minLength: 1
+          maxLength: 140
+        Identification:
+          description: Identification assigned by an institution.
+          type: string
+          minLength: 1
+          maxLength: 256
+        LEI:
+          $ref: '#/components/schemas/LEI'
+        SchemeName:
+          $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
+        PostalAddress:
+          $ref: '#/components/schemas/OBPostalAddress7'
     OBActiveOrHistoricCurrencyAndAmount:
       description: Amount of money associated with the charge type.
       type: object
@@ -1163,131 +1475,48 @@ components:
           $ref: '#/components/schemas/OBActiveCurrencyAndAmount_SimpleType'
         Currency:
           $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
-    OBInternalChargeBearerType1Code:
-      description: Specifies which party/parties will bear the charges associated with the processing of the payment transaction. For a full list of values refer to `OBInternalChargeBearerType1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+    Identification_1:
+      description: 'Unique and unambiguous identification of a financial institution or a branch of a financial institution. Danske bank supports 8 or 11 length UK.OBIE.BICFI identifiers. In case of UK.OBIE.NCC.[ISO3166-aplha2-CountryCode] the following rules will apply: https://developers.danskebank.com/documentation/regulatory_apis/instruction_details#creditoragent_ncc_identification_values'
       type: string
-      enum:
-      - BorneByCreditor
-      - BorneByDebtor
-      - FollowingServiceLevel
-      - Shared
-    OBWriteFileConsent3:
+      minLength: 8
+      maxLength: 14
+    CareOf:
+      description: The 'care of' address is used whenever sending mail to a person or organisation who does not actually live or work at the address. They will receive the mail for the individual.
+      type: string
+      minLength: 1
+      maxLength: 140
+    Floor:
+      description: Number that identifies the level within a building
+      type: string
+      minLength: 1
+      maxLength: 70
+    PostCode:
+      description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.
+      type: string
+      minLength: 1
+      maxLength: 16
+    CountryCode:
+      description: Nation with its own government.
+      type: string
+      pattern: ^[A-Z]{2,2}$
+    OBRemittanceInformation2:
       type: object
-      additionalProperties: false
-      required:
-      - Data
+      description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system. Danske Bank: Note, Remittance information is not supported in File payments.'
       properties:
-        Data:
-          type: object
-          additionalProperties: false
-          required:
-          - Initiation
-          properties:
-            Initiation:
-              description: The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds using a payment file.
-              type: object
-              additionalProperties: false
-              required:
-              - FileType
-              - FileHash
-              properties:
-                FileType:
-                  description: Specifies the payment file type.
-                  type: string
-                  x-namespaced-enum:
-                  - DK.DanskeBank.pain.001.001.03
-                FileHash:
-                  description: 'A base64 encoding of a SHA256 hash of the file to be. Note that the file from TPP has to be sent with headers: Content-Type: application/octet-stream uploaded.'
-                  type: string
-                  minLength: 1
-                  maxLength: 44
-                FileReference:
-                  description: Reference for the file.
-                  type: string
-                  minLength: 1
-                  maxLength: 40
-                NumberOfTransactions:
-                  description: Number of individual transactions contained in the payment information group.
-                  type: string
-                  pattern: '[0-9]{1,15}'
-                ControlSum:
-                  description: 'Total of all individual amounts included in the group, irrespective of currencies. Danske Bank: due to Danske Bank infrastructure specifics, value should not contain trailing zeroes. E.g. 100.00 should be stated as 100'
-                  type: number
-                RequestedExecutionDateTime:
-                  description: 'Date at which the initiating party requests the clearing agent to process the payment. Usage: This is the date on which the debtor''s account is to be debited. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Danske Bank: value is accepted but ignored.'
-                  type: string
-                  format: date-time
-                LocalInstrument:
-                  $ref: '#/components/schemas/OBInternalLocalInstrument11Code'
-                CreditorAgent:
-                  type: object
-                  additionalProperties: false
-                  description: Financial institution servicing an account for the creditor.
-                  properties:
-                    SchemeName:
-                      $ref: '#/components/schemas/OBInternalFinancialInstitutionIdentification4Code'
-                    Identification:
-                      $ref: '#/components/schemas/Identification_1'
-                    Name:
-                      $ref: '#/components/schemas/Name'
-                    LEI:
-                      $ref: '#/components/schemas/LEI'
-                    PostalAddress:
-                      $ref: '#/components/schemas/OBPostalAddress7'
-                DebtorAccount:
-                  description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                  type: object
-                  additionalProperties: false
-                  required:
-                  - SchemeName
-                  - Identification
-                  properties:
-                    SchemeName:
-                      $ref: '#/components/schemas/OBInternalAccountIdentification45Code'
-                    Identification:
-                      description: 'Identification assigned by an institution to identify an account. This identification is known by the account owner. Danske Bank: value is accepted but ignored.
-
-                        '
-                      allOf:
-                      - $ref: '#/components/schemas/Identification_0'
-                    Name:
-                      description: 'The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP''s online channels. Note, the account name is not the product name or the nickname of the account. Danske Bank: value is accepted but ignored.'
-                      type: string
-                      minLength: 1
-                      maxLength: 350
-                    SecondaryIdentification:
-                      description: 'This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). Danske Bank: value is accepted but ignored.
-
-                        '
-                      allOf:
-                      - $ref: '#/components/schemas/SecondaryIdentification'
-                    Proxy:
-                      $ref: '#/components/schemas/OBProxy1'
-                UltimateDebtor:
-                  $ref: '#/components/schemas/OBUltimateDebtor1'
-                RemittanceInformation:
-                  $ref: '#/components/schemas/OBRemittanceInformation2'
-                SupplementaryData:
-                  $ref: '#/components/schemas/OBSupplementaryData1'
-            Authorisation:
-              description: The authorisation type request from the TPP.
-              type: object
-              additionalProperties: false
-              required:
-              - AuthorisationType
-              properties:
-                AuthorisationType:
-                  description: 'Type of authorisation flow requested. Danske Bank: If you request ‘Single’ and the PSU does not have the authority to make a payment without needing another person to approve it, the payment will be rejected.'
-                  type: string
-                  enum:
-                  - Any
-                  - Single
-                CompletionDateTime:
-                  description: 'Date and time at which the requested authorisation flow must be completed. All dates in the JSON payloads are represented in ISO 8601 date-time format. All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00 Warning: Danske Bank does not support this functionality. Payments which require further authorisation must be fully authorised in our online channel by midnight of the due date or the payment will be rejected.'
-                  type: string
-                  format: date-time
-            SCASupportData:
-              $ref: '#/components/schemas/OBSCASupportData1'
+        Structured:
+          type: array
+          maxItems: 1
+          description: 'Danske Bank: Only one item is supported by Danske Bank.'
+          items:
+            $ref: '#/components/schemas/OBRemittanceInformationStructured'
+        Unstructured:
+          type: array
+          maxItems: 1
+          description: Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. When using UK.OBIE.CHAPS as LocalInstrument, only 18 characters are allowed for transfers within Danske Bank and 70 characters for transfers outside Danske. Only one item is supported by Danske Bank. Not supported in Standing Orders.
+          items:
+            type: string
+            maxLength: 140
+            minLength: 1
     OBWriteFile2:
       type: object
       additionalProperties: false
@@ -1392,268 +1621,10 @@ components:
                   $ref: '#/components/schemas/OBRemittanceInformation2'
                 SupplementaryData:
                   $ref: '#/components/schemas/OBSupplementaryData1'
-  requestBodies:
-    OBWriteFileConsent3Param:
-      description: Default
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFileConsent3'
-      required: true
-    OBWriteFile2Param:
-      description: Default
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFile2'
-      required: true
-    FileParam:
-      description: Default
-      content:
-        application/octet-stream:
-          schema:
-            $ref: '#/components/schemas/File'
-      required: true
-  responses:
-    405Error:
-      description: Method Not Allowed
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    403Error:
-      description: Forbidden
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    200FilePaymentConsentsConsentIdFileCreated:
-      description: File Payment Consents Created
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    409Error:
-      description: Conflict
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    503Error:
-      description: Service temporary unavailable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    406Error:
-      description: Not Acceptable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    400Error:
-      description: Bad request
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    200FilePaymentsFilePaymentIdRead:
-      description: File Payments Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFileResponse3'
-    200FilePaymentConsentsConsentIdRead:
-      description: File Payment Consents Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFileConsentResponse4'
-    404Error:
-      description: Not found
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    201FilePaymentConsentsCreated:
-      description: File Payment Consents Created
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFileConsentResponse4'
-    201FilePaymentsCreated:
-      description: File Payments Created
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBWriteFileResponse3'
-    429Error:
-      description: Too Many Requests
-      headers:
-        Retry-After:
-          description: Number in seconds to wait
-          required: true
-          schema:
-            type: integer
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    200FilePaymentsFilePaymentIdReportFileRead:
-      description: File Payments Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/File'
-    415Error:
-      description: Unsupported Media Type
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    401Error:
-      description: Unauthorized
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    500Error:
-      description: Internal Server Error
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        x-jws-signature:
-          description: Header containing a detached JWS signature of the body of the payload.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
+    File:
+      type: string
+      format: binary
   parameters:
-    x-fapi-customer-ip-address:
-      name: x-fapi-customer-ip-address
-      in: header
-      description: The PSU's IP address if the PSU is currently logged in with the TPP.
-      required: false
-      schema:
-        type: string
     x-customer-user-agent:
       name: x-customer-user-agent
       in: header
@@ -1661,40 +1632,11 @@ components:
       required: false
       schema:
         type: string
-    FilePaymentId:
-      name: FilePaymentId
-      in: path
-      description: FilePaymentId
-      required: true
-      schema:
-        type: string
-    x-jws-signature:
-      name: x-jws-signature
-      in: header
-      description: A detached JWS signature of the body of the payload.
-      required: true
-      schema:
-        type: string
-    x-fapi-auth-date:
-      name: x-fapi-auth-date
-      in: header
-      description: 'The time when the PSU last logged in with the TPP. All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: Sun, 10 Sep 2017 19:43:31 UTC'
-      required: false
-      schema:
-        type: string
-        pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
     ConsentId:
       name: ConsentId
       in: path
       description: ConsentId
       required: true
-      schema:
-        type: string
-    x-fapi-interaction-id:
-      name: x-fapi-interaction-id
-      in: header
-      description: An RFC4122 UID used as a correlation id.
-      required: false
       schema:
         type: string
     x-idempotency-key:
@@ -1710,6 +1652,64 @@ components:
         type: string
         maxLength: 40
         pattern: ^(?!\s)(.*)(\S)$
+    x-fapi-auth-date:
+      name: x-fapi-auth-date
+      in: header
+      description: 'The time when the PSU last logged in with the TPP. All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: Sun, 10 Sep 2017 19:43:31 UTC'
+      required: false
+      schema:
+        type: string
+        pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
+    x-jws-signature:
+      name: x-jws-signature
+      in: header
+      description: A detached JWS signature of the body of the payload.
+      required: true
+      schema:
+        type: string
+    FilePaymentId:
+      name: FilePaymentId
+      in: path
+      description: FilePaymentId
+      required: true
+      schema:
+        type: string
+    x-fapi-customer-ip-address:
+      name: x-fapi-customer-ip-address
+      in: header
+      description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      required: false
+      schema:
+        type: string
+    x-fapi-interaction-id:
+      name: x-fapi-interaction-id
+      in: header
+      description: An RFC4122 UID used as a correlation id.
+      required: false
+      schema:
+        type: string
+  requestBodies:
+    FileParam:
+      description: Default
+      content:
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/File'
+      required: true
+    OBWriteFile2Param:
+      description: Default
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFile2'
+      required: true
+    OBWriteFileConsent3Param:
+      description: Default
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBWriteFileConsent3'
+      required: true
   securitySchemes:
     BearerAuth:
       type: http

@@ -128,18 +128,6 @@ paths:
                     details: An unexpected error occurred while processing the trade.
 components:
   examples:
-    ApiError_MissingField:
-      summary: Missing required field (amount)
-      value:
-        status: 400 BAD_REQUEST
-        exceptionType: InvalidParameterException
-        details: Field 'amount' is required.
-    ApiError_ExpiredToken:
-      summary: Expired authentication token
-      value:
-        status: 401 UNAUTHORIZED
-        exceptionType: AuthenticationException
-        details: Token expired.
     PremiumTradeResponse_Tenor1W:
       summary: Executed forward trade (1W tenor)
       value:
@@ -157,17 +145,6 @@ components:
         forwardPrice: 1.0816
         maturityDate: '2025-10-14'
         product: FX Forward
-    PremiumTradeRequest_MaturityDate:
-      summary: Spot/forward trade specifying maturityDate
-      value:
-        amount: 1000000
-        amountSide: BUY
-        baseSide: SELL
-        buyCurrency: DKK
-        sellCurrency: EUR
-        counterpart: LLBM1Q
-        maturityDate: '2026-08-31'
-        comment: Urgent client request
     PremiumTradeRequest_Tenor:
       summary: Forward trade using tenor instead of maturityDate
       value:
@@ -179,6 +156,29 @@ components:
         counterpart: LLBM1Q
         tenor: 1W
         comment: Short-dated hedge
+    ApiError_ExpiredToken:
+      summary: Expired authentication token
+      value:
+        status: 401 UNAUTHORIZED
+        exceptionType: AuthenticationException
+        details: Token expired.
+    ApiError_MissingField:
+      summary: Missing required field (amount)
+      value:
+        status: 400 BAD_REQUEST
+        exceptionType: InvalidParameterException
+        details: Field 'amount' is required.
+    PremiumTradeRequest_MaturityDate:
+      summary: Spot/forward trade specifying maturityDate
+      value:
+        amount: 1000000
+        amountSide: BUY
+        baseSide: SELL
+        buyCurrency: DKK
+        sellCurrency: EUR
+        counterpart: LLBM1Q
+        maturityDate: '2026-08-31'
+        comment: Urgent client request
   schemas:
     ApiError:
       type: object

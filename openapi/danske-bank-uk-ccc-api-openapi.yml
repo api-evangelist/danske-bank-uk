@@ -189,22 +189,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - status
-      - code
-      - message
-      - detail
     CommercialCreditCardsResponse:
       type: object
       properties:
@@ -235,6 +219,22 @@ components:
       required:
       - timestamp
       - source
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - status
+      - code
+      - message
+      - detail
   securitySchemes:
     clientIdHeader:
       type: apiKey
